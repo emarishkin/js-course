@@ -1,4 +1,6 @@
-console.log("пвапвапе")
+// https://learn.javascript.ru/object-methods
+// Методы объекта, "this"
+
 // function showMessage() {
 //     alert( 'Всем привет!' );
 //   }
@@ -71,3 +73,36 @@ console.log("пвапвапе")
 //     alert(`Степень ${n} не поддерживается, используйте натуральное число`);
 //   }
 
+// https://learn.javascript.ru/object-methods
+// Методы объекта, "this"
+
+// let user = {
+//     name: "John",
+//     age: 30
+//   };
+  
+//   user.sayHi = function() {
+//     alert("Привет!");
+//   };
+  
+//   user.sayHi(); // Привет!
+
+  
+  let calculator = {
+    sum() {
+      return this.a + this.b;
+    },
+  
+    mul() {
+      return this.a * this.b;
+    },
+  
+    read() {
+      this.a = prompt('a?', 0);
+      this.b = prompt('b?', 0);
+    }
+  };
+  
+  calculator.read();
+  alert( calculator.sum() );
+  alert( calculator.mul() );
