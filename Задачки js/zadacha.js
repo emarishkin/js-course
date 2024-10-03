@@ -129,39 +129,63 @@
 // https://learn.javascript.ru/constructor-new
 // Конструктор, оператор "new"
 
-function Calculator() {
+// function Calculator() {
 
-  this.read = function() {
-    this.a = +prompt('a?', 0);
-    this.b = +prompt('b?', 0);
-  };
+//   this.read = function() {
+//     this.a = +prompt('a?', 0);
+//     this.b = +prompt('b?', 0);
+//   };
 
-  this.sum = function() {
-    return this.a + this.b;
-  };
+//   this.sum = function() {
+//     return this.a + this.b;
+//   };
 
-  this.mul = function() {
-    return this.a * this.b;
-  };
-}
+//   this.mul = function() {
+//     return this.a * this.b;
+//   };
+// }
 
-let calculator = new Calculator();
-calculator.read();
+// let calculator = new Calculator();
+// calculator.read();
 
-alert( "Sum=" + calculator.sum() );
-alert( "Mul=" + calculator.mul() );
+// alert( "Sum=" + calculator.sum() );
+// alert( "Mul=" + calculator.mul() );
 
 
-function Accumulator(startingValue) {
-  this.value = startingValue;
+// function Accumulator(startingValue) {
+//   this.value = startingValue;
 
-  this.read = function() {
-    this.value += +prompt('Сколько нужно добавить?', 0);
-  };
+//   this.read = function() {
+//     this.value += +prompt('Сколько нужно добавить?', 0);
+//   };
 
-}
+// }
 
-let accumulator = new Accumulator(1);
-accumulator.read();
-accumulator.read();
-alert(accumulator.value);
+// let accumulator = new Accumulator(1);
+// accumulator.read();
+// accumulator.read();
+// alert(accumulator.value);
+
+// https://learn.javascript.ru/symbol#simvoly
+// Тип данных Symbol
+
+let id = Symbol("id");
+let user = {
+  name: "Вася",
+  age: 30,
+  [id]: 123
+};
+for (let key in user) alert(key); // name, age (свойства с ключом-символом нет среди перечисленных)
+// хотя прямой доступ по символу работает
+alert( "Напрямую: " + user[id] );
+
+
+
+let id = Symbol("id");
+let user = {
+  [id]: 123
+};
+
+let clone = Object.assign({}, user);
+
+alert( clone[id] ); // 123
