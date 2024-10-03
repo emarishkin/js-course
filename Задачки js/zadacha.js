@@ -169,23 +169,80 @@
 // https://learn.javascript.ru/symbol#simvoly
 // Тип данных Symbol
 
-let id1 = Symbol("id");
-let user1 = {
-  name: "Вася",
-  age: 30,
-  [id1]: 123
-};
-for (let key in user1) alert(key); // name, age (свойства с ключом-символом нет среди перечисленных)
-// хотя прямой доступ по символу работает
-alert( "Напрямую: " + user[id1] );
+// let id1 = Symbol("id");
+// let user1 = {
+//   name: "Вася",
+//   age: 30,
+//   [id1]: 123
+// };
+// for (let key in user1) alert(key); // name, age (свойства с ключом-символом нет среди перечисленных)
+// // хотя прямой доступ по символу работает
+// alert( "Напрямую: " + user[id1] );
 
 
 
-let id = Symbol("id");
-let user = {
-  [id]: 123
-};
+// let id = Symbol("id");
+// let user = {
+//   [id]: 123
+// };
 
-let clone = Object.assign({}, user);
+// let clone = Object.assign({}, user);
 
-alert( clone[id] ); // 123
+// alert( clone[id] ); // 123
+
+
+
+// https://learn.javascript.ru/data-types
+// type d
+
+
+let num = 1.23456;
+alert( num.toFixed(2) ); // 1.23
+
+
+let billion = 1e9;  // 1 миллиард, буквально: 1 и 9 нулей
+alert( 7.3e9 );  // 7.3 миллиарда (7,300,000,000)
+
+let ms = 1e-6; // шесть нулей слева от 1
+
+
+let a = +prompt("Введите первое число", "");
+let b = +prompt("Введите второе число", "");
+alert( a + b );
+
+
+let guestList = `Guests:
+ * John
+ * Pete
+ * Mary
+`;
+alert(guestList); // список гостей, состоящий из нескольких строк
+
+
+
+// перевод строки добавлен с помощью символа перевода строки
+let str1 = "Hello\nWorld";
+// многострочная строка, созданная с использованием обратных кавычек
+let str2 = `Hello
+World`;
+alert(str1 == str2); // true
+
+
+
+function ucFirst(str) {
+  if (!str) return str;
+  return str[0].toUpperCase() + str.slice(1);
+}
+alert( ucFirst("вася") ); // Вася
+
+
+
+function checkSpam(str) {
+  let lowerStr = str.toLowerCase();
+  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+}
+alert( checkSpam('buy ViAgRA now') );
+alert( checkSpam('free xxxxx') );
+alert( checkSpam("innocent rabbit") );
+
+
