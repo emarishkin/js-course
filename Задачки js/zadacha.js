@@ -169,15 +169,15 @@
 // https://learn.javascript.ru/symbol#simvoly
 // Тип данных Symbol
 
-let id = Symbol("id");
-let user = {
+let id1 = Symbol("id");
+let user1 = {
   name: "Вася",
   age: 30,
-  [id]: 123
+  [id1]: 123
 };
-for (let key in user) alert(key); // name, age (свойства с ключом-символом нет среди перечисленных)
+for (let key in user1) alert(key); // name, age (свойства с ключом-символом нет среди перечисленных)
 // хотя прямой доступ по символу работает
-alert( "Напрямую: " + user[id] );
+alert( "Напрямую: " + user[id1] );
 
 
 
