@@ -196,53 +196,95 @@
 // type d
 
 
-let num = 1.23456;
-alert( num.toFixed(2) ); // 1.23
+// let num = 1.23456;
+// alert( num.toFixed(2) ); // 1.23
 
 
-let billion = 1e9;  // 1 миллиард, буквально: 1 и 9 нулей
-alert( 7.3e9 );  // 7.3 миллиарда (7,300,000,000)
+// let billion = 1e9;  // 1 миллиард, буквально: 1 и 9 нулей
+// alert( 7.3e9 );  // 7.3 миллиарда (7,300,000,000)
 
-let ms = 1e-6; // шесть нулей слева от 1
-
-
-let a = +prompt("Введите первое число", "");
-let b = +prompt("Введите второе число", "");
-alert( a + b );
+// let ms = 1e-6; // шесть нулей слева от 1
 
 
-let guestList = `Guests:
- * John
- * Pete
- * Mary
-`;
-alert(guestList); // список гостей, состоящий из нескольких строк
+// let a = +prompt("Введите первое число", "");
+// let b = +prompt("Введите второе число", "");
+// alert( a + b );
 
 
-
-// перевод строки добавлен с помощью символа перевода строки
-let str1 = "Hello\nWorld";
-// многострочная строка, созданная с использованием обратных кавычек
-let str2 = `Hello
-World`;
-alert(str1 == str2); // true
+// let guestList = `Guests:
+//  * John
+//  * Pete
+//  * Mary
+// `;
+// alert(guestList); // список гостей, состоящий из нескольких строк
 
 
 
-function ucFirst(str) {
-  if (!str) return str;
-  return str[0].toUpperCase() + str.slice(1);
-}
-alert( ucFirst("вася") ); // Вася
+// // перевод строки добавлен с помощью символа перевода строки
+// let str1 = "Hello\nWorld";
+// // многострочная строка, созданная с использованием обратных кавычек
+// let str2 = `Hello
+// World`;
+// alert(str1 == str2); // true
 
 
 
-function checkSpam(str) {
-  let lowerStr = str.toLowerCase();
-  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
-}
-alert( checkSpam('buy ViAgRA now') );
-alert( checkSpam('free xxxxx') );
-alert( checkSpam("innocent rabbit") );
+// function ucFirst(str) {
+//   if (!str) return str;
+//   return str[0].toUpperCase() + str.slice(1);
+// }
+// alert( ucFirst("вася") ); // Вася
 
+
+
+// function checkSpam(str) {
+//   let lowerStr = str.toLowerCase();
+//   return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+// }
+// alert( checkSpam('buy ViAgRA now') );
+// alert( checkSpam('free xxxxx') );
+// alert( checkSpam("innocent rabbit") );
+
+
+// https://learn.javascript.ru/array
+// Массивы
+
+let fruits = ["Apple", "Orange", "Plum"];
+alert( fruits[fruits.length-1] ); // Plum
+
+let fruits1 = ["Apple", "Orange", "Plum"];
+// то же самое, что и fruits[fruits.length-1]
+alert( fruits1.at(-1) ); // Plum
+
+// pop
+// Удаляет последний элемент из массива и возвращает его:
+let fruits2 = ["Яблоко", "Апельсин", "Груша"];
+alert( fruits2.pop() ); // удаляем "Груша" и выводим его
+alert( fruits2 ); // Яблоко, Апельсин
+
+// push
+// Добавляет элемент в конец массива:
+let fruits3 = ["Яблоко", "Апельсин"];
+fruits3.push("Груша");
+alert( fruits3 ); // Яблоко, Апельсин, Груша
+// Вызов fruits.push(...) равнозначен fruits[fruits.length] = ...
+
+// shift
+// Удаляет из массива первый элемент и возвращает его:
+let fruits4 = ["Яблоко", "Апельсин", "Груша"];
+alert( fruits4.shift() ); // удаляем Яблоко и выводим его
+alert( fruits4 ); // Апельсин, Груша
+
+// unshift
+// Добавляет элемент в начало массива:
+let fruits5 = ["Апельсин", "Груша"];
+fruits5.unshift('Яблоко');
+alert( fruits5 ); // Яблоко, Апельсин, Груша
+
+// Методы push и unshift могут добавлять сразу несколько элементов:
+let fruits6 = ["Яблоко"];
+fruits6.push("Апельсин", "Груша");
+fruits6.unshift("Ананас", "Лимон");
+// ["Ананас", "Лимон", "Яблоко", "Апельсин", "Груша"]
+alert( fruits6 );
 
