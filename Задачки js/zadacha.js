@@ -786,93 +786,104 @@
 // map.size – возвращает текущее количество элементов.
 
 
-let map = new Map();
+// let map = new Map();
 
-map.set("1", "str1");    // строка в качестве ключа
-map.set(1, "num1");      // цифра как ключ
-map.set(true, "bool1");  // булево значение как ключ
-// помните, обычный объект Object приводит ключи к строкам?
-// Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
-alert(map.get(1)); // "num1"
-alert(map.get("1")); // "str1"
-alert(map.size); // 3
-
-
-
-let recipeMap = new Map([
-  ["огурец", 500],
-  ["помидор", 350],
-  ["лук",    50]
-]);
-// перебор по ключам (овощи)
-for (let vegetable of recipeMap.keys()) {
-  alert(vegetable); // огурец, помидор, лук
-}
-// перебор по значениям (числа)
-for (let amount of recipeMap.values()) {
-  alert(amount); // 500, 350, 50
-}
-// перебор по элементам в формате [ключ, значение]
-for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
-  alert(entry); // огурец,500 (и так далее)
-}
+// map.set("1", "str1");    // строка в качестве ключа
+// map.set(1, "num1");      // цифра как ключ
+// map.set(true, "bool1");  // булево значение как ключ
+// // помните, обычный объект Object приводит ключи к строкам?
+// // Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
+// alert(map.get(1)); // "num1"
+// alert(map.get("1")); // "str1"
+// alert(map.size); // 3
 
 
 
-// массив пар [ключ, значение]
-let map1 = new Map([
-  ['1',  'str1'],
-  [1,    'num1'],
-  [true, 'bool1']
-]);
-
-alert( map1.get('1') ); // str1
-
-
-
-let prices = Object.fromEntries([
-  ['banana', 1],
-  ['orange', 2],
-  ['meat', 4]
-]);
-
-// prices = { banana: 1, orange: 2, meat: 4 }
-alert(prices.orange); // 2
+// let recipeMap = new Map([
+//   ["огурец", 500],
+//   ["помидор", 350],
+//   ["лук",    50]
+// ]);
+// // перебор по ключам (овощи)
+// for (let vegetable of recipeMap.keys()) {
+//   alert(vegetable); // огурец, помидор, лук
+// }
+// // перебор по значениям (числа)
+// for (let amount of recipeMap.values()) {
+//   alert(amount); // 500, 350, 50
+// }
+// // перебор по элементам в формате [ключ, значение]
+// for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
+//   alert(entry); // огурец,500 (и так далее)
+// }
 
 
 
-// new Set(iterable) – создаёт Set, и если в качестве аргумента был предоставлен итерируемый объект (обычно это массив), то копирует его значения в новый Set.
-// set.add(value) – добавляет значение (если оно уже есть, то ничего не делает), возвращает тот же объект set.
-// set.delete(value) – удаляет значение, возвращает true, если value было в множестве на момент вызова, иначе false.
-// set.has(value) – возвращает true, если значение присутствует в множестве, иначе false.
-// set.clear() – удаляет все имеющиеся значения.
-// set.size – возвращает количество элементов в множестве.
+// // массив пар [ключ, значение]
+// let map1 = new Map([
+//   ['1',  'str1'],
+//   [1,    'num1'],
+//   [true, 'bool1']
+// ]);
+
+// alert( map1.get('1') ); // str1
 
 
-let set = new Set();
 
-let john = { name: "John" };
-let pete = { name: "Pete" };
-let mary = { name: "Mary" };
-// считаем гостей, некоторые приходят несколько раз
-set.add(john);
-set.add(pete);
-set.add(mary);
-set.add(john);
-set.add(mary);
-// set хранит только 3 уникальных значения
-alert(set.size); // 3
-for (let user of set) {
-  alert(user.name); // John (потом Pete и Mary)
-}
+// let prices = Object.fromEntries([
+//   ['banana', 1],
+//   ['orange', 2],
+//   ['meat', 4]
+// ]);
+
+// // prices = { banana: 1, orange: 2, meat: 4 }
+// alert(prices.orange); // 2
 
 
-let set1 = new Set(["апельсин", "яблоко", "банан"]);
 
-for (let value of set1) alert(value);
+// // new Set(iterable) – создаёт Set, и если в качестве аргумента был предоставлен итерируемый объект (обычно это массив), то копирует его значения в новый Set.
+// // set.add(value) – добавляет значение (если оно уже есть, то ничего не делает), возвращает тот же объект set.
+// // set.delete(value) – удаляет значение, возвращает true, если value было в множестве на момент вызова, иначе false.
+// // set.has(value) – возвращает true, если значение присутствует в множестве, иначе false.
+// // set.clear() – удаляет все имеющиеся значения.
+// // set.size – возвращает количество элементов в множестве.
 
-// то же самое с forEach:
-set1.forEach((value, valueAgain, set1) => {
-  alert(value);
-});
 
+// let set = new Set();
+
+// let john = { name: "John" };
+// let pete = { name: "Pete" };
+// let mary = { name: "Mary" };
+// // считаем гостей, некоторые приходят несколько раз
+// set.add(john);
+// set.add(pete);
+// set.add(mary);
+// set.add(john);
+// set.add(mary);
+// // set хранит только 3 уникальных значения
+// alert(set.size); // 3
+// for (let user of set) {
+//   alert(user.name); // John (потом Pete и Mary)
+// }
+
+
+// let set1 = new Set(["апельсин", "яблоко", "банан"]);
+
+// for (let value of set1) alert(value);
+
+// // то же самое с forEach:
+// set1.forEach((value, valueAgain, set1) => {
+//   alert(value);
+// });
+
+// повторяю первую треть
+
+const myBirthday = '18.04.1982';
+myBirthday = '01.01.2001'; // ошибка, константу нельзя перезаписать!
+
+
+// Оператор typeof возвращает тип аргумента. Это полезно, когда мы хотим обрабатывать значения различных типов по-разному или просто хотим сделать проверку.
+// Обычный синтаксис
+typeof 5 // Выведет "number"
+// Синтаксис, напоминающий вызов функции (встречается реже)
+typeof(5) // Также выведет "number"
