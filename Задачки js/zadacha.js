@@ -961,53 +961,133 @@
 //     alert( "Я вас не знаю" );
 //   }
    
-for (let i = 0; i < 10; i++) {
-    // если true, пропустить оставшуюся часть тела цикла
-    if (i % 2 == 0) continue;
+// for (let i = 0; i < 10; i++) {
+//     // если true, пропустить оставшуюся часть тела цикла
+//     if (i % 2 == 0) continue;
   
-    alert(i); // 1, затем 3, 5, 7, 9
-  }
+//     alert(i); // 1, затем 3, 5, 7, 9
+//   }
 
 
-for (let i = 0; i < 10; i++) {
+// for (let i = 0; i < 10; i++) {
 
-    if (i % 2 == 1) {
-      alert( i );
-    }
+//     if (i % 2 == 1) {
+//       alert( i );
+//     }
   
-  }
+//   }
 
 
 
-for(let i=2;i<=10;i++){
-    if(i%2 == 0){
-  alert(i)
-}
-}
+// for(let i=2;i<=10;i++){
+//     if(i%2 == 0){
+//   alert(i)
+// }
+// }
 
 
-let i=0
-while(i<3) {
-    alert( `number ${i}!` );
- i++
-}
+// let i=0
+// while(i<3) {
+//     alert( `number ${i}!` );
+//  i++
+// }
 
 
-let num = prompt("введите число больше 100", "")
-if(num <= 100 && num){
-while (num <= 100 && num){
-    num = prompt("введите еще раз", "")
-}
-} else {
-    alert("все норм")
-}
+// let num = prompt("введите число больше 100", "")
+// if(num <= 100 && num){
+// while (num <= 100 && num){
+//     num = prompt("введите еще раз", "")
+// }
+// } else {
+//     alert("все норм")
+// }
 
-let n=10
-nextPrime:
-for(let j=2;j<=n;j++){
-    for(let i=2;i<j;i++){
-        if(j%i==0) continue nextPrime;
+// let n=10
+// nextPrime:
+// for(let j=2;j<=n;j++){
+//     for(let i=2;i<j;i++){
+//         if(j%i==0) continue nextPrime;
         
-    }
-    alert(j)
+//     }
+//     alert(j)
+// }
+
+let browser
+if(browser=="Edge"){
+    alert("You've got the Edge!")
+} else if(browser == 'Chrome'
+    || browser == 'Firefox'
+    || browser == 'Safari'
+    || browser == 'Opera'){
+    alert('Okay we support these browsers too')
+} else {
+    alert( 'We hope that this page looks ok!' );
 }
+
+let number = +prompt('Введите число между 0 и 3', '');
+switch (number) {
+  case 0:
+    alert('Вы ввели число 0');
+    break;
+
+  case 1:
+    alert('Вы ввели число 1');
+    break;
+
+  case 2:
+  case 3:
+    alert('Вы ввели число 2, а может и 3');
+    break;
+}
+
+function checkAge(age) {
+    if (age >= 18) {
+      return true;
+    } else {
+      return confirm('А родители разрешили?');
+    }
+  }
+  
+  let age = prompt('Сколько вам лет?', 18);
+  
+  if ( checkAge(age) ) {
+    alert( 'Доступ получен' );
+  } else {
+    alert( 'Доступ закрыт' );
+  }
+
+ function min(a,b){
+ if(b>a){
+    return a
+ } else {
+    return b
+ }
+
+}
+alert(min(3,9))
+
+
+function pow(x,n){
+let kaka= x**n
+return kaka
+}
+alert(pow(3,3))
+
+function pow(x, n) {
+    let result = x;
+  
+    for (let i = 1; i < n; i++) {
+      result *= x;
+    }
+  
+    return result;
+  }
+  
+  let x = prompt("x?", '');
+  let n = prompt("n?", '');
+  
+  if (n >= 1 && n % 1 == 0) {
+    alert( pow(x, n) );
+  } else {
+    alert(`Степень ${n} не поддерживается, используйте натуральное число`);
+  }
