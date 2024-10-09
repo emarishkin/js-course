@@ -890,74 +890,124 @@
 
 // продолжение
 
-let apples = "2";
-let oranges = "3";
-// оба операнда предварительно преобразованы в числа
-alert( +apples + +oranges ); // 5
-// более длинный вариант
-// alert( Number(apples) + Number(oranges) ); // 5
+// let apples = "2";
+// let oranges = "3";
+// // оба операнда предварительно преобразованы в числа
+// alert( +apples + +oranges ); // 5
+// // более длинный вариант
+// // alert( Number(apples) + Number(oranges) ); // 5
 
 
-let a = +prompt("Первое число?", 1);
-let b = +prompt("Второе число?", 2);
-alert(a + b); // 3
+// let a = +prompt("Первое число?", 1);
+// let b = +prompt("Второе число?", 2);
+// alert(a + b); // 3
 
 
-alert( 'Я' > 'А' ); // true
-alert( 'Коты' > 'Кода' ); // true
-alert( 'Сонный' > 'Сон' ); // true
+// alert( 'Я' > 'А' ); // true
+// alert( 'Коты' > 'Кода' ); // true
+// alert( 'Сонный' > 'Сон' ); // true
 
-alert( '2' > 1 ); // true, строка '2' становится числом 2
-alert( '01' == 1 ); // true, строка '01' становится числом 1
-
-
-let a1 = 0;
-alert( Boolean(a) ); // false
-let b1 = "0";
-alert( Boolean(b) ); // true
-alert(a1 == b1); // true!
-
-let age = prompt('Возраст?', 18);
-let message = (age < 3) ? 'Здравствуй, малыш!' :
-  (age < 18) ? 'Привет!' :
-  (age < 100) ? 'Здравствуйте!' :
-  'Какой необычный возраст!';
-alert( message );
+// alert( '2' > 1 ); // true, строка '2' становится числом 2
+// alert( '01' == 1 ); // true, строка '01' становится числом 1
 
 
+// let a1 = 0;
+// alert( Boolean(a) ); // false
+// let b1 = "0";
+// alert( Boolean(b) ); // true
+// alert(a1 == b1); // true!
 
-let company = prompt('Какая компания создала JavaScript?', '');
-(company == 'Netscape') ?
-   alert('Верно!') : alert('Неправильно.');
+// let age = prompt('Возраст?', 18);
+// let message = (age < 3) ? 'Здравствуй, малыш!' :
+//   (age < 18) ? 'Привет!' :
+//   (age < 100) ? 'Здравствуйте!' :
+//   'Какой необычный возраст!';
+// alert( message );
 
 
-   let name = prompt('Какая компания создала JavaScript?', '');
-   if(name == "ECMAScript"){
-     alert("верно!")
-   } else {
-    alert("неверно лох")
-   }
 
-   let name2 = prompt('Какая компания создала JavaScript?', '');
-   (name2=="ECMAScript") ?
-   alert("верно!") : alert("бот слит")
+// let company = prompt('Какая компания создала JavaScript?', '');
+// (company == 'Netscape') ?
+//    alert('Верно!') : alert('Неправильно.');
 
-let age3=18
-if(14<=age3 || age3>=90){
-    alert(age3)
+
+//    let name = prompt('Какая компания создала JavaScript?', '');
+//    if(name == "ECMAScript"){
+//      alert("верно!")
+//    } else {
+//     alert("неверно лох")
+//    }
+
+//    let name2 = prompt('Какая компания создала JavaScript?', '');
+//    (name2=="ECMAScript") ?
+//    alert("верно!") : alert("бот слит")
+
+// let age3=18
+// if(14<=age3 || age3>=90){
+//     alert(age3)
+// }
+
+// let login = prompt("Кто там?" , "")
+// if(login=="Админ"){
+//     let password = prompt("пароль" , "")
+//     if(password=="Я главный"){
+//       alert("я главный")
+//     } else {
+//         alert("неверный пароль")
+//     }
+// } else if (login === '' || login === null) {
+//     alert( 'Отменено' );
+//   } else {
+//     alert( "Я вас не знаю" );
+//   }
+   
+for (let i = 0; i < 10; i++) {
+    // если true, пропустить оставшуюся часть тела цикла
+    if (i % 2 == 0) continue;
+  
+    alert(i); // 1, затем 3, 5, 7, 9
+  }
+
+
+for (let i = 0; i < 10; i++) {
+
+    if (i % 2 == 1) {
+      alert( i );
+    }
+  
+  }
+
+
+
+for(let i=2;i<=10;i++){
+    if(i%2 == 0){
+  alert(i)
+}
 }
 
-let login = prompt("Кто там?" , "")
-if(login=="Админ"){
-    let password = prompt("пароль" , "")
-    if(password=="Я главный"){
-      alert("я главный")
-    } else {
-        alert("неверный пароль")
+
+let i=0
+while(i<3) {
+    alert( `number ${i}!` );
+ i++
+}
+
+
+let num = prompt("введите число больше 100", "")
+if(num <= 100 && num){
+while (num <= 100 && num){
+    num = prompt("введите еще раз", "")
+}
+} else {
+    alert("все норм")
+}
+
+let n=10
+nextPrime:
+for(let j=2;j<=n;j++){
+    for(let i=2;i<j;i++){
+        if(j%i==0) continue nextPrime;
+        
     }
-} else if (login === '' || login === null) {
-    alert( 'Отменено' );
-  } else {
-    alert( "Я вас не знаю" );
-  }
-   
+    alert(j)
+}
