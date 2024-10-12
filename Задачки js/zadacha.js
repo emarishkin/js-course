@@ -1211,295 +1211,407 @@
 // );
 
 
-// Function Declaration
-function sum(a, b) {
-  return a + b;
-}
-// Function Expression
-let sum = function(a, b) {
-  return a + b;
-};
+// // Function Declaration
+// function sum(a, b) {
+//   return a + b;
+// }
+// // Function Expression
+// let sum = function(a, b) {
+//   return a + b;
+// };
 
 
 
 
-let age2 = prompt("Сколько Вам лет?", 18);
-let welcome2;
-if (age2 < 18) {
+// let age2 = prompt("Сколько Вам лет?", 18);
+// let welcome2;
+// if (age2 < 18) {
 
-  welcome = function() {
-    alert("Привет!");
-  };
+//   welcome = function() {
+//     alert("Привет!");
+//   };
 
-} else {
+// } else {
 
-  welcome = function() {
-    alert("Здравствуйте!");
-  };
+//   welcome = function() {
+//     alert("Здравствуйте!");
+//   };
 
-}
-welcome(); // теперь всё в порядке
+// }
+// welcome(); // теперь всё в порядке
 
 
 
 
-let age1 = prompt("Сколько Вам лет?", 18);
-let welcome1 = (age1 < 18) ?
-  function() { alert("Привет!"); } :
-  function() { alert("Здравствуйте!"); };
+// let age1 = prompt("Сколько Вам лет?", 18);
+// let welcome1 = (age1 < 18) ?
+//   function() { alert("Привет!"); } :
+//   function() { alert("Здравствуйте!"); };
 
-welcome1(); // теперь всё в порядке
+// welcome1(); // теперь всё в порядке
 
 
 
 
-let age = prompt('Сколько вам лет?', 18);
+// let age = prompt('Сколько вам лет?', 18);
 
-switch (age) {
-  case 18:
-    alert("Так не сработает"); // результатом prompt является строка, а не число
+// switch (age) {
+//   case 18:
+//     alert("Так не сработает"); // результатом prompt является строка, а не число
 
-  case "18":
-    alert("А так сработает!");
-    break;
+//   case "18":
+//     alert("А так сработает!");
+//     break;
 
-  default:
-    alert("Любое значение, неравное значению выше");
-}
+//   default:
+//     alert("Любое значение, неравное значению выше");
+// }
 
 
-let user = {};
-// присваивание значения свойству
-user["likes birds"] = true;
-// получение значения свойства
-alert(user["likes birds"]); // true
-// удаление свойства
-delete user["likes birds"];
+// let user = {};
+// // присваивание значения свойству
+// user["likes birds"] = true;
+// // получение значения свойства
+// alert(user["likes birds"]); // true
+// // удаление свойства
+// delete user["likes birds"];
 
 
-let user = {
-  name: "John",
-  age: 30
-};
-let key = prompt("Что вы хотите узнать о пользователе?", "name");
-// доступ к свойству через переменную
-alert( user[key] ); // John (если ввели "name")
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+// let key = prompt("Что вы хотите узнать о пользователе?", "name");
+// // доступ к свойству через переменную
+// alert( user[key] ); // John (если ввели "name")
 
 
-let obj = {
-  0: "Тест" // то же самое что и "0": "Тест"
-};
-// обе функции alert выведут одно и то же свойство (число 0 преобразуется в строку "0")
-alert( obj["0"] ); // Тест
-alert( obj[0] ); // Тест (то же свойство)
+// let obj = {
+//   0: "Тест" // то же самое что и "0": "Тест"
+// };
+// // обе функции alert выведут одно и то же свойство (число 0 преобразуется в строку "0")
+// alert( obj["0"] ); // Тест
+// alert( obj[0] ); // Тест (то же свойство)
 
 
 
 
-let user = {
-  name: "John",
-  age: 30,
-  isAdmin: true
-};
+// let user = {
+//   name: "John",
+//   age: 30,
+//   isAdmin: true
+// };
 
-for (let key in user) {
-  // ключи
-  alert( key );  // name, age, isAdmin
-  // значения ключей
-  alert( user[key] ); // John, 30, true
-}
+// for (let key in user) {
+//   // ключи
+//   alert( key );  // name, age, isAdmin
+//   // значения ключей
+//   alert( user[key] ); // John, 30, true
+// }
 
 
 
 
-let codes = {
-  "+49": "Германия",
-  "+41": "Швейцария",
-  "+44": "Великобритания",
-  // ..,
-  "+1": "США"
-};
+// let codes = {
+//   "+49": "Германия",
+//   "+41": "Швейцария",
+//   "+44": "Великобритания",
+//   // ..,
+//   "+1": "США"
+// };
 
-for (let code in codes) {
-  alert( +code ); // 49, 41, 44, 1
-}
+// for (let code in codes) {
+//   alert( +code ); // 49, 41, 44, 1
+// }
 
 
 
-// задачи 
-let user 
-user.name="John"
-user.surname ="Smith"
-name= "Pete"
-delete user.name
+// // задачи 
+// let user 
+// user.name="John"
+// user.surname ="Smith"
+// name= "Pete"
+// delete user.name
 
-// !!!!!!!!!!!!!!!!!!!!
-let salaries22 = {
-  John: 100,
-  Ann: 160,
-  Pete: 130
-}
-let sum=0
-for(let key in salaries22){
-  sum+=salaries22[key]
-}
-alert(sum)
-// !!!!!!!!!!!!!!!!!!!!!!
+// // !!!!!!!!!!!!!!!!!!!!
+// let salaries22 = {
+//   John: 100,
+//   Ann: 160,
+//   Pete: 130
+// }
+// let sum=0
+// for(let key in salaries22){
+//   sum+=salaries22[key]
+// }
+// alert(sum)
+// // !!!!!!!!!!!!!!!!!!!!!!
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let menu = {
-  width: 200,
-  height: 300,
-  title: "My menu"
-};
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let menu = {
+//   width: 200,
+//   height: 300,
+//   title: "My menu"
+// };
 
-function multiplyNumeric(obj) {
-  for (let key in obj) {
-    if (typeof obj[key] == 'number') {
-      obj[key] *= 2;
-    }
-  }
-}
-multiplyNumeric(menu)
-alert( "menu width=" + menu.width + " height=" + menu.height + " title=" + menu.title );
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function multiplyNumeric(obj) {
+//   for (let key in obj) {
+//     if (typeof obj[key] == 'number') {
+//       obj[key] *= 2;
+//     }
+//   }
+// }
+// multiplyNumeric(menu)
+// alert( "menu width=" + menu.width + " height=" + menu.height + " title=" + menu.title );
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-let user33 = { name: "John" };
+// let user33 = { name: "John" };
 
-let permissions1 = { canView: true };
-let permissions2 = { canEdit: true };
+// let permissions1 = { canView: true };
+// let permissions2 = { canEdit: true };
 
 
-// копируем все свойства из permissions1 и permissions2 в user
-Object.assign(user, permissions1, permissions2);
+// // копируем все свойства из permissions1 и permissions2 в user
+// Object.assign(user, permissions1, permissions2);
 
-// теперь user = { name: "John", canView: true, canEdit: true }
+// // теперь user = { name: "John", canView: true, canEdit: true }
 
 
 
-let user = {
-  // ...
-};
+// let user = {
+//   // ...
+// };
 
-// сначала, объявляем
-function sayHi() {
-  alert("Привет!");
-}
+// // сначала, объявляем
+// function sayHi() {
+//   alert("Привет!");
+// }
 
-// затем добавляем в качестве метода
-user.sayHi = sayHi;
+// // затем добавляем в качестве метода
+// user.sayHi = sayHi;
 
-user.sayHi(); // Привет!
+// user.sayHi(); // Привет!
 
 
 
-// эти объекты делают одно и то же
+// // эти объекты делают одно и то же
 
-user = {
-  sayHi: function() {
-    alert("Привет");
-  }
-};
+// user = {
+//   sayHi: function() {
+//     alert("Привет");
+//   }
+// };
 
-// сокращённая запись выглядит лучше, не так ли?
-user = {
-  sayHi() { // то же самое, что и "sayHi: function(){...}"
-    alert("Привет");
-  }
-}
+// // сокращённая запись выглядит лучше, не так ли?
+// user = {
+//   sayHi() { // то же самое, что и "sayHi: function(){...}"
+//     alert("Привет");
+//   }
+// }
 
 
-let user = {
-  name: "John",
-  age: 30,
+// let user = {
+//   name: "John",
+//   age: 30,
 
-  sayHi() {
-    // "this" - это "текущий объект".
-    alert(this.name);
-  }
+//   sayHi() {
+//     // "this" - это "текущий объект".
+//     alert(this.name);
+//   }
 
-};
-user.sayHi(); // John
+// };
+// user.sayHi(); // John
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let user = {
-  firstName: "Ilya",
-  sayHi() {
-    let arrow = () => alert(this.firstName);
-    arrow();
-  }
-};
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let user = {
+//   firstName: "Ilya",
+//   sayHi() {
+//     let arrow = () => alert(this.firstName);
+//     arrow();
+//   }
+// };
 
-user.sayHi(); // Ilya
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// user.sayHi(); // Ilya
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
-function makeUser() {
-  return {
-    name: "John",
-    ref() {
-      return this;
-    }
-  };
-}
+// function makeUser() {
+//   return {
+//     name: "John",
+//     ref() {
+//       return this;
+//     }
+//   };
+// }
 
-let user = makeUser();
+// let user = makeUser();
 
-alert( user.ref().name ); // John
+// alert( user.ref().name ); // John
 
 
-задача
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let calculator2 = {
-  sum(){
-    return this.a + this.b
-   },
-   mul(){
-    return this.a * this.b;
-   },
- read(){
-  this.a = +prompt("ввкдите 1 значение","")
-  this.b = +prompt("ввкдите 2 значение","")
- }
+// задача
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let calculator2 = {
+//   sum(){
+//     return this.a + this.b
+//    },
+//    mul(){
+//     return this.a * this.b;
+//    },
+//  read(){
+//   this.a = +prompt("ввкдите 1 значение","")
+//   this.b = +prompt("ввкдите 2 значение","")
+//  }
  
-};
+// };
 
-calculator2.read();
-alert( calculator.sum() );
-alert( calculator.mul() );
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// calculator2.read();
+// alert( calculator.sum() );
+// alert( calculator.mul() );
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-let ladder = {
-  step: 0,
-  up() {
-    this.step++;
-    return this;
-  },
-  down() {
-    this.step--;
-    return this;
-  },
-  showStep() {
-    alert( this.step );
-    return this;
-  }
-};
+// let ladder = {
+//   step: 0,
+//   up() {
+//     this.step++;
+//     return this;
+//   },
+//   down() {
+//     this.step--;
+//     return this;
+//   },
+//   showStep() {
+//     alert( this.step );
+//     return this;
+//   }
+// };
 
-ladder.up().up().down().showStep().down().showStep(); // показывает 1 затем 0
+// ladder.up().up().down().showStep().down().showStep(); // показывает 1 затем 0
+
+// function User(name) {
+//   this.name = name;
+//   this.isAdmin = false;
+// }
+
+// let user = new User("Jack");
+
+// alert(user.name); // Jack
+// alert(user.isAdmin); // false
+
+
+
+// // Другими словами, new User(...) делает что-то вроде:
+
+// function User(name) {
+//   // this = {};  (неявно)
+
+//   // добавляет свойства к this
+//   this.name = name;
+//   this.isAdmin = false;
+
+//   // return this;  (неявно)
+// }
+
+
+// function User() {
+//   alert(new.target);
+// }
+// // без "new":
+// User(); // undefined
+// // с "new":
+// new User(); // function User { ... }
+
+
+
+// function User(name) {
+//   if (!new.target) { // в случае, если вы вызвали меня без оператора new
+//     return new User(name); // ...я добавлю new за вас
+//   }
+
+//   this.name = name;
+// }
+// let john2 = User("John"); // переадресовывает вызов на new User
+// alert(john2.name); // John
+
+
+
+// function BigUser() {
+
+//   this.name = "John";
+
+//   return { name: "Godzilla" };  // <-- возвращает этот объект
+// }
+// alert( new BigUser().name );  // Godzilla, получили этот объект
+
+
+
+// function SmallUser() {
+
+//   this.name = "John";
+
+//   return; // <-- возвращает this
+// }
+// alert( new SmallUser().name );  // John
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function User(name) {
+//   this.name = name;
+
+//   this.sayHi = function() {
+//     alert( "Меня зовут: " + this.name );
+//   };
+// }
+
+// let john = new User("John");
+
+// john.sayHi(); // Меня зовут: John
+
+// /*
+// john = {
+//    name: "John",
+//    sayHi: function() { ... }
+// }
+// */
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+// function Calculator() {
+
+//   this.read = function() {
+//     this.a = +prompt('a?', 0);
+//     this.b = +prompt('b?', 0);
+//   };
+
+//   this.sum = function() {
+//     return this.a + this.b;
+//   };
+
+//   this.mul = function() {
+//     return this.a * this.b;
+//   };
+// }
+
+// let calculator = new Calculator();
+// calculator.read();
+
+// alert( "Sum=" + calculator.sum() );
+// alert( "Mul=" + calculator.mul() );
 
 function User(name) {
   this.name = name;
   this.isAdmin = false;
 }
 
-let user = new User("Jack");
+let user6 = new User("Jack");
 
-alert(user.name); // Jack
-alert(user.isAdmin); // false
+alert(user6.name); // Jack
+alert(user6.isAdmin); // false
 
 
 
@@ -1533,8 +1645,8 @@ function User(name) {
 
   this.name = name;
 }
-let john2 = User("John"); // переадресовывает вызов на new User
-alert(john2.name); // John
+let john = User("John"); // переадресовывает вызов на new User
+alert(john.name); // John
 
 
 
@@ -1566,7 +1678,7 @@ function User(name) {
   };
 }
 
-let john = new User("John");
+let john5 = new User("John");
 
 john.sayHi(); // Меня зовут: John
 
@@ -1603,3 +1715,189 @@ calculator.read();
 alert( "Sum=" + calculator.sum() );
 alert( "Mul=" + calculator.mul() );
 
+
+function Accumulator(startingValue) {
+  this.value = startingValue;
+  this.read = function() {
+    this.value += +prompt('Сколько нужно добавить?', 0);
+  };
+
+}
+
+let accumulator = new Accumulator(1);
+accumulator.read();
+accumulator.read();
+alert(accumulator.value);
+
+
+
+let key = "firstName";
+let user1 = {
+  firstName: "John"
+};
+let user2 = null;
+alert( user1?.[key] ); // John
+alert( user2?.[key] ); // undefined
+
+// obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined.
+// obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined.
+// obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined
+
+let id5 = Symbol("id");
+alert(id); // TypeError: Cannot convert a Symbol value to a string
+
+let id6 = Symbol("id");
+alert(id.toString()); // Symbol(id), теперь работает
+
+let id7 = Symbol("id");
+alert(id.description); // id
+
+
+
+let id8 = Symbol("id");
+let user8 = {
+  [id]: 123
+};
+let clone = Object.assign({}, user);
+alert( clone[id] ); // 123
+
+
+// читаем символ из глобального реестра и записываем его в переменную
+let id = Symbol.for("id"); // если символа не существует, он будет создан
+// читаем его снова и записываем в другую переменную (возможно, из другого места кода)
+let idAgain = Symbol.for("id");
+// проверяем -- это один и тот же символ
+alert( id === idAgain ); // true
+
+
+
+// получаем символ по имени
+let sym = Symbol.for("name");
+let sym2 = Symbol.for("id");
+// получаем имя по символу
+alert( Symbol.keyFor(sym) ); // name
+alert( Symbol.keyFor(sym2) ); // id
+
+
+
+
+let user11 = {
+  name: "John",
+  money: 1000,
+
+  // для хинта равного "string"
+  toString() {
+    return {name: "${this.name}"};
+  },
+
+  // для хинта равного "number" или "default"
+  valueOf() {
+    return this.money;
+  }
+
+};
+alert(user); // toString -> {name: "John"}
+alert(+user); // valueOf -> 1000
+alert(user + 500); // valueOf -> 1500
+
+
+
+
+let user = {
+  name: "John",
+
+  toString() {
+    return this.name;
+  }
+};
+alert(user); // toString -> John
+alert(user + 500); // toString -> John500
+
+
+
+
+let obj = {
+  toString() {
+    return "2";
+  }
+};
+
+alert(obj + 2); // "22" ("2" + 2), преобразование к примитиву вернуло строку => конкатенация
+
+
+
+
+let roma = {
+  name: "Рома",
+  sayHi: function() {
+    alert("Привет, дружище!");
+  }
+};
+roma.sayHi(); // Привет, дружище!
+
+
+
+
+let str = "Привет";
+alert( str.toUpperCase() ); // ПРИВЕТ
+
+let num1 = 1.23456;
+alert( num.toFixed(2) ); // 1.23
+
+
+let num2 = 1.23456;
+alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+
+let num3 = 12.34;
+alert( num.toFixed(1) ); // "12.3"
+
+let num = 12.34;
+alert( num.toFixed(5) ); // "12.34000", добавлены нули, чтобы получить 5 знаков после запятой
+
+alert( 0.1 + 0.2 == 0.3 ); 
+// false
+let sum3 = 0.1 + 0.2;
+alert( sum.toFixed(2) ); // "0.30"
+
+
+let sum = 0.1 + 0.2;
+alert( sum.toFixed(1) ); // "0.3"
+
+
+alert( Math.max(3, 5, -10, 0, 1) ); // 5
+alert( Math.min(1, 2) ); // 1
+
+
+
+alert( Math.pow(2, 10) ); // 2 в степени 10 = 1024
+
+
+
+let a = +prompt("a","1")
+let b = +prompt("b","3")
+result = a + b
+alert(result)
+
+
+alert( Math.round(6.35 * 10) / 10 ); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+
+
+ function readNumber(){
+let a
+do {
+  a = prompt("Введите число", "");
+} while ( !isFinite(a) );
+
+ if(a == null || a == '') return null
+ 
+ return +a
+}
+alert(readNumber());
+
+
+
+let i = 0;
+while (i != 10) {
+  i += 0.2;
+}
+alert(i)
