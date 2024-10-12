@@ -1012,82 +1012,151 @@
 //     alert(j)
 // }
 
-let browser
-if(browser=="Edge"){
-    alert("You've got the Edge!")
-} else if(browser == 'Chrome'
-    || browser == 'Firefox'
-    || browser == 'Safari'
-    || browser == 'Opera'){
-    alert('Okay we support these browsers too')
-} else {
-    alert( 'We hope that this page looks ok!' );
-}
+// let browser
+// if(browser=="Edge"){
+//     alert("You've got the Edge!")
+// } else if(browser == 'Chrome'
+//     || browser == 'Firefox'
+//     || browser == 'Safari'
+//     || browser == 'Opera'){
+//     alert('Okay we support these browsers too')
+// } else {
+//     alert( 'We hope that this page looks ok!' );
+// }
 
-let number = +prompt('Введите число между 0 и 3', '');
-switch (number) {
-  case 0:
-    alert('Вы ввели число 0');
-    break;
+// let number = +prompt('Введите число между 0 и 3', '');
+// switch (number) {
+//   case 0:
+//     alert('Вы ввели число 0');
+//     break;
 
-  case 1:
-    alert('Вы ввели число 1');
-    break;
+//   case 1:
+//     alert('Вы ввели число 1');
+//     break;
 
-  case 2:
-  case 3:
-    alert('Вы ввели число 2, а может и 3');
-    break;
-}
+//   case 2:
+//   case 3:
+//     alert('Вы ввели число 2, а может и 3');
+//     break;
+// }
 
-function checkAge(age) {
-    if (age >= 18) {
-      return true;
-    } else {
-      return confirm('А родители разрешили?');
-    }
+// function checkAge(age) {
+//     if (age >= 18) {
+//       return true;
+//     } else {
+//       return confirm('А родители разрешили?');
+//     }
+//   }
+  
+//   let age = prompt('Сколько вам лет?', 18);
+  
+//   if ( checkAge(age) ) {
+//     alert( 'Доступ получен' );
+//   } else {
+//     alert( 'Доступ закрыт' );
+//   }
+
+//  function min(a,b){
+//  if(b>a){
+//     return a
+//  } else {
+//     return b
+//  }
+
+// }
+// alert(min(3,9))
+
+
+// function pow(x,n){
+// let kaka= x**n
+// return kaka
+// }
+// alert(pow(3,3))
+
+// function pow(x, n) {
+//     let result = x;
+  
+//     for (let i = 1; i < n; i++) {
+//       result *= x;
+//     }
+  
+//     return result;
+//   }
+  
+//   let x = prompt("x?", '');
+//   let n = prompt("n?", '');
+  
+//   if (n >= 1 && n % 1 == 0) {
+//     alert( pow(x, n) );
+//   } else {
+//     alert(`Степень ${n} не поддерживается, используйте натуральное число`);
+//   }
+
+// Function Expression
+function ask(question, yes, no) {
+    if (confirm(question)) yes()
+     else no();
+  }
+  function showOk() {
+    alert( "Вы согласны." );
   }
   
-  let age = prompt('Сколько вам лет?', 18);
+  function showCancel() {
+    alert( "Вы отменили выполнение." );
+  }
+  // использование: функции showOk, showCancel передаются в качестве аргументов ask
+  ask("Вы согласны?", showOk, showCancel);
   
-  if ( checkAge(age) ) {
-    alert( 'Доступ получен' );
+  
+  
+  
+  function ask(question, yes, no) {
+    if (confirm(question)) yes()
+    else no();
+  }
+  ask(
+    "Вы согласны?",
+    function() { alert("Вы согласились."); },
+    function() { alert("Вы отменили выполнение."); }
+  );
+  
+  
+  // Function Declaration
+  function sum(a, b) {
+    return a + b;
+  }
+  // Function Expression
+  let sum = function(a, b) {
+    return a + b;
+  };
+  
+  
+  
+  
+  let age = prompt("Сколько Вам лет?", 18);
+  let welcome;
+  if (age < 18) {
+  
+    welcome = function() {
+      alert("Привет!");
+    };
+  
   } else {
-    alert( 'Доступ закрыт' );
+  
+    welcome = function() {
+      alert("Здравствуйте!");
+    };
+  
   }
-
- function min(a,b){
- if(b>a){
-    return a
- } else {
-    return b
- }
-
-}
-alert(min(3,9))
-
-
-function pow(x,n){
-let kaka= x**n
-return kaka
-}
-alert(pow(3,3))
-
-function pow(x, n) {
-    let result = x;
+  welcome(); // теперь всё в порядке
   
-    for (let i = 1; i < n; i++) {
-      result *= x;
-    }
   
-    return result;
-  }
   
-  let x = prompt("x?", '');
-  let n = prompt("n?", '');
   
-  if (n >= 1 && n % 1 == 0) {
-    alert( pow(x, n) );
-  } else {
-    alert(`Степень ${n} не поддерживается, используйте натуральное число`);
-  }
+  let age1 = prompt("Сколько Вам лет?", 18);
+  let welcome1 = (age1 < 18) ?
+    function() { alert("Привет!"); } :
+    function() { alert("Здравствуйте!"); };
+  
+  welcome1(); // теперь всё в порядке
+  
