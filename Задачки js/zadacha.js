@@ -1164,48 +1164,442 @@
 // стрелочные функции
 
 
-let func = (arg1, arg2, ...argN) => expression;
+// let func = (arg1, arg2, ...argN) => expression;
 
-let func1 = function(arg1, arg2, ...argN) {
-  return expression;
+// let func1 = function(arg1, arg2, ...argN) {
+//   return expression;
+// }
+// // одно и то же
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let age = prompt("Сколько Вам лет?", 18);
+// let welcome = (age < 18) ?
+//   () => alert('Привет!') :
+//   () => alert("Здравствуйте!");
+
+// welcome();
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// let sum = (a, b) => {  // фигурная скобка, открывающая тело многострочной функции
+//   let result = a + b;
+//   return result; // если мы используем фигурные скобки, то нам нужно явно указать "return"
+// };
+// alert( sum(1, 2) ); // 3
+
+
+
+// function ask(question, yes, no) {
+//   if (confirm(question)) yes()
+//   else no();
+// }
+// ask(
+//   "Вы согласны?",
+//   function() { alert("Вы согласились."); },
+//   function() { alert("Вы отменили выполнение."); }
+// );
+
+
+// let opros = (question, yes, no) =>{
+//   if (confirm(question)) yes()
+//     else no();
+// }
+// ask(
+//   "Вы согласны?",
+//   ()=> { alert("Вы согласились."); },
+//   ()=> { alert("Вы отменили выполнение."); }
+// );
+
+
+// Function Declaration
+function sum(a, b) {
+  return a + b;
 }
-// одно и то же
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let age = prompt("Сколько Вам лет?", 18);
-let welcome = (age < 18) ?
-  () => alert('Привет!') :
-  () => alert("Здравствуйте!");
-
-welcome();
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-let sum = (a, b) => {  // фигурная скобка, открывающая тело многострочной функции
-  let result = a + b;
-  return result; // если мы используем фигурные скобки, то нам нужно явно указать "return"
+// Function Expression
+let sum = function(a, b) {
+  return a + b;
 };
-alert( sum(1, 2) ); // 3
 
 
 
-function ask(question, yes, no) {
-  if (confirm(question)) yes()
-  else no();
+
+let age2 = prompt("Сколько Вам лет?", 18);
+let welcome2;
+if (age2 < 18) {
+
+  welcome = function() {
+    alert("Привет!");
+  };
+
+} else {
+
+  welcome = function() {
+    alert("Здравствуйте!");
+  };
+
 }
-ask(
-  "Вы согласны?",
-  function() { alert("Вы согласились."); },
-  function() { alert("Вы отменили выполнение."); }
-);
+welcome(); // теперь всё в порядке
 
 
-let opros = (question, yes, no) =>{
-  if (confirm(question)) yes()
-    else no();
+
+
+let age1 = prompt("Сколько Вам лет?", 18);
+let welcome1 = (age1 < 18) ?
+  function() { alert("Привет!"); } :
+  function() { alert("Здравствуйте!"); };
+
+welcome1(); // теперь всё в порядке
+
+
+
+
+let age = prompt('Сколько вам лет?', 18);
+
+switch (age) {
+  case 18:
+    alert("Так не сработает"); // результатом prompt является строка, а не число
+
+  case "18":
+    alert("А так сработает!");
+    break;
+
+  default:
+    alert("Любое значение, неравное значению выше");
 }
-ask(
-  "Вы согласны?",
-  ()=> { alert("Вы согласились."); },
-  ()=> { alert("Вы отменили выполнение."); }
-);
+
+
+let user = {};
+// присваивание значения свойству
+user["likes birds"] = true;
+// получение значения свойства
+alert(user["likes birds"]); // true
+// удаление свойства
+delete user["likes birds"];
+
+
+let user = {
+  name: "John",
+  age: 30
+};
+let key = prompt("Что вы хотите узнать о пользователе?", "name");
+// доступ к свойству через переменную
+alert( user[key] ); // John (если ввели "name")
+
+
+let obj = {
+  0: "Тест" // то же самое что и "0": "Тест"
+};
+// обе функции alert выведут одно и то же свойство (число 0 преобразуется в строку "0")
+alert( obj["0"] ); // Тест
+alert( obj[0] ); // Тест (то же свойство)
+
+
+
+
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+
+for (let key in user) {
+  // ключи
+  alert( key );  // name, age, isAdmin
+  // значения ключей
+  alert( user[key] ); // John, 30, true
+}
+
+
+
+
+let codes = {
+  "+49": "Германия",
+  "+41": "Швейцария",
+  "+44": "Великобритания",
+  // ..,
+  "+1": "США"
+};
+
+for (let code in codes) {
+  alert( +code ); // 49, 41, 44, 1
+}
+
+
+
+// задачи 
+let user 
+user.name="John"
+user.surname ="Smith"
+name= "Pete"
+delete user.name
+
+// !!!!!!!!!!!!!!!!!!!!
+let salaries22 = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
+}
+let sum=0
+for(let key in salaries22){
+  sum+=salaries22[key]
+}
+alert(sum)
+// !!!!!!!!!!!!!!!!!!!!!!
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let menu = {
+  width: 200,
+  height: 300,
+  title: "My menu"
+};
+
+function multiplyNumeric(obj) {
+  for (let key in obj) {
+    if (typeof obj[key] == 'number') {
+      obj[key] *= 2;
+    }
+  }
+}
+multiplyNumeric(menu)
+alert( "menu width=" + menu.width + " height=" + menu.height + " title=" + menu.title );
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+let user33 = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+
+// копируем все свойства из permissions1 и permissions2 в user
+Object.assign(user, permissions1, permissions2);
+
+// теперь user = { name: "John", canView: true, canEdit: true }
+
+
+
+let user = {
+  // ...
+};
+
+// сначала, объявляем
+function sayHi() {
+  alert("Привет!");
+}
+
+// затем добавляем в качестве метода
+user.sayHi = sayHi;
+
+user.sayHi(); // Привет!
+
+
+
+// эти объекты делают одно и то же
+
+user = {
+  sayHi: function() {
+    alert("Привет");
+  }
+};
+
+// сокращённая запись выглядит лучше, не так ли?
+user = {
+  sayHi() { // то же самое, что и "sayHi: function(){...}"
+    alert("Привет");
+  }
+}
+
+
+let user = {
+  name: "John",
+  age: 30,
+
+  sayHi() {
+    // "this" - это "текущий объект".
+    alert(this.name);
+  }
+
+};
+user.sayHi(); // John
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let user = {
+  firstName: "Ilya",
+  sayHi() {
+    let arrow = () => alert(this.firstName);
+    arrow();
+  }
+};
+
+user.sayHi(); // Ilya
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+function makeUser() {
+  return {
+    name: "John",
+    ref() {
+      return this;
+    }
+  };
+}
+
+let user = makeUser();
+
+alert( user.ref().name ); // John
+
+
+задача
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let calculator2 = {
+  sum(){
+    return this.a + this.b
+   },
+   mul(){
+    return this.a * this.b;
+   },
+ read(){
+  this.a = +prompt("ввкдите 1 значение","")
+  this.b = +prompt("ввкдите 2 значение","")
+ }
+ 
+};
+
+calculator2.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    return this;
+  },
+  down() {
+    this.step--;
+    return this;
+  },
+  showStep() {
+    alert( this.step );
+    return this;
+  }
+};
+
+ladder.up().up().down().showStep().down().showStep(); // показывает 1 затем 0
+
+function User(name) {
+  this.name = name;
+  this.isAdmin = false;
+}
+
+let user = new User("Jack");
+
+alert(user.name); // Jack
+alert(user.isAdmin); // false
+
+
+
+// Другими словами, new User(...) делает что-то вроде:
+
+function User(name) {
+  // this = {};  (неявно)
+
+  // добавляет свойства к this
+  this.name = name;
+  this.isAdmin = false;
+
+  // return this;  (неявно)
+}
+
+
+function User() {
+  alert(new.target);
+}
+// без "new":
+User(); // undefined
+// с "new":
+new User(); // function User { ... }
+
+
+
+function User(name) {
+  if (!new.target) { // в случае, если вы вызвали меня без оператора new
+    return new User(name); // ...я добавлю new за вас
+  }
+
+  this.name = name;
+}
+let john2 = User("John"); // переадресовывает вызов на new User
+alert(john2.name); // John
+
+
+
+function BigUser() {
+
+  this.name = "John";
+
+  return { name: "Godzilla" };  // <-- возвращает этот объект
+}
+alert( new BigUser().name );  // Godzilla, получили этот объект
+
+
+
+function SmallUser() {
+
+  this.name = "John";
+
+  return; // <-- возвращает this
+}
+alert( new SmallUser().name );  // John
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function User(name) {
+  this.name = name;
+
+  this.sayHi = function() {
+    alert( "Меня зовут: " + this.name );
+  };
+}
+
+let john = new User("John");
+
+john.sayHi(); // Меня зовут: John
+
+/*
+john = {
+   name: "John",
+   sayHi: function() { ... }
+}
+*/
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+function Calculator() {
+
+  this.read = function() {
+    this.a = +prompt('a?', 0);
+    this.b = +prompt('b?', 0);
+  };
+
+  this.sum = function() {
+    return this.a + this.b;
+  };
+
+  this.mul = function() {
+    return this.a * this.b;
+  };
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
