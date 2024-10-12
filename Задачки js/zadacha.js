@@ -1092,71 +1092,120 @@
 //     alert(`Степень ${n} не поддерживается, используйте натуральное число`);
 //   }
 
-// Function Expression
+// // Function Expression
+// function ask(question, yes, no) {
+//   if (confirm(question)) yes()
+//    else no();
+// }
+// function showOk() {
+//   alert( "Вы согласны." );
+// }
+
+// function showCancel() {
+//   alert( "Вы отменили выполнение." );
+// }
+// // использование: функции showOk, showCancel передаются в качестве аргументов ask
+// ask("Вы согласны?", showOk, showCancel);
+
+
+
+
+// function ask(question, yes, no) {
+//   if (confirm(question)) yes()
+//   else no();
+// }
+// ask(
+//   "Вы согласны?",
+//   function() { alert("Вы согласились."); },
+//   function() { alert("Вы отменили выполнение."); }
+// );
+
+
+// // Function Declaration
+// function sum(a, b) {
+//   return a + b;
+// }
+// // Function Expression
+// let sum = function(a, b) {
+//   return a + b;
+// };
+
+
+
+
+// let age = prompt("Сколько Вам лет?", 18);
+// let welcome;
+// if (age < 18) {
+
+//   welcome = function() {
+//     alert("Привет!");
+//   };
+
+// } else {
+
+//   welcome = function() {
+//     alert("Здравствуйте!");
+//   };
+
+// }
+// welcome(); // теперь всё в порядке
+
+
+
+
+// let age1 = prompt("Сколько Вам лет?", 18);
+// let welcome1 = (age1 < 18) ?
+//   function() { alert("Привет!"); } :
+//   function() { alert("Здравствуйте!"); };
+
+// welcome1(); // теперь всё в порядке
+
+
+// стрелочные функции
+
+
+let func = (arg1, arg2, ...argN) => expression;
+
+let func1 = function(arg1, arg2, ...argN) {
+  return expression;
+}
+// одно и то же
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+let age = prompt("Сколько Вам лет?", 18);
+let welcome = (age < 18) ?
+  () => alert('Привет!') :
+  () => alert("Здравствуйте!");
+
+welcome();
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+let sum = (a, b) => {  // фигурная скобка, открывающая тело многострочной функции
+  let result = a + b;
+  return result; // если мы используем фигурные скобки, то нам нужно явно указать "return"
+};
+alert( sum(1, 2) ); // 3
+
+
+
 function ask(question, yes, no) {
-    if (confirm(question)) yes()
-     else no();
-  }
-  function showOk() {
-    alert( "Вы согласны." );
-  }
-  
-  function showCancel() {
-    alert( "Вы отменили выполнение." );
-  }
-  // использование: функции showOk, showCancel передаются в качестве аргументов ask
-  ask("Вы согласны?", showOk, showCancel);
-  
-  
-  
-  
-  function ask(question, yes, no) {
-    if (confirm(question)) yes()
+  if (confirm(question)) yes()
+  else no();
+}
+ask(
+  "Вы согласны?",
+  function() { alert("Вы согласились."); },
+  function() { alert("Вы отменили выполнение."); }
+);
+
+
+let opros = (question, yes, no) =>{
+  if (confirm(question)) yes()
     else no();
-  }
-  ask(
-    "Вы согласны?",
-    function() { alert("Вы согласились."); },
-    function() { alert("Вы отменили выполнение."); }
-  );
-  
-  
-  // Function Declaration
-  function sum(a, b) {
-    return a + b;
-  }
-  // Function Expression
-  let sum = function(a, b) {
-    return a + b;
-  };
-  
-  
-  
-  
-  let age = prompt("Сколько Вам лет?", 18);
-  let welcome;
-  if (age < 18) {
-  
-    welcome = function() {
-      alert("Привет!");
-    };
-  
-  } else {
-  
-    welcome = function() {
-      alert("Здравствуйте!");
-    };
-  
-  }
-  welcome(); // теперь всё в порядке
-  
-  
-  
-  
-  let age1 = prompt("Сколько Вам лет?", 18);
-  let welcome1 = (age1 < 18) ?
-    function() { alert("Привет!"); } :
-    function() { alert("Здравствуйте!"); };
-  
-  welcome1(); // теперь всё в порядке
-  
+}
+ask(
+  "Вы согласны?",
+  ()=> { alert("Вы согласились."); },
+  ()=> { alert("Вы отменили выполнение."); }
+);
