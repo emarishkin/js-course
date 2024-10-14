@@ -1905,164 +1905,323 @@
 
 // строки
 
-let guestList = `Guests:
- * John
- * Pete
- * Mary
-`;
-alert(guestList); // список гостей, состоящий из нескольких строк
+// let guestList = `Guests:
+//  * John
+//  * Pete
+//  * Mary
+// `;
+// alert(guestList); // список гостей, состоящий из нескольких строк
 
 
-let guestList1 = "Guests:\n * John\n * Pete\n * Mary";
-alert(guestList1); // список гостей, состоящий из нескольких строк
+// let guestList1 = "Guests:\n * John\n * Pete\n * Mary";
+// alert(guestList1); // список гостей, состоящий из нескольких строк
 
 
-// перевод строки добавлен с помощью символа перевода строки
-let str1 = "Hello\nWorld";
-// многострочная строка, созданная с использованием обратных кавычек
-let str2 = `Hello
-World`;
-alert(str1 == str2); // true
-
-
-
-alert( 'I\'m the Walrus!' ); // I'm the Walrus!
-alert( "I'm the Walrus! "); // I'm the Walrus!
-
-let str = Hello;
-// получаем первый символ
-alert( str[0] ); // H
-alert( str.at(0) ); // H
-// получаем последний символ
-alert( str[str.length - 1] ); // o
-alert( str.at(-1) ); // o
-
-
-let str11 = Hello;
-alert( str11[-2] ); // undefined
-alert( str11.at(-2) ); // l
+// // перевод строки добавлен с помощью символа перевода строки
+// let str1 = "Hello\nWorld";
+// // многострочная строка, созданная с использованием обратных кавычек
+// let str2 = `Hello
+// World`;
+// alert(str1 == str2); // true
 
 
 
-for (let char of "Hello") {
-    alert(char); // H,e,l,l,o (char — сначала "H", потом "e", потом "l" и т.д.)
+// alert( 'I\'m the Walrus!' ); // I'm the Walrus!
+// alert( "I'm the Walrus! "); // I'm the Walrus!
+
+// let str = Hello;
+// // получаем первый символ
+// alert( str[0] ); // H
+// alert( str.at(0) ); // H
+// // получаем последний символ
+// alert( str[str.length - 1] ); // o
+// alert( str.at(-1) ); // o
+
+
+// let str11 = Hello;
+// alert( str11[-2] ); // undefined
+// alert( str11.at(-2) ); // l
+
+
+
+// for (let char of "Hello") {
+//     alert(char); // H,e,l,l,o (char — сначала "H", потом "e", потом "l" и т.д.)
+//   }
+
+
+
+//   let str3 = 'Hi';
+// str3 = 'h' + str[1]; // заменяем строку
+// alert( str ); // hi
+
+
+// alert( 'Interface'.toUpperCase() ); // INTERFACE
+// alert( 'Interface'.toLowerCase() ); // interface
+// alert( 'Interface'[0].toLowerCase() ); // 'i'
+
+
+// let str6 = 'Widget with id';
+// alert( str6.indexOf('Widget') ); // 0, потому что подстрока 'Widget' найдена в начале
+// alert( str6.indexOf('widget') ); // -1, совпадений нет, поиск чувствителен к регистру
+// alert( str6.indexOf("id") ); // 1, подстрока "id" найдена на позиции 1 (..idget with id)
+
+
+// let str7 = 'Widget with id';
+// alert( str7.indexOf('id', 2) ) // 12
+
+
+// let str9 = 'Ослик Иа-Иа посмотрел на виадук';
+// let target = 'Иа'; // цель поиска
+// let pos = 0;
+// while (true) {
+//   let foundPos = str9.indexOf(target, pos);
+//   if (foundPos == -1) break;
+//   alert( foundPos );
+//   pos = foundPos + 1; // продолжаем со следующей позиции
+// }
+
+
+
+// let str0 = "Ослик Иа-Иа посмотрел на виадук";
+// let target0 = "Иа";
+
+// let pos0 = -1;
+// while ((pos0 = str0.indexOf(target0, pos0 + 1)) != -1) {
+//   alert( pos0 );
+// }
+
+
+// let str5 = "Widget with id";
+
+// if (str5.indexOf("Widget") != -1) {
+//     alert("Совпадение есть"); // теперь работает
+// }
+
+
+// alert( ~2 ); // -3, то же, что -(2+1)
+// alert( ~1 ); // -2, то же, что -(1+1)
+// alert( ~0 ); // -1, то же, что -(0+1)
+// alert( ~-1 ); // 0, то же, что -(-1+1)
+
+
+// let str55 = "Widget";
+// if (~str55.indexOf("Widget")) {
+//   alert( 'Совпадение есть' ); // работает
+// }
+
+
+// alert( "Widget with id".includes("Widget") ); // true
+// alert( "Hello".includes("Bye") ); // false
+
+
+// alert( "Midget".includes("id") ); // true
+// alert( "Midget".includes("id", 3) ); // false, поиск начат с позиции 3
+
+
+// alert( "Widget".startsWith("Wid") ); // true, "Wid" — начало "Widget"
+// alert( "Widget".endsWith("get") ); // true, "get" — окончание "Widget"
+
+
+
+// let str4 = "stringify";
+// // 'strin', символы от 0 до 5 (не включая 5)
+// alert( str4.slice(0, 5) );
+// // 's', от 0 до 1, не включая 1, т. е. только один символ на позиции 0
+// alert( str4.slice(0, 1) );
+
+
+// let str44 = "stringify";
+// alert( str44.slice(2) ); // ringify, с позиции 2 и до конца
+
+
+// let str66 = "stringify";
+// // начинаем с позиции 4 справа, а заканчиваем на позиции 1 справа
+// alert( str66.slice(-4, -1) ); // gif
+
+
+// let str22 = "stringify";
+// // для substring эти два примера — одинаковы
+// alert( str22.substring(2, 6) ); // "ring"
+// alert( str22.substring(6, 2) ); // "ring"
+// // …но не для slice:
+// alert( str22.slice(2, 6) ); // "ring" (то же самое)
+// alert( str22.slice(6, 2) ); // "" (пустая строка)
+
+
+
+// let str77 = "stringify";
+// // ring, получаем 4 символа, начиная с позиции 2
+// alert( str77.substr(2, 4) );
+
+
+
+// // метод                               выбирает…                    отрицательные значения
+// // slice(start, end)      от start до end (не включая end)     можно передавать отрицательные значения
+// // substring(start, end)  между start и end (не включая end)     отрицательные значения равнозначны 0
+// // substr(start, length)  length символов, начиная от start     значение start может быть отрицательным
+
+
+// function ucFirst(str){  
+//     if(!str) return str
+//     return str[0].toUpperCase() + str.slice(1,4)
+// }
+// alert(ucFirst("вася"))
+
+
+
+// 2string function
+
+function checkSpam(str){
+    let p = str.toLowerCase()
+    return p.includes('viagra') || p.includes('xxx');
+
+}
+alert(checkSpam('buy ViAgRA now'))
+alert(checkSpam('free xxxxx'))
+alert(checkSpam('innocent rabbit'))
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function truncate(str, maxlength){
+    return(str.length>maxlength)?
+        str.slice(0, maxlength - 1) + '…' : str ;
+}
+    
+alert(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+function extractCurrencyValue(str) {
+    return +str.slice(1);
   }
+  alert( extractCurrencyValue('$120'));
 
 
 
-  let str3 = 'Hi';
-str3 = 'h' + str[1]; // заменяем строку
-alert( str ); // hi
+  let arr = new Array();
+let arr1 = [];
+
+let fruits = ["Яблоко", "Апельсин", "Слива"];
+alert( fruits[0] ); // Яблоко
+alert( fruits[1] ); // Апельсин
+alert( fruits[2] ); // Слива
 
 
-alert( 'Interface'.toUpperCase() ); // INTERFACE
-alert( 'Interface'.toLowerCase() ); // interface
-alert( 'Interface'[0].toLowerCase() ); // 'i'
+// разные типы значений
+let arr3 = [ 'Яблоко', { name: 'Джон' }, true, function() { alert('привет'); } ];
+// получить элемент с индексом 1 (объект) и затем показать его свойство
+alert( arr3[1].name ); // Джон
+// получить элемент с индексом 3 (функция) и выполнить её
+arr[3](); // привет
 
 
-let str6 = 'Widget with id';
-alert( str6.indexOf('Widget') ); // 0, потому что подстрока 'Widget' найдена в начале
-alert( str6.indexOf('widget') ); // -1, совпадений нет, поиск чувствителен к регистру
-alert( str6.indexOf("id") ); // 1, подстрока "id" найдена на позиции 1 (..idget with id)
+let fruits1 = ["Apple", "Orange", "Plum"];
+alert( fruits1[fruits.length-1] ); // Plum
+
+let fruits11 = ["Apple", "Orange", "Plum"];
+// то же самое, что и fruits[fruits.length-1]
+alert( fruits11.at(-1) ); // Plum
 
 
-let str7 = 'Widget with id';
-alert( str7.indexOf('id', 2) ) // 12
+let fruits2 = ["Яблоко", "Апельсин", "Груша"];
+alert( fruits2.pop() ); // удаляем "Груша" и выводим его
+alert( fruits2 ); // Яблоко, Апельсин
 
 
-let str9 = 'Ослик Иа-Иа посмотрел на виадук';
-let target = 'Иа'; // цель поиска
-let pos = 0;
-while (true) {
-  let foundPos = str9.indexOf(target, pos);
-  if (foundPos == -1) break;
-  alert( foundPos );
-  pos = foundPos + 1; // продолжаем со следующей позиции
+let fruits22 = ["Яблоко", "Апельсин"];
+fruits22.push("Груша");
+alert( fruits22 ); // Яблоко, Апельсин, Груша
+
+
+let fruits3 = ["Яблоко", "Апельсин", "Груша"];
+alert( fruits3.shift() ); // удаляем Яблоко и выводим его
+alert( fruits3 ); // Апельсин, Груша
+
+
+let fruits33 = ["Апельсин", "Груша"];
+fruits33.unshift('Яблоко');
+alert( fruits33 ); // Яблоко, Апельсин, Груша
+
+
+let fruits4 = ["Яблоко"];
+fruits4.push("Апельсин", "Груша");
+fruits4.unshift("Ананас", "Лимон");
+// ["Ананас", "Лимон", "Яблоко", "Апельсин", "Груша"]
+alert( fruits4 );
+
+
+let fruits44 = ["Банан"]
+let arr44 = fruits44; // копируется по ссылке (две переменные ссылаются на один и тот же массив)
+alert( arr44 === fruits44 ); // true
+arr44.push("Груша"); // массив меняется по ссылке
+alert( fruits44 ); // Банан, Груша - теперь два элемента
+
+
+let arr5 = ["Яблоко", "Апельсин", "Груша"];
+for (let i = 0; i < arr5.length; i++) {
+  alert( arr5[i] );
+}
+
+let fruits55 = ["Яблоко", "Апельсин", "Слива"];
+// проходит по значениям
+for (let fruit of fruits55) {
+  alert( fruit55 );
 }
 
 
-
-let str0 = "Ослик Иа-Иа посмотрел на виадук";
-let target0 = "Иа";
-
-let pos0 = -1;
-while ((pos0 = str0.indexOf(target0, pos0 + 1)) != -1) {
-  alert( pos0 );
+let arr6 = ["Яблоко", "Апельсин", "Груша"];
+for (let key in arr6) {
+  alert( arr6[key] ); // Яблоко, Апельсин, Груша
 }
 
 
-let str5 = "Widget with id";
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ];
+  
+  alert( matrix[1][1] ); // 5, центральный элемент
 
-if (str5.indexOf("Widget") != -1) {
-    alert("Совпадение есть"); // теперь работает
+
+  let arr7 = [1, 2, 3];
+alert( arr7 ); // 1,2,3
+alert( String(arr7) === '1,2,3' ); // true
+
+
+alert( [] + 1 ); // "1"
+alert( [1] + 1 ); // "11"
+alert( [1,2] + 1 ); // "1,21"
+
+alert( "" + 1 ); // "1"
+alert( "1" + 1 ); // "11"
+alert( "1,2" + 1 ); // "1,21"
+
+
+let styles = ["Джаз","Блюз"]
+styles.push("Рок-н-ролл")
+alert(styles)
+styles[1]="Классика"
+alert(styles)
+styles.shift(styles[0])
+alert(styles)
+styles.unshift("Рэп","Регги")
+alert(styles)
+
+// !!!!!!!!!!!!!!!!!!!
+function sumInput(){
+    let arr =[]
+    while(true){
+    let b=prompt("введи число","")
+        if( b=== "" || b === null || !isFinite(b))break
+     
+     arr.push(+b)
+    }
+    let sum = 0
+    for (let b of arr){
+        sum+=b
+    }
+    return sum
 }
-
-
-alert( ~2 ); // -3, то же, что -(2+1)
-alert( ~1 ); // -2, то же, что -(1+1)
-alert( ~0 ); // -1, то же, что -(0+1)
-alert( ~-1 ); // 0, то же, что -(-1+1)
-
-
-let str55 = "Widget";
-if (~str55.indexOf("Widget")) {
-  alert( 'Совпадение есть' ); // работает
-}
-
-
-alert( "Widget with id".includes("Widget") ); // true
-alert( "Hello".includes("Bye") ); // false
-
-
-alert( "Midget".includes("id") ); // true
-alert( "Midget".includes("id", 3) ); // false, поиск начат с позиции 3
-
-
-alert( "Widget".startsWith("Wid") ); // true, "Wid" — начало "Widget"
-alert( "Widget".endsWith("get") ); // true, "get" — окончание "Widget"
-
-
-
-let str4 = "stringify";
-// 'strin', символы от 0 до 5 (не включая 5)
-alert( str4.slice(0, 5) );
-// 's', от 0 до 1, не включая 1, т. е. только один символ на позиции 0
-alert( str4.slice(0, 1) );
-
-
-let str44 = "stringify";
-alert( str44.slice(2) ); // ringify, с позиции 2 и до конца
-
-
-let str66 = "stringify";
-// начинаем с позиции 4 справа, а заканчиваем на позиции 1 справа
-alert( str66.slice(-4, -1) ); // gif
-
-
-let str22 = "stringify";
-// для substring эти два примера — одинаковы
-alert( str22.substring(2, 6) ); // "ring"
-alert( str22.substring(6, 2) ); // "ring"
-// …но не для slice:
-alert( str22.slice(2, 6) ); // "ring" (то же самое)
-alert( str22.slice(6, 2) ); // "" (пустая строка)
-
-
-
-let str77 = "stringify";
-// ring, получаем 4 символа, начиная с позиции 2
-alert( str77.substr(2, 4) );
-
-
-
-// метод                               выбирает…                    отрицательные значения
-// slice(start, end)      от start до end (не включая end)     можно передавать отрицательные значения
-// substring(start, end)  между start и end (не включая end)     отрицательные значения равнозначны 0
-// substr(start, length)  length символов, начиная от start     значение start может быть отрицательным
-
-
-function ucFirst(str){  
-    if(!str) return str
-    return str[0].toUpperCase() + str.slice(1,4)
-}
-alert(ucFirst("вася"))
+alert( sumInput() );
+// !!!!!!!!!!!!!!!!!!!
