@@ -1603,301 +1603,466 @@
 // alert( "Sum=" + calculator.sum() );
 // alert( "Mul=" + calculator.mul() );
 
-function User(name) {
-  this.name = name;
-  this.isAdmin = false;
-}
+// function User(name) {
+//   this.name = name;
+//   this.isAdmin = false;
+// }
 
-let user6 = new User("Jack");
+// let user6 = new User("Jack");
 
-alert(user6.name); // Jack
-alert(user6.isAdmin); // false
+// alert(user6.name); // Jack
+// alert(user6.isAdmin); // false
 
 
 
-// Другими словами, new User(...) делает что-то вроде:
+// // Другими словами, new User(...) делает что-то вроде:
 
-function User(name) {
-  // this = {};  (неявно)
+// function User(name) {
+//   // this = {};  (неявно)
 
-  // добавляет свойства к this
-  this.name = name;
-  this.isAdmin = false;
+//   // добавляет свойства к this
+//   this.name = name;
+//   this.isAdmin = false;
 
-  // return this;  (неявно)
-}
+//   // return this;  (неявно)
+// }
 
 
-function User() {
-  alert(new.target);
-}
-// без "new":
-User(); // undefined
-// с "new":
-new User(); // function User { ... }
+// function User() {
+//   alert(new.target);
+// }
+// // без "new":
+// User(); // undefined
+// // с "new":
+// new User(); // function User { ... }
 
 
 
-function User(name) {
-  if (!new.target) { // в случае, если вы вызвали меня без оператора new
-    return new User(name); // ...я добавлю new за вас
-  }
+// function User(name) {
+//   if (!new.target) { // в случае, если вы вызвали меня без оператора new
+//     return new User(name); // ...я добавлю new за вас
+//   }
 
-  this.name = name;
-}
-let john = User("John"); // переадресовывает вызов на new User
-alert(john.name); // John
+//   this.name = name;
+// }
+// let john = User("John"); // переадресовывает вызов на new User
+// alert(john.name); // John
 
 
 
-function BigUser() {
+// function BigUser() {
 
-  this.name = "John";
+//   this.name = "John";
 
-  return { name: "Godzilla" };  // <-- возвращает этот объект
-}
-alert( new BigUser().name );  // Godzilla, получили этот объект
+//   return { name: "Godzilla" };  // <-- возвращает этот объект
+// }
+// alert( new BigUser().name );  // Godzilla, получили этот объект
 
 
 
-function SmallUser() {
+// function SmallUser() {
 
-  this.name = "John";
+//   this.name = "John";
 
-  return; // <-- возвращает this
-}
-alert( new SmallUser().name );  // John
+//   return; // <-- возвращает this
+// }
+// alert( new SmallUser().name );  // John
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function User(name) {
-  this.name = name;
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function User(name) {
+//   this.name = name;
 
-  this.sayHi = function() {
-    alert( "Меня зовут: " + this.name );
-  };
-}
+//   this.sayHi = function() {
+//     alert( "Меня зовут: " + this.name );
+//   };
+// }
 
-let john5 = new User("John");
+// let john5 = new User("John");
 
-john.sayHi(); // Меня зовут: John
+// john.sayHi(); // Меня зовут: John
 
-/*
-john = {
-   name: "John",
-   sayHi: function() { ... }
-}
-*/
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// /*
+// john = {
+//    name: "John",
+//    sayHi: function() { ... }
+// }
+// */
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
 
-function Calculator() {
+// function Calculator() {
 
-  this.read = function() {
-    this.a = +prompt('a?', 0);
-    this.b = +prompt('b?', 0);
-  };
+//   this.read = function() {
+//     this.a = +prompt('a?', 0);
+//     this.b = +prompt('b?', 0);
+//   };
 
-  this.sum = function() {
-    return this.a + this.b;
-  };
+//   this.sum = function() {
+//     return this.a + this.b;
+//   };
 
-  this.mul = function() {
-    return this.a * this.b;
-  };
-}
+//   this.mul = function() {
+//     return this.a * this.b;
+//   };
+// }
 
-let calculator = new Calculator();
-calculator.read();
+// let calculator = new Calculator();
+// calculator.read();
 
-alert( "Sum=" + calculator.sum() );
-alert( "Mul=" + calculator.mul() );
+// alert( "Sum=" + calculator.sum() );
+// alert( "Mul=" + calculator.mul() );
 
 
-function Accumulator(startingValue) {
-  this.value = startingValue;
-  this.read = function() {
-    this.value += +prompt('Сколько нужно добавить?', 0);
-  };
+// function Accumulator(startingValue) {
+//   this.value = startingValue;
+//   this.read = function() {
+//     this.value += +prompt('Сколько нужно добавить?', 0);
+//   };
 
-}
+// }
 
-let accumulator = new Accumulator(1);
-accumulator.read();
-accumulator.read();
-alert(accumulator.value);
+// let accumulator = new Accumulator(1);
+// accumulator.read();
+// accumulator.read();
+// alert(accumulator.value);
 
 
 
-let key = "firstName";
-let user1 = {
-  firstName: "John"
-};
-let user2 = null;
-alert( user1?.[key] ); // John
-alert( user2?.[key] ); // undefined
+// let key = "firstName";
+// let user1 = {
+//   firstName: "John"
+// };
+// let user2 = null;
+// alert( user1?.[key] ); // John
+// alert( user2?.[key] ); // undefined
 
-// obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined.
-// obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined.
-// obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined
+// // obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined.
+// // obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined.
+// // obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined
 
-let id5 = Symbol("id");
-alert(id); // TypeError: Cannot convert a Symbol value to a string
+// let id5 = Symbol("id");
+// alert(id); // TypeError: Cannot convert a Symbol value to a string
 
-let id6 = Symbol("id");
-alert(id.toString()); // Symbol(id), теперь работает
+// let id6 = Symbol("id");
+// alert(id.toString()); // Symbol(id), теперь работает
 
-let id7 = Symbol("id");
-alert(id.description); // id
+// let id7 = Symbol("id");
+// alert(id.description); // id
 
 
 
-let id8 = Symbol("id");
-let user8 = {
-  [id]: 123
-};
-let clone = Object.assign({}, user);
-alert( clone[id] ); // 123
+// let id8 = Symbol("id");
+// let user8 = {
+//   [id]: 123
+// };
+// let clone = Object.assign({}, user);
+// alert( clone[id] ); // 123
 
 
-// читаем символ из глобального реестра и записываем его в переменную
-let id = Symbol.for("id"); // если символа не существует, он будет создан
-// читаем его снова и записываем в другую переменную (возможно, из другого места кода)
-let idAgain = Symbol.for("id");
-// проверяем -- это один и тот же символ
-alert( id === idAgain ); // true
+// // читаем символ из глобального реестра и записываем его в переменную
+// let id = Symbol.for("id"); // если символа не существует, он будет создан
+// // читаем его снова и записываем в другую переменную (возможно, из другого места кода)
+// let idAgain = Symbol.for("id");
+// // проверяем -- это один и тот же символ
+// alert( id === idAgain ); // true
 
 
 
-// получаем символ по имени
-let sym = Symbol.for("name");
-let sym2 = Symbol.for("id");
-// получаем имя по символу
-alert( Symbol.keyFor(sym) ); // name
-alert( Symbol.keyFor(sym2) ); // id
+// // получаем символ по имени
+// let sym = Symbol.for("name");
+// let sym2 = Symbol.for("id");
+// // получаем имя по символу
+// alert( Symbol.keyFor(sym) ); // name
+// alert( Symbol.keyFor(sym2) ); // id
 
 
 
 
-let user11 = {
-  name: "John",
-  money: 1000,
+// let user11 = {
+//   name: "John",
+//   money: 1000,
 
-  // для хинта равного "string"
-  toString() {
-    return {name: "${this.name}"};
-  },
+//   // для хинта равного "string"
+//   toString() {
+//     return {name: "${this.name}"};
+//   },
 
-  // для хинта равного "number" или "default"
-  valueOf() {
-    return this.money;
-  }
+//   // для хинта равного "number" или "default"
+//   valueOf() {
+//     return this.money;
+//   }
 
-};
-alert(user); // toString -> {name: "John"}
-alert(+user); // valueOf -> 1000
-alert(user + 500); // valueOf -> 1500
+// };
+// alert(user); // toString -> {name: "John"}
+// alert(+user); // valueOf -> 1000
+// alert(user + 500); // valueOf -> 1500
 
 
 
 
-let user = {
-  name: "John",
+// let user = {
+//   name: "John",
 
-  toString() {
-    return this.name;
-  }
-};
-alert(user); // toString -> John
-alert(user + 500); // toString -> John500
+//   toString() {
+//     return this.name;
+//   }
+// };
+// alert(user); // toString -> John
+// alert(user + 500); // toString -> John500
 
 
 
 
-let obj = {
-  toString() {
-    return "2";
-  }
-};
+// let obj = {
+//   toString() {
+//     return "2";
+//   }
+// };
 
-alert(obj + 2); // "22" ("2" + 2), преобразование к примитиву вернуло строку => конкатенация
+// alert(obj + 2); // "22" ("2" + 2), преобразование к примитиву вернуло строку => конкатенация
 
 
 
 
-let roma = {
-  name: "Рома",
-  sayHi: function() {
-    alert("Привет, дружище!");
-  }
-};
-roma.sayHi(); // Привет, дружище!
+// let roma = {
+//   name: "Рома",
+//   sayHi: function() {
+//     alert("Привет, дружище!");
+//   }
+// };
+// roma.sayHi(); // Привет, дружище!
 
 
 
 
-let str = "Привет";
-alert( str.toUpperCase() ); // ПРИВЕТ
+// let str = "Привет";
+// alert( str.toUpperCase() ); // ПРИВЕТ
 
-let num1 = 1.23456;
-alert( num.toFixed(2) ); // 1.23
+// let num1 = 1.23456;
+// alert( num.toFixed(2) ); // 1.23
 
 
-let num2 = 1.23456;
-alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+// let num2 = 1.23456;
+// alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
 
-let num3 = 12.34;
-alert( num.toFixed(1) ); // "12.3"
+// let num3 = 12.34;
+// alert( num.toFixed(1) ); // "12.3"
 
-let num = 12.34;
-alert( num.toFixed(5) ); // "12.34000", добавлены нули, чтобы получить 5 знаков после запятой
+// let num = 12.34;
+// alert( num.toFixed(5) ); // "12.34000", добавлены нули, чтобы получить 5 знаков после запятой
 
-alert( 0.1 + 0.2 == 0.3 ); 
-// false
-let sum3 = 0.1 + 0.2;
-alert( sum.toFixed(2) ); // "0.30"
+// alert( 0.1 + 0.2 == 0.3 ); 
+// // false
+// let sum3 = 0.1 + 0.2;
+// alert( sum.toFixed(2) ); // "0.30"
 
 
-let sum = 0.1 + 0.2;
-alert( sum.toFixed(1) ); // "0.3"
+// let sum = 0.1 + 0.2;
+// alert( sum.toFixed(1) ); // "0.3"
 
 
-alert( Math.max(3, 5, -10, 0, 1) ); // 5
-alert( Math.min(1, 2) ); // 1
+// alert( Math.max(3, 5, -10, 0, 1) ); // 5
+// alert( Math.min(1, 2) ); // 1
 
 
 
-alert( Math.pow(2, 10) ); // 2 в степени 10 = 1024
+// alert( Math.pow(2, 10) ); // 2 в степени 10 = 1024
 
 
 
-let a = +prompt("a","1")
-let b = +prompt("b","3")
-result = a + b
-alert(result)
+// let a = +prompt("a","1")
+// let b = +prompt("b","3")
+// result = a + b
+// alert(result)
 
 
-alert( Math.round(6.35 * 10) / 10 ); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+// alert( Math.round(6.35 * 10) / 10 ); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
 
 
- function readNumber(){
-let a
-do {
-  a = prompt("Введите число", "");
-} while ( !isFinite(a) );
+//  function readNumber(){
+// let a
+// do {
+//   a = prompt("Введите число", "");
+// } while ( !isFinite(a) );
 
- if(a == null || a == '') return null
+//  if(a == null || a == '') return null
  
- return +a
+//  return +a
+// }
+// alert(readNumber());
+
+
+
+// let i = 0;
+// while (i != 10) {
+//   i += 0.2;
+// }
+// alert(i)
+
+
+// строки
+
+let guestList = `Guests:
+ * John
+ * Pete
+ * Mary
+`;
+alert(guestList); // список гостей, состоящий из нескольких строк
+
+
+let guestList1 = "Guests:\n * John\n * Pete\n * Mary";
+alert(guestList1); // список гостей, состоящий из нескольких строк
+
+
+// перевод строки добавлен с помощью символа перевода строки
+let str1 = "Hello\nWorld";
+// многострочная строка, созданная с использованием обратных кавычек
+let str2 = `Hello
+World`;
+alert(str1 == str2); // true
+
+
+
+alert( 'I\'m the Walrus!' ); // I'm the Walrus!
+alert( "I'm the Walrus! "); // I'm the Walrus!
+
+let str = Hello;
+// получаем первый символ
+alert( str[0] ); // H
+alert( str.at(0) ); // H
+// получаем последний символ
+alert( str[str.length - 1] ); // o
+alert( str.at(-1) ); // o
+
+
+let str11 = Hello;
+alert( str11[-2] ); // undefined
+alert( str11.at(-2) ); // l
+
+
+
+for (let char of "Hello") {
+    alert(char); // H,e,l,l,o (char — сначала "H", потом "e", потом "l" и т.д.)
+  }
+
+
+
+  let str3 = 'Hi';
+str3 = 'h' + str[1]; // заменяем строку
+alert( str ); // hi
+
+
+alert( 'Interface'.toUpperCase() ); // INTERFACE
+alert( 'Interface'.toLowerCase() ); // interface
+alert( 'Interface'[0].toLowerCase() ); // 'i'
+
+
+let str6 = 'Widget with id';
+alert( str6.indexOf('Widget') ); // 0, потому что подстрока 'Widget' найдена в начале
+alert( str6.indexOf('widget') ); // -1, совпадений нет, поиск чувствителен к регистру
+alert( str6.indexOf("id") ); // 1, подстрока "id" найдена на позиции 1 (..idget with id)
+
+
+let str7 = 'Widget with id';
+alert( str7.indexOf('id', 2) ) // 12
+
+
+let str9 = 'Ослик Иа-Иа посмотрел на виадук';
+let target = 'Иа'; // цель поиска
+let pos = 0;
+while (true) {
+  let foundPos = str9.indexOf(target, pos);
+  if (foundPos == -1) break;
+  alert( foundPos );
+  pos = foundPos + 1; // продолжаем со следующей позиции
 }
-alert(readNumber());
 
 
 
-let i = 0;
-while (i != 10) {
-  i += 0.2;
+let str0 = "Ослик Иа-Иа посмотрел на виадук";
+let target0 = "Иа";
+
+let pos0 = -1;
+while ((pos0 = str0.indexOf(target0, pos0 + 1)) != -1) {
+  alert( pos0 );
 }
-alert(i)
+
+
+let str5 = "Widget with id";
+
+if (str5.indexOf("Widget") != -1) {
+    alert("Совпадение есть"); // теперь работает
+}
+
+
+alert( ~2 ); // -3, то же, что -(2+1)
+alert( ~1 ); // -2, то же, что -(1+1)
+alert( ~0 ); // -1, то же, что -(0+1)
+alert( ~-1 ); // 0, то же, что -(-1+1)
+
+
+let str55 = "Widget";
+if (~str55.indexOf("Widget")) {
+  alert( 'Совпадение есть' ); // работает
+}
+
+
+alert( "Widget with id".includes("Widget") ); // true
+alert( "Hello".includes("Bye") ); // false
+
+
+alert( "Midget".includes("id") ); // true
+alert( "Midget".includes("id", 3) ); // false, поиск начат с позиции 3
+
+
+alert( "Widget".startsWith("Wid") ); // true, "Wid" — начало "Widget"
+alert( "Widget".endsWith("get") ); // true, "get" — окончание "Widget"
+
+
+
+let str4 = "stringify";
+// 'strin', символы от 0 до 5 (не включая 5)
+alert( str4.slice(0, 5) );
+// 's', от 0 до 1, не включая 1, т. е. только один символ на позиции 0
+alert( str4.slice(0, 1) );
+
+
+let str44 = "stringify";
+alert( str44.slice(2) ); // ringify, с позиции 2 и до конца
+
+
+let str66 = "stringify";
+// начинаем с позиции 4 справа, а заканчиваем на позиции 1 справа
+alert( str66.slice(-4, -1) ); // gif
+
+
+let str22 = "stringify";
+// для substring эти два примера — одинаковы
+alert( str22.substring(2, 6) ); // "ring"
+alert( str22.substring(6, 2) ); // "ring"
+// …но не для slice:
+alert( str22.slice(2, 6) ); // "ring" (то же самое)
+alert( str22.slice(6, 2) ); // "" (пустая строка)
+
+
+
+let str77 = "stringify";
+// ring, получаем 4 символа, начиная с позиции 2
+alert( str77.substr(2, 4) );
+
+
+
+// метод                               выбирает…                    отрицательные значения
+// slice(start, end)      от start до end (не включая end)     можно передавать отрицательные значения
+// substring(start, end)  между start и end (не включая end)     отрицательные значения равнозначны 0
+// substr(start, length)  length символов, начиная от start     значение start может быть отрицательным
+
+
+function ucFirst(str){  
+    if(!str) return str
+    return str[0].toUpperCase() + str.slice(1,4)
+}
+alert(ucFirst("вася"))
