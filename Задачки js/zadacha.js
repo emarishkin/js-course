@@ -2069,159 +2069,308 @@
 
 
 
-// 2string function
+// // 2string function
 
-function checkSpam(str){
-    let p = str.toLowerCase()
-    return p.includes('viagra') || p.includes('xxx');
+// function checkSpam(str){
+//     let p = str.toLowerCase()
+//     return p.includes('viagra') || p.includes('xxx');
 
-}
-alert(checkSpam('buy ViAgRA now'))
-alert(checkSpam('free xxxxx'))
-alert(checkSpam('innocent rabbit'))
+// }
+// alert(checkSpam('buy ViAgRA now'))
+// alert(checkSpam('free xxxxx'))
+// alert(checkSpam('innocent rabbit'))
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function truncate(str, maxlength){
-    return(str.length>maxlength)?
-        str.slice(0, maxlength - 1) + '…' : str ;
-}
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function truncate(str, maxlength){
+//     return(str.length>maxlength)?
+//         str.slice(0, maxlength - 1) + '…' : str ;
+// }
     
-alert(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// alert(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20))
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-function extractCurrencyValue(str) {
-    return +str.slice(1);
-  }
-  alert( extractCurrencyValue('$120'));
+// function extractCurrencyValue(str) {
+//     return +str.slice(1);
+//   }
+//   alert( extractCurrencyValue('$120'));
 
 
 
-  let arr = new Array();
-let arr1 = [];
+//   let arr = new Array();
+// let arr1 = [];
 
-let fruits = ["Яблоко", "Апельсин", "Слива"];
-alert( fruits[0] ); // Яблоко
-alert( fruits[1] ); // Апельсин
-alert( fruits[2] ); // Слива
-
-
-// разные типы значений
-let arr3 = [ 'Яблоко', { name: 'Джон' }, true, function() { alert('привет'); } ];
-// получить элемент с индексом 1 (объект) и затем показать его свойство
-alert( arr3[1].name ); // Джон
-// получить элемент с индексом 3 (функция) и выполнить её
-arr[3](); // привет
+// let fruits = ["Яблоко", "Апельсин", "Слива"];
+// alert( fruits[0] ); // Яблоко
+// alert( fruits[1] ); // Апельсин
+// alert( fruits[2] ); // Слива
 
 
-let fruits1 = ["Apple", "Orange", "Plum"];
-alert( fruits1[fruits.length-1] ); // Plum
-
-let fruits11 = ["Apple", "Orange", "Plum"];
-// то же самое, что и fruits[fruits.length-1]
-alert( fruits11.at(-1) ); // Plum
-
-
-let fruits2 = ["Яблоко", "Апельсин", "Груша"];
-alert( fruits2.pop() ); // удаляем "Груша" и выводим его
-alert( fruits2 ); // Яблоко, Апельсин
+// // разные типы значений
+// let arr3 = [ 'Яблоко', { name: 'Джон' }, true, function() { alert('привет'); } ];
+// // получить элемент с индексом 1 (объект) и затем показать его свойство
+// alert( arr3[1].name ); // Джон
+// // получить элемент с индексом 3 (функция) и выполнить её
+// arr[3](); // привет
 
 
-let fruits22 = ["Яблоко", "Апельсин"];
-fruits22.push("Груша");
-alert( fruits22 ); // Яблоко, Апельсин, Груша
+// let fruits1 = ["Apple", "Orange", "Plum"];
+// alert( fruits1[fruits.length-1] ); // Plum
+
+// let fruits11 = ["Apple", "Orange", "Plum"];
+// // то же самое, что и fruits[fruits.length-1]
+// alert( fruits11.at(-1) ); // Plum
 
 
-let fruits3 = ["Яблоко", "Апельсин", "Груша"];
-alert( fruits3.shift() ); // удаляем Яблоко и выводим его
-alert( fruits3 ); // Апельсин, Груша
+// let fruits2 = ["Яблоко", "Апельсин", "Груша"];
+// alert( fruits2.pop() ); // удаляем "Груша" и выводим его
+// alert( fruits2 ); // Яблоко, Апельсин
 
 
-let fruits33 = ["Апельсин", "Груша"];
-fruits33.unshift('Яблоко');
-alert( fruits33 ); // Яблоко, Апельсин, Груша
+// let fruits22 = ["Яблоко", "Апельсин"];
+// fruits22.push("Груша");
+// alert( fruits22 ); // Яблоко, Апельсин, Груша
 
 
-let fruits4 = ["Яблоко"];
-fruits4.push("Апельсин", "Груша");
-fruits4.unshift("Ананас", "Лимон");
-// ["Ананас", "Лимон", "Яблоко", "Апельсин", "Груша"]
-alert( fruits4 );
+// let fruits3 = ["Яблоко", "Апельсин", "Груша"];
+// alert( fruits3.shift() ); // удаляем Яблоко и выводим его
+// alert( fruits3 ); // Апельсин, Груша
 
 
-let fruits44 = ["Банан"]
-let arr44 = fruits44; // копируется по ссылке (две переменные ссылаются на один и тот же массив)
-alert( arr44 === fruits44 ); // true
-arr44.push("Груша"); // массив меняется по ссылке
-alert( fruits44 ); // Банан, Груша - теперь два элемента
+// let fruits33 = ["Апельсин", "Груша"];
+// fruits33.unshift('Яблоко');
+// alert( fruits33 ); // Яблоко, Апельсин, Груша
 
 
-let arr5 = ["Яблоко", "Апельсин", "Груша"];
-for (let i = 0; i < arr5.length; i++) {
-  alert( arr5[i] );
-}
-
-let fruits55 = ["Яблоко", "Апельсин", "Слива"];
-// проходит по значениям
-for (let fruit of fruits55) {
-  alert( fruit55 );
-}
+// let fruits4 = ["Яблоко"];
+// fruits4.push("Апельсин", "Груша");
+// fruits4.unshift("Ананас", "Лимон");
+// // ["Ананас", "Лимон", "Яблоко", "Апельсин", "Груша"]
+// alert( fruits4 );
 
 
-let arr6 = ["Яблоко", "Апельсин", "Груша"];
-for (let key in arr6) {
-  alert( arr6[key] ); // Яблоко, Апельсин, Груша
-}
+// let fruits44 = ["Банан"]
+// let arr44 = fruits44; // копируется по ссылке (две переменные ссылаются на один и тот же массив)
+// alert( arr44 === fruits44 ); // true
+// arr44.push("Груша"); // массив меняется по ссылке
+// alert( fruits44 ); // Банан, Груша - теперь два элемента
 
 
-let matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-  ];
+// let arr5 = ["Яблоко", "Апельсин", "Груша"];
+// for (let i = 0; i < arr5.length; i++) {
+//   alert( arr5[i] );
+// }
+
+// let fruits55 = ["Яблоко", "Апельсин", "Слива"];
+// // проходит по значениям
+// for (let fruit of fruits55) {
+//   alert( fruit55 );
+// }
+
+
+// let arr6 = ["Яблоко", "Апельсин", "Груша"];
+// for (let key in arr6) {
+//   alert( arr6[key] ); // Яблоко, Апельсин, Груша
+// }
+
+
+// let matrix = [
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9]
+//   ];
   
-  alert( matrix[1][1] ); // 5, центральный элемент
+//   alert( matrix[1][1] ); // 5, центральный элемент
 
 
-  let arr7 = [1, 2, 3];
-alert( arr7 ); // 1,2,3
-alert( String(arr7) === '1,2,3' ); // true
+//   let arr7 = [1, 2, 3];
+// alert( arr7 ); // 1,2,3
+// alert( String(arr7) === '1,2,3' ); // true
 
 
-alert( [] + 1 ); // "1"
-alert( [1] + 1 ); // "11"
-alert( [1,2] + 1 ); // "1,21"
+// alert( [] + 1 ); // "1"
+// alert( [1] + 1 ); // "11"
+// alert( [1,2] + 1 ); // "1,21"
 
-alert( "" + 1 ); // "1"
-alert( "1" + 1 ); // "11"
-alert( "1,2" + 1 ); // "1,21"
+// alert( "" + 1 ); // "1"
+// alert( "1" + 1 ); // "11"
+// alert( "1,2" + 1 ); // "1,21"
 
 
-let styles = ["Джаз","Блюз"]
-styles.push("Рок-н-ролл")
-alert(styles)
-styles[1]="Классика"
-alert(styles)
-styles.shift(styles[0])
-alert(styles)
-styles.unshift("Рэп","Регги")
-alert(styles)
+// let styles = ["Джаз","Блюз"]
+// styles.push("Рок-н-ролл")
+// alert(styles)
+// styles[1]="Классика"
+// alert(styles)
+// styles.shift(styles[0])
+// alert(styles)
+// styles.unshift("Рэп","Регги")
+// alert(styles)
 
-// !!!!!!!!!!!!!!!!!!!
-function sumInput(){
-    let arr =[]
-    while(true){
-    let b=prompt("введи число","")
-        if( b=== "" || b === null || !isFinite(b))break
+// // !!!!!!!!!!!!!!!!!!!
+// function sumInput(){
+//     let arr =[]
+//     while(true){
+//     let b=prompt("введи число","")
+//         if( b=== "" || b === null || !isFinite(b))break
      
-     arr.push(+b)
-    }
-    let sum = 0
-    for (let b of arr){
-        sum+=b
-    }
-    return sum
+//      arr.push(+b)
+//     }
+//     let sum = 0
+//     for (let b of arr){
+//         sum+=b
+//     }
+//     return sum
+// }
+// alert( sumInput() );
+// // !!!!!!!!!!!!!!!!!!!
+
+
+//methods arr
+
+
+let arr = ["I", "go", "home"];
+delete arr[1]; // удалить "go"
+alert( arr[1] ); // undefined
+// теперь arr = ["I",  , "home"];
+alert( arr.length ); // 3
+
+
+let arr0 = ["Я", "изучаю", "JavaScript"];
+arr0.splice(1, 1); // начиная с индекса 1, удалить 1 элемент
+alert( arr0 ); // осталось ["Я", "JavaScript"]
+
+
+let arr00 = ["Я", "изучаю", "JavaScript", "прямо", "сейчас"];
+// удалить 3 первых элемента и заменить их другими
+arr00.splice(0, 3, "Давай", "танцевать");
+alert( arr00 ) // теперь ["Давай", "танцевать", "прямо", "сейчас"]
+
+
+let arr000 = ["Я", "изучаю", "JavaScript", "прямо", "сейчас"];
+// удалить 2 первых элемента
+let removed = arr000.splice(0, 2);
+alert( removed ); // "Я", "изучаю" <-- массив из удалённых элементов
+
+
+let arr1 = ["Я", "изучаю", "JavaScript"];
+// с индекса 2
+// удалить 0 элементов
+// вставить "сложный", "язык"
+arr1.splice(2, 0, "сложный", "язык");
+alert( arr1 ); // "Я", "изучаю", "сложный", "язык", "JavaScript"
+
+
+let arr11 = [1, 2, 5];
+// начиная с индекса -1 (перед последним элементом)
+// удалить 0 элементов,
+// затем вставить числа 3 и 4
+arr11.splice(-1, 0, 3, 4);
+alert( arr11 ); // 1,2,3,4,5
+
+
+let arr111 = ["t", "e", "s", "t"];
+alert( arr111.slice(1, 3) ); // e,s (копирует с 1 до 3)
+alert( arr111.slice(-2) ); // s,t (копирует с -2 до конца)
+
+
+let arr2 = [1, 2];
+
+// создать массив из: arr и [3,4]
+alert( arr2.concat([3, 4]) ); // 1,2,3,4
+// создать массив из: arr и [3,4] и [5,6]
+alert( arr2.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
+// создать2 массив из: arr и [3,4], потом добавить значения 5 и 6
+alert( arr2.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
+
+
+let arr22 = [1, 2];
+let arrayLike = {
+  0: "что-то",
+  length: 1
+};
+alert( arr.concat(arrayLike) ); // 1,2,[object Object]
+
+
+let arr222 = [1, 2];
+let arrayLike222 = {
+  0: "что-то",
+  1: "ещё",
+  [Symbol.isConcatSpreadable]: true,
+  length: 2
+};
+alert( arr.concat(arrayLike) ); // 1,2,что-то,ещё
+
+
+
+["Бильбо", "Гэндальф", "Назгул"].forEach((item, index, array) => {
+  alert(item);
+});
+
+
+let arr3 = [1, 0, false];
+alert( arr.indexOf(0) ); // 1
+alert( arr.indexOf(false) ); // 2
+alert( arr.indexOf(null) ); // -1
+alert( arr.includes(1) ); // true
+
+
+let fruits = ['Яблоко', 'Апельсин', 'Яблоко']
+alert( fruits.indexOf('Яблоко') ); // 0 (первый 'Яблоко')
+alert( fruits.lastIndexOf('Яблоко') ); // 2 (последний 'Яблоко')
+
+
+
+let users = [
+  {id: 1, name: "Вася"},
+  {id: 2, name: "Петя"},
+  {id: 3, name: "Маша"}
+];
+
+let user = users.find(item => item.id == 1);
+alert(user.name); // Вася
+
+
+let users1 = [
+  {id: 1, name: "Вася"},
+  {id: 2, name: "Петя"},
+  {id: 3, name: "Маша"}
+];
+
+// возвращает массив, состоящий из двух первых пользователей
+let someUsers = users.filter(item => item.id < 3);
+alert(someUsers.length); // 2
+
+
+
+let lengths = ["Бильбо", "Гэндальф", "Назгул"].map(item => item.length);
+alert(lengths); // 6,8,6
+
+
+let arr1111 = [1, 2, 3, 4, 5];
+arr111.reverse();
+alert( arr111 ); // 5,4,3,2,1
+
+
+
+let names = 'Вася, Петя, Маша';
+let arr111111 = names.split(', ');
+for (let name of arr) {
+  alert( name ); // Сообщение получат: Вася (и другие имена)
 }
-alert( sumInput() );
-// !!!!!!!!!!!!!!!!!!!
+
+
+
+let arr2222 = 'Вася, Петя, Маша, Саша'.split(', ', 2);
+alert(arr); // Вася, Петя
+
+
+let str8 = "тест";
+alert( str.split('') ); // т,е,с,т
+
+
+
+let arr88 = ['Вася', 'Петя', 'Маша'];
+let str = arr.join(';'); // объединить массив в строку через ;
+alert( str ); // Вася;Петя;Маша
