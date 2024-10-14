@@ -2227,150 +2227,280 @@
 // // !!!!!!!!!!!!!!!!!!!
 
 
-//methods arr
+// //methods arr
 
 
-let arr = ["I", "go", "home"];
-delete arr[1]; // удалить "go"
-alert( arr[1] ); // undefined
-// теперь arr = ["I",  , "home"];
-alert( arr.length ); // 3
+// let arr = ["I", "go", "home"];
+// delete arr[1]; // удалить "go"
+// alert( arr[1] ); // undefined
+// // теперь arr = ["I",  , "home"];
+// alert( arr.length ); // 3
 
 
-let arr0 = ["Я", "изучаю", "JavaScript"];
-arr0.splice(1, 1); // начиная с индекса 1, удалить 1 элемент
-alert( arr0 ); // осталось ["Я", "JavaScript"]
+// let arr0 = ["Я", "изучаю", "JavaScript"];
+// arr0.splice(1, 1); // начиная с индекса 1, удалить 1 элемент
+// alert( arr0 ); // осталось ["Я", "JavaScript"]
 
 
-let arr00 = ["Я", "изучаю", "JavaScript", "прямо", "сейчас"];
-// удалить 3 первых элемента и заменить их другими
-arr00.splice(0, 3, "Давай", "танцевать");
-alert( arr00 ) // теперь ["Давай", "танцевать", "прямо", "сейчас"]
+// let arr00 = ["Я", "изучаю", "JavaScript", "прямо", "сейчас"];
+// // удалить 3 первых элемента и заменить их другими
+// arr00.splice(0, 3, "Давай", "танцевать");
+// alert( arr00 ) // теперь ["Давай", "танцевать", "прямо", "сейчас"]
 
 
-let arr000 = ["Я", "изучаю", "JavaScript", "прямо", "сейчас"];
-// удалить 2 первых элемента
-let removed = arr000.splice(0, 2);
-alert( removed ); // "Я", "изучаю" <-- массив из удалённых элементов
+// let arr000 = ["Я", "изучаю", "JavaScript", "прямо", "сейчас"];
+// // удалить 2 первых элемента
+// let removed = arr000.splice(0, 2);
+// alert( removed ); // "Я", "изучаю" <-- массив из удалённых элементов
 
 
-let arr1 = ["Я", "изучаю", "JavaScript"];
-// с индекса 2
-// удалить 0 элементов
-// вставить "сложный", "язык"
-arr1.splice(2, 0, "сложный", "язык");
-alert( arr1 ); // "Я", "изучаю", "сложный", "язык", "JavaScript"
+// let arr1 = ["Я", "изучаю", "JavaScript"];
+// // с индекса 2
+// // удалить 0 элементов
+// // вставить "сложный", "язык"
+// arr1.splice(2, 0, "сложный", "язык");
+// alert( arr1 ); // "Я", "изучаю", "сложный", "язык", "JavaScript"
 
 
-let arr11 = [1, 2, 5];
-// начиная с индекса -1 (перед последним элементом)
-// удалить 0 элементов,
-// затем вставить числа 3 и 4
-arr11.splice(-1, 0, 3, 4);
-alert( arr11 ); // 1,2,3,4,5
+// let arr11 = [1, 2, 5];
+// // начиная с индекса -1 (перед последним элементом)
+// // удалить 0 элементов,
+// // затем вставить числа 3 и 4
+// arr11.splice(-1, 0, 3, 4);
+// alert( arr11 ); // 1,2,3,4,5
 
 
-let arr111 = ["t", "e", "s", "t"];
-alert( arr111.slice(1, 3) ); // e,s (копирует с 1 до 3)
-alert( arr111.slice(-2) ); // s,t (копирует с -2 до конца)
+// let arr111 = ["t", "e", "s", "t"];
+// alert( arr111.slice(1, 3) ); // e,s (копирует с 1 до 3)
+// alert( arr111.slice(-2) ); // s,t (копирует с -2 до конца)
 
 
-let arr2 = [1, 2];
+// let arr2 = [1, 2];
 
-// создать массив из: arr и [3,4]
-alert( arr2.concat([3, 4]) ); // 1,2,3,4
-// создать массив из: arr и [3,4] и [5,6]
-alert( arr2.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
-// создать2 массив из: arr и [3,4], потом добавить значения 5 и 6
-alert( arr2.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
-
-
-let arr22 = [1, 2];
-let arrayLike = {
-  0: "что-то",
-  length: 1
-};
-alert( arr.concat(arrayLike) ); // 1,2,[object Object]
+// // создать массив из: arr и [3,4]
+// alert( arr2.concat([3, 4]) ); // 1,2,3,4
+// // создать массив из: arr и [3,4] и [5,6]
+// alert( arr2.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
+// // создать2 массив из: arr и [3,4], потом добавить значения 5 и 6
+// alert( arr2.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
 
 
-let arr222 = [1, 2];
-let arrayLike222 = {
-  0: "что-то",
-  1: "ещё",
-  [Symbol.isConcatSpreadable]: true,
-  length: 2
-};
-alert( arr.concat(arrayLike) ); // 1,2,что-то,ещё
+// let arr22 = [1, 2];
+// let arrayLike = {
+//   0: "что-то",
+//   length: 1
+// };
+// alert( arr.concat(arrayLike) ); // 1,2,[object Object]
 
 
-
-["Бильбо", "Гэндальф", "Назгул"].forEach((item, index, array) => {
-  alert(item);
-});
-
-
-let arr3 = [1, 0, false];
-alert( arr.indexOf(0) ); // 1
-alert( arr.indexOf(false) ); // 2
-alert( arr.indexOf(null) ); // -1
-alert( arr.includes(1) ); // true
-
-
-let fruits = ['Яблоко', 'Апельсин', 'Яблоко']
-alert( fruits.indexOf('Яблоко') ); // 0 (первый 'Яблоко')
-alert( fruits.lastIndexOf('Яблоко') ); // 2 (последний 'Яблоко')
+// let arr222 = [1, 2];
+// let arrayLike222 = {
+//   0: "что-то",
+//   1: "ещё",
+//   [Symbol.isConcatSpreadable]: true,
+//   length: 2
+// };
+// alert( arr.concat(arrayLike) ); // 1,2,что-то,ещё
 
 
 
-let users = [
-  {id: 1, name: "Вася"},
-  {id: 2, name: "Петя"},
-  {id: 3, name: "Маша"}
-];
-
-let user = users.find(item => item.id == 1);
-alert(user.name); // Вася
+// ["Бильбо", "Гэндальф", "Назгул"].forEach((item, index, array) => {
+//   alert(item);
+// });
 
 
-let users1 = [
-  {id: 1, name: "Вася"},
-  {id: 2, name: "Петя"},
-  {id: 3, name: "Маша"}
-];
+// let arr3 = [1, 0, false];
+// alert( arr.indexOf(0) ); // 1
+// alert( arr.indexOf(false) ); // 2
+// alert( arr.indexOf(null) ); // -1
+// alert( arr.includes(1) ); // true
 
-// возвращает массив, состоящий из двух первых пользователей
-let someUsers = users.filter(item => item.id < 3);
-alert(someUsers.length); // 2
+
+// let fruits = ['Яблоко', 'Апельсин', 'Яблоко']
+// alert( fruits.indexOf('Яблоко') ); // 0 (первый 'Яблоко')
+// alert( fruits.lastIndexOf('Яблоко') ); // 2 (последний 'Яблоко')
 
 
 
-let lengths = ["Бильбо", "Гэндальф", "Назгул"].map(item => item.length);
+// let users = [
+//   {id: 1, name: "Вася"},
+//   {id: 2, name: "Петя"},
+//   {id: 3, name: "Маша"}
+// ];
+
+// let user = users.find(item => item.id == 1);
+// alert(user.name); // Вася
+
+
+// let users1 = [
+//   {id: 1, name: "Вася"},
+//   {id: 2, name: "Петя"},
+//   {id: 3, name: "Маша"}
+// ];
+
+// // возвращает массив, состоящий из двух первых пользователей
+// let someUsers = users.filter(item => item.id < 3);
+// alert(someUsers.length); // 2
+
+
+
+// let lengths = ["Бильбо", "Гэндальф", "Назгул"].map(item => item.length);
+// alert(lengths); // 6,8,6
+
+
+// let arr1111 = [1, 2, 3, 4, 5];
+// arr111.reverse();
+// alert( arr111 ); // 5,4,3,2,1
+
+
+
+// let names = 'Вася, Петя, Маша';
+// let arr111111 = names.split(', ');
+// for (let name of arr) {
+//   alert( name ); // Сообщение получат: Вася (и другие имена)
+// }
+
+
+
+// let arr2222 = 'Вася, Петя, Маша, Саша'.split(', ', 2);
+// alert(arr); // Вася, Петя
+
+
+// let str8 = "тест";
+// alert( str.split('') ); // т,е,с,т
+
+
+
+// let arr88 = ['Вася', 'Петя', 'Маша'];
+// let str = arr.join(';'); // объединить массив в строку через ;
+// alert( str ); // Вася;Петя;Маша
+
+
+
+//methods arr2
+
+
+let lengths12 = ["Бильбо", "Гэндальф", "Назгул"].map(item => item.length);
 alert(lengths); // 6,8,6
 
 
-let arr1111 = [1, 2, 3, 4, 5];
-arr111.reverse();
-alert( arr111 ); // 5,4,3,2,1
+
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+  }
+};
+let users123 = [
+  {age: 16},
+  {age: 20},
+  {age: 23},
+  {age: 30}
+];
+
+// найти пользователей, для которых army.canJoin возвращает true
+let soldiers = users.filter(army.canJoin, army);
+
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23
 
 
 
-let names = 'Вася, Петя, Маша';
-let arr111111 = names.split(', ');
-for (let name of arr) {
-  alert( name ); // Сообщение получат: Вася (и другие имена)
+// push(...items) – добавляет элементы в конец,
+// pop() – извлекает элемент с конца,
+// shift() – извлекает элемент с начала,
+// unshift(...items) – добавляет элементы в начало.
+// splice(pos, deleteCount, ...items) – начиная с индекса pos удаляет deleteCount элементов и вставляет items.
+// slice(start, end) – создаёт новый массив, копируя в него элементы с индекса start до end (не включая end).
+// concat(...items) – возвращает новый массив: копирует все члены текущего массива и добавляет к нему items. Если какой-то из items является массивом, тогда берутся его элементы.
+// Для поиска среди элементов:
+
+// indexOf/lastIndexOf(item, pos) – ищет item, начиная с позиции pos, и возвращает его индекс или -1, если ничего не найдено.
+// includes(value) – возвращает true, если в массиве имеется элемент value, в противном случае false.
+// find/filter(func) – фильтрует элементы через функцию и отдаёт первое/все значения, при прохождении которых через функцию возвращается true.
+// findIndex похож на find, но возвращает индекс вместо значения.
+// Для перебора элементов:
+
+// forEach(func) – вызывает func для каждого элемента. Ничего не возвращает.
+// Для преобразования массива:
+
+// map(func) – создаёт новый массив из результатов вызова func для каждого элемента.
+// sort(func) – сортирует массив «на месте», а потом возвращает его.
+// reverse() – «на месте» меняет порядок следования элементов на противоположный и возвращает изменённый массив.
+// split/join – преобразует строку в массив и обратно.
+// reduce/reduceRight(func, initial) – вычисляет одно значение на основе всего массива, вызывая func для каждого элемента и передавая промежуточный результат между вызовами.
+// Дополнительно:
+
+// Array.isArray(arr) проверяет, является ли arr массивом.
+
+
+
+
+function camelize(str) {
+  return str
+    .split('-') // разбивает 'my-long-word' на массив ['my', 'long', 'word']
+    .map(
+      // Переводит в верхний регистр первые буквы всех элементом массива за исключением первого
+      // превращает ['my', 'long', 'word'] в ['my', 'Long', 'Word']
+      (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join(''); // соединяет ['my', 'Long', 'Word'] в 'myLongWord'
 }
 
 
 
-let arr2222 = 'Вася, Петя, Маша, Саша'.split(', ', 2);
-alert(arr); // Вася, Петя
+function filterRange(arr, a, b) {
+  // добавлены скобки вокруг выражения для улучшения читабельности
+  return arr.filter(item => (a <= item && item <= b));
+}
+let arr4353 = [5, 3, 8, 1];
+let filtered = filterRange(arr, 1, 4);
+alert( filtered ); // 3,1 (совпадающие значения)
+alert( arr ); // 5,3,8,1 (без изменений)
 
 
-let str8 = "тест";
-alert( str.split('') ); // т,е,с,т
+
+
+function filterRangeInPlace(arr, a, b) {
+  for (let i = 0; i < arr.length; i++) {
+    let val = arr[i];
+    // удалить, если за пределами интервала
+    if (val < a || val > b) {
+      arr.splice(i, 1);
+      i--;
+    }
+  }
+
+}
+let arr675 = [5, 3, 8, 1];
+filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
+alert( arr ); // [3, 1]
 
 
 
-let arr88 = ['Вася', 'Петя', 'Маша'];
-let str = arr.join(';'); // объединить массив в строку через ;
-alert( str ); // Вася;Петя;Маша
+
+let arr678 = [5, 2, 1, -10, 8];
+arr.sort((a, b) => b - a);
+alert( arr );
+
+
+
+function copySorted(arr) {
+  return arr.slice().sort();
+}
+let arr47423 = ["HTML", "JavaScript", "CSS"];
+let sorted = copySorted(arr);
+alert( sorted ); // CSS, HTML, JavaScript
+alert( arr ); // HTML, JavaScript, CSS (без изменений)
+
+
+
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+
+let users786 = [ vasya, petya, masha ];
+let names678 = users.map(item => item.name);
+alert( names ); // Вася, Петя, Маша
