@@ -2377,130 +2377,215 @@
 
 
 
-//methods arr2
+// //methods arr2
 
 
-let lengths12 = ["Бильбо", "Гэндальф", "Назгул"].map(item => item.length);
-alert(lengths); // 6,8,6
+// let lengths12 = ["Бильбо", "Гэндальф", "Назгул"].map(item => item.length);
+// alert(lengths); // 6,8,6
 
 
 
-let army = {
-  minAge: 18,
-  maxAge: 27,
-  canJoin(user) {
-    return user.age >= this.minAge && user.age < this.maxAge;
-  }
+// let army = {
+//   minAge: 18,
+//   maxAge: 27,
+//   canJoin(user) {
+//     return user.age >= this.minAge && user.age < this.maxAge;
+//   }
+// };
+// let users123 = [
+//   {age: 16},
+//   {age: 20},
+//   {age: 23},
+//   {age: 30}
+// ];
+
+// // найти пользователей, для которых army.canJoin возвращает true
+// let soldiers = users.filter(army.canJoin, army);
+
+// alert(soldiers.length); // 2
+// alert(soldiers[0].age); // 20
+// alert(soldiers[1].age); // 23
+
+
+
+// // push(...items) – добавляет элементы в конец,
+// // pop() – извлекает элемент с конца,
+// // shift() – извлекает элемент с начала,
+// // unshift(...items) – добавляет элементы в начало.
+// // splice(pos, deleteCount, ...items) – начиная с индекса pos удаляет deleteCount элементов и вставляет items.
+// // slice(start, end) – создаёт новый массив, копируя в него элементы с индекса start до end (не включая end).
+// // concat(...items) – возвращает новый массив: копирует все члены текущего массива и добавляет к нему items. Если какой-то из items является массивом, тогда берутся его элементы.
+// // Для поиска среди элементов:
+
+// // indexOf/lastIndexOf(item, pos) – ищет item, начиная с позиции pos, и возвращает его индекс или -1, если ничего не найдено.
+// // includes(value) – возвращает true, если в массиве имеется элемент value, в противном случае false.
+// // find/filter(func) – фильтрует элементы через функцию и отдаёт первое/все значения, при прохождении которых через функцию возвращается true.
+// // findIndex похож на find, но возвращает индекс вместо значения.
+// // Для перебора элементов:
+
+// // forEach(func) – вызывает func для каждого элемента. Ничего не возвращает.
+// // Для преобразования массива:
+
+// // map(func) – создаёт новый массив из результатов вызова func для каждого элемента.
+// // sort(func) – сортирует массив «на месте», а потом возвращает его.
+// // reverse() – «на месте» меняет порядок следования элементов на противоположный и возвращает изменённый массив.
+// // split/join – преобразует строку в массив и обратно.
+// // reduce/reduceRight(func, initial) – вычисляет одно значение на основе всего массива, вызывая func для каждого элемента и передавая промежуточный результат между вызовами.
+// // Дополнительно:
+
+// // Array.isArray(arr) проверяет, является ли arr массивом.
+
+
+
+
+// function camelize(str) {
+//   return str
+//     .split('-') // разбивает 'my-long-word' на массив ['my', 'long', 'word']
+//     .map(
+//       // Переводит в верхний регистр первые буквы всех элементом массива за исключением первого
+//       // превращает ['my', 'long', 'word'] в ['my', 'Long', 'Word']
+//       (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+//     )
+//     .join(''); // соединяет ['my', 'Long', 'Word'] в 'myLongWord'
+// }
+
+
+
+// function filterRange(arr, a, b) {
+//   // добавлены скобки вокруг выражения для улучшения читабельности
+//   return arr.filter(item => (a <= item && item <= b));
+// }
+// let arr4353 = [5, 3, 8, 1];
+// let filtered = filterRange(arr, 1, 4);
+// alert( filtered ); // 3,1 (совпадающие значения)
+// alert( arr ); // 5,3,8,1 (без изменений)
+
+
+
+
+// function filterRangeInPlace(arr, a, b) {
+//   for (let i = 0; i < arr.length; i++) {
+//     let val = arr[i];
+//     // удалить, если за пределами интервала
+//     if (val < a || val > b) {
+//       arr.splice(i, 1);
+//       i--;
+//     }
+//   }
+
+// }
+// let arr675 = [5, 3, 8, 1];
+// filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
+// alert( arr ); // [3, 1]
+
+
+
+
+// let arr678 = [5, 2, 1, -10, 8];
+// arr.sort((a, b) => b - a);
+// alert( arr );
+
+
+
+// function copySorted(arr) {
+//   return arr.slice().sort();
+// }
+// let arr47423 = ["HTML", "JavaScript", "CSS"];
+// let sorted = copySorted(arr);
+// alert( sorted ); // CSS, HTML, JavaScript
+// alert( arr ); // HTML, JavaScript, CSS (без изменений)
+
+
+
+// let vasya = { name: "Вася", age: 25 };
+// let petya = { name: "Петя", age: 30 };
+// let masha = { name: "Маша", age: 28 };
+
+// let users786 = [ vasya, petya, masha ];
+// let names678 = users.map(item => item.name);
+// alert( names ); // Вася, Петя, Маша
+
+
+//methods arr3
+
+let vasya66 = { name: "Вася", surname: "Пупкин", id: 1 };
+let petya56 = { name: "Петя", surname: "Иванов", id: 2 };
+let masha5 = { name: "Маша", surname: "Петрова", id: 3 };
+
+let users456 = [ vasya, petya, masha ];
+let usersMapped = users.map(user => ({
+  fullName: user.name ,
+  id: user.id
+}));
+/*
+usersMapped = [
+  { fullName: "Вася Пупкин", id: 1 },
+  { fullName: "Петя Иванов", id: 2 },
+  { fullName: "Маша Петрова", id: 3 }
+]
+*/
+alert( usersMapped[0].id ); // 1
+alert( usersMapped[0].fullName ); // Вася Пупкин
+
+
+
+function sortByAge(arr) {
+  arr.sort((a, b) => a.age - b.age);
+}
+
+let vasya4454 = { name: "Вася", age: 25 };
+let petya345 = { name: "Петя", age: 30 };
+let masha345 = { name: "Маша", age: 28 };
+
+let arr43535 = [ vasya, petya, masha ];
+
+sortByAge(arr);
+
+// теперь отсортировано: [vasya, masha, petya]
+alert(arr[0].name); // Вася
+alert(arr[1].name); // Маша
+alert(arr[2].name); // Петя
+
+
+
+
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+let arr344 = [1, 2, 3];
+shuffle(arr);
+alert(arr);
+
+
+
+let range = {
+  from: 1,
+  to: 5
 };
-let users123 = [
-  {age: 16},
-  {age: 20},
-  {age: 23},
-  {age: 30}
-];
 
-// найти пользователей, для которых army.canJoin возвращает true
-let soldiers = users.filter(army.canJoin, army);
+// 1. вызов for..of сначала вызывает эту функцию
+range[Symbol.iterator] = function() {
 
-alert(soldiers.length); // 2
-alert(soldiers[0].age); // 20
-alert(soldiers[1].age); // 23
+  // ...она возвращает объект итератора:
+  // 2. Далее, for..of работает только с этим итератором,
+  // запрашивая у него новые значения
+  return {
+    current: this.from,
+    last: this.to,
 
-
-
-// push(...items) – добавляет элементы в конец,
-// pop() – извлекает элемент с конца,
-// shift() – извлекает элемент с начала,
-// unshift(...items) – добавляет элементы в начало.
-// splice(pos, deleteCount, ...items) – начиная с индекса pos удаляет deleteCount элементов и вставляет items.
-// slice(start, end) – создаёт новый массив, копируя в него элементы с индекса start до end (не включая end).
-// concat(...items) – возвращает новый массив: копирует все члены текущего массива и добавляет к нему items. Если какой-то из items является массивом, тогда берутся его элементы.
-// Для поиска среди элементов:
-
-// indexOf/lastIndexOf(item, pos) – ищет item, начиная с позиции pos, и возвращает его индекс или -1, если ничего не найдено.
-// includes(value) – возвращает true, если в массиве имеется элемент value, в противном случае false.
-// find/filter(func) – фильтрует элементы через функцию и отдаёт первое/все значения, при прохождении которых через функцию возвращается true.
-// findIndex похож на find, но возвращает индекс вместо значения.
-// Для перебора элементов:
-
-// forEach(func) – вызывает func для каждого элемента. Ничего не возвращает.
-// Для преобразования массива:
-
-// map(func) – создаёт новый массив из результатов вызова func для каждого элемента.
-// sort(func) – сортирует массив «на месте», а потом возвращает его.
-// reverse() – «на месте» меняет порядок следования элементов на противоположный и возвращает изменённый массив.
-// split/join – преобразует строку в массив и обратно.
-// reduce/reduceRight(func, initial) – вычисляет одно значение на основе всего массива, вызывая func для каждого элемента и передавая промежуточный результат между вызовами.
-// Дополнительно:
-
-// Array.isArray(arr) проверяет, является ли arr массивом.
-
-
-
-
-function camelize(str) {
-  return str
-    .split('-') // разбивает 'my-long-word' на массив ['my', 'long', 'word']
-    .map(
-      // Переводит в верхний регистр первые буквы всех элементом массива за исключением первого
-      // превращает ['my', 'long', 'word'] в ['my', 'Long', 'Word']
-      (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
-    )
-    .join(''); // соединяет ['my', 'Long', 'Word'] в 'myLongWord'
-}
-
-
-
-function filterRange(arr, a, b) {
-  // добавлены скобки вокруг выражения для улучшения читабельности
-  return arr.filter(item => (a <= item && item <= b));
-}
-let arr4353 = [5, 3, 8, 1];
-let filtered = filterRange(arr, 1, 4);
-alert( filtered ); // 3,1 (совпадающие значения)
-alert( arr ); // 5,3,8,1 (без изменений)
-
-
-
-
-function filterRangeInPlace(arr, a, b) {
-  for (let i = 0; i < arr.length; i++) {
-    let val = arr[i];
-    // удалить, если за пределами интервала
-    if (val < a || val > b) {
-      arr.splice(i, 1);
-      i--;
+    // 3. next() вызывается на каждой итерации цикла for..of
+    next() {
+      // 4. он должен вернуть значение в виде объекта {done:.., value :...}
+      if (this.current <= this.last) {
+        return { done: false, value: this.current++ };
+      } else {
+        return { done: true };
+      }
     }
-  }
+  };
+};
 
+// теперь работает!
+for (let num of range) {
+  alert(num); // 1, затем 2, 3, 4, 5
 }
-let arr675 = [5, 3, 8, 1];
-filterRangeInPlace(arr, 1, 4); // удалены числа вне диапазона 1..4
-alert( arr ); // [3, 1]
-
-
-
-
-let arr678 = [5, 2, 1, -10, 8];
-arr.sort((a, b) => b - a);
-alert( arr );
-
-
-
-function copySorted(arr) {
-  return arr.slice().sort();
-}
-let arr47423 = ["HTML", "JavaScript", "CSS"];
-let sorted = copySorted(arr);
-alert( sorted ); // CSS, HTML, JavaScript
-alert( arr ); // HTML, JavaScript, CSS (без изменений)
-
-
-
-let vasya = { name: "Вася", age: 25 };
-let petya = { name: "Петя", age: 30 };
-let masha = { name: "Маша", age: 28 };
-
-let users786 = [ vasya, petya, masha ];
-let names678 = users.map(item => item.name);
-alert( names ); // Вася, Петя, Маша
