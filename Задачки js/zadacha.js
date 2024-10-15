@@ -2506,86 +2506,276 @@
 // alert( names ); // Вася, Петя, Маша
 
 
-//methods arr3
+// //methods arr3
 
-let vasya66 = { name: "Вася", surname: "Пупкин", id: 1 };
-let petya56 = { name: "Петя", surname: "Иванов", id: 2 };
-let masha5 = { name: "Маша", surname: "Петрова", id: 3 };
+// let vasya66 = { name: "Вася", surname: "Пупкин", id: 1 };
+// let petya56 = { name: "Петя", surname: "Иванов", id: 2 };
+// let masha5 = { name: "Маша", surname: "Петрова", id: 3 };
 
-let users456 = [ vasya, petya, masha ];
-let usersMapped = users.map(user => ({
-  fullName: user.name ,
-  id: user.id
-}));
-/*
-usersMapped = [
-  { fullName: "Вася Пупкин", id: 1 },
-  { fullName: "Петя Иванов", id: 2 },
-  { fullName: "Маша Петрова", id: 3 }
-]
-*/
-alert( usersMapped[0].id ); // 1
-alert( usersMapped[0].fullName ); // Вася Пупкин
-
-
-
-function sortByAge(arr) {
-  arr.sort((a, b) => a.age - b.age);
-}
-
-let vasya4454 = { name: "Вася", age: 25 };
-let petya345 = { name: "Петя", age: 30 };
-let masha345 = { name: "Маша", age: 28 };
-
-let arr43535 = [ vasya, petya, masha ];
-
-sortByAge(arr);
-
-// теперь отсортировано: [vasya, masha, petya]
-alert(arr[0].name); // Вася
-alert(arr[1].name); // Маша
-alert(arr[2].name); // Петя
+// let users456 = [ vasya, petya, masha ];
+// let usersMapped = users.map(user => ({
+//   fullName: user.name ,
+//   id: user.id
+// }));
+// /*
+// usersMapped = [
+//   { fullName: "Вася Пупкин", id: 1 },
+//   { fullName: "Петя Иванов", id: 2 },
+//   { fullName: "Маша Петрова", id: 3 }
+// ]
+// */
+// alert( usersMapped[0].id ); // 1
+// alert( usersMapped[0].fullName ); // Вася Пупкин
 
 
 
+// function sortByAge(arr) {
+//   arr.sort((a, b) => a.age - b.age);
+// }
 
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
-let arr344 = [1, 2, 3];
-shuffle(arr);
-alert(arr);
+// let vasya4454 = { name: "Вася", age: 25 };
+// let petya345 = { name: "Петя", age: 30 };
+// let masha345 = { name: "Маша", age: 28 };
+
+// let arr43535 = [ vasya, petya, masha ];
+
+// sortByAge(arr);
+
+// // теперь отсортировано: [vasya, masha, petya]
+// alert(arr[0].name); // Вася
+// alert(arr[1].name); // Маша
+// alert(arr[2].name); // Петя
 
 
 
-let range = {
-  from: 1,
-  to: 5
-};
 
-// 1. вызов for..of сначала вызывает эту функцию
-range[Symbol.iterator] = function() {
+// function shuffle(array) {
+//   array.sort(() => Math.random() - 0.5);
+// }
+// let arr344 = [1, 2, 3];
+// shuffle(arr);
+// alert(arr);
 
-  // ...она возвращает объект итератора:
-  // 2. Далее, for..of работает только с этим итератором,
-  // запрашивая у него новые значения
-  return {
-    current: this.from,
-    last: this.to,
 
-    // 3. next() вызывается на каждой итерации цикла for..of
-    next() {
-      // 4. он должен вернуть значение в виде объекта {done:.., value :...}
-      if (this.current <= this.last) {
-        return { done: false, value: this.current++ };
-      } else {
-        return { done: true };
-      }
-    }
+
+// let range = {
+//   from: 1,
+//   to: 5
+// };
+
+// // 1. вызов for..of сначала вызывает эту функцию
+// range[Symbol.iterator] = function() {
+
+//   // ...она возвращает объект итератора:
+//   // 2. Далее, for..of работает только с этим итератором,
+//   // запрашивая у него новые значения
+//   return {
+//     current: this.from,
+//     last: this.to,
+
+//     // 3. next() вызывается на каждой итерации цикла for..of
+//     next() {
+//       // 4. он должен вернуть значение в виде объекта {done:.., value :...}
+//       if (this.current <= this.last) {
+//         return { done: false, value: this.current++ };
+//       } else {
+//         return { done: true };
+//       }
+//     }
+//   };
+// };
+
+// // теперь работает!
+// for (let num of range) {
+//   alert(num); // 1, затем 2, 3, 4, 5
+// }
+
+
+// map и set
+
+let map = new Map();
+
+map.set("1", "str1");    // строка в качестве ключа
+map.set(1, "num1");      // цифра как ключ
+map.set(true, "bool1");  // булево значение как ключ
+
+// помните, обычный объект Object приводит ключи к строкам?
+// Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
+alert(map.get(1)); // "num1"
+alert(map.get("1")); // "str1"
+
+alert(map.size); // 3
+
+
+
+
+let john = { name: "John" };
+// давайте сохраним количество посещений для каждого пользователя
+let visitsCountMap = new Map();
+// объект john - это ключ для значения в объекте Map
+visitsCountMap.set(john, 123);
+alert(visitsCountMap.get(john)); // 123
+
+
+
+// map.keys() – возвращает итерируемый объект по ключам,
+// map.values() – возвращает итерируемый объект по значениям,
+// map.entries() – возвращает итерируемый объект по парам вида [ключ, значение], этот вариант используется по умолчанию в for..of.
+
+
+
+let recipeMap = new Map([
+    ["огурец", 500],
+    ["помидор", 350],
+    ["лук",    50]
+  ]);
+  // перебор по ключам (овощи)
+  for (let vegetable of recipeMap.keys()) {
+    alert(vegetable); // огурец, помидор, лук
+  }
+  // перебор по значениям (числа)
+  for (let amount of recipeMap.values()) {
+    alert(amount); // 500, 350, 50
+  }
+  // перебор по элементам в формате [ключ, значение]
+  for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
+    alert(entry); // огурец,500 (и так далее)
+  }
+
+
+
+
+  // массив пар [ключ, значение]
+let map1 = new Map([
+    ['1',  'str1'],
+    [1,    'num1'],
+    [true, 'bool1']
+  ]);
+  
+  alert( map.get('1') ); // str1
+
+
+
+
+  let obj = {
+    name: "John",
+    age: 30
   };
-};
+  
+  let map2 = new Map(Object.entries(obj));
+  alert( map.get('name') ); // John
 
-// теперь работает!
-for (let num of range) {
-  alert(num); // 1, затем 2, 3, 4, 5
+
+
+  let prices = Object.fromEntries([
+    ['banana', 1],
+    ['orange', 2],
+    ['meat', 4]
+  ]);
+  // prices = { banana: 1, orange: 2, meat: 4 }
+  alert(prices.orange); // 2
+
+
+
+  let map23 = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+let obj2 = Object.fromEntries(map23); // создаём обычный объект (*)
+// готово!
+// obj = { banana: 1, orange: 2, meat: 4 }
+alert(obj.orange); // 2
+
+
+
+let set = new Set();
+
+let john2 = { name: "John" };
+let pete = { name: "Pete" };
+let mary = { name: "Mary" };
+// считаем гостей, некоторые приходят несколько раз
+set.add(john);
+set.add(pete);
+set.add(mary);
+set.add(john);
+set.add(mary);
+// set хранит только 3 уникальных значения
+alert(set.size); // 3
+for (let user of set) {
+  alert(user.name); // John (потом Pete и Mary)
 }
+
+
+
+let set11 = new Set(["апельсин", "яблоко", "банан"]);
+
+for (let value of set) alert(value);
+
+// то же самое с forEach:
+set.forEach((value, valueAgain, set) => {
+  alert(value);
+});
+
+
+
+// set.values() – возвращает перебираемый объект для значений,
+// set.keys() – то же самое, что и set.values(), присутствует для обратной совместимости с Map,
+// set.entries() – возвращает перебираемый объект для пар вида [значение, значение], присутствует для обратной совместимости с Map.
+
+
+
+function unique(arr) {
+    return Array.from(new Set(arr));
+  }
+  let values = ["Hare", "Krishna", "Hare", "Krishna",
+    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+  ];
+  alert( unique(values) ); // Hare,Krishna,:-O
+
+
+  function aclean(arr) {
+    let map = new Map();
+    for (let word of arr) {
+      // разбиваем слово на буквы, сортируем и объединяем снова в строку
+      let sorted = word.toLowerCase().split("").sort().join(""); // (*)
+      map.set(sorted, word);
+    }
+
+    return Array.from(map.values());
+  }
+  let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+  alert( aclean(arr) );
+
+
+  let sorted = arr[i] // PAN
+  .toLowerCase() // pan
+  .split("") // ["p","a","n"]
+  .sort() // ["a","n","p"]
+  .join(""); // anp
+
+
+
+  function aclean(arr) {
+    let obj = {};
+    for (let i = 0; i < arr.length; i++) {
+      let sorted = arr[i].toLowerCase().split("").sort().join("");
+      obj[sorted] = arr[i];
+    }
+  
+    return Object.values(obj);
+  }
+  let arr34 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+  alert( aclean(arr) );
+
+
+
+let map8 = new Map();
+map.set("name", "John");
+let keys = Array.from(map.keys());
+keys.push("more");
+alert(keys); // name, more
+
+
+
