@@ -2591,191 +2591,299 @@
 // }
 
 
-// map и set
+// // map и set
 
-let map = new Map();
+// let map = new Map();
 
-map.set("1", "str1");    // строка в качестве ключа
-map.set(1, "num1");      // цифра как ключ
-map.set(true, "bool1");  // булево значение как ключ
+// map.set("1", "str1");    // строка в качестве ключа
+// map.set(1, "num1");      // цифра как ключ
+// map.set(true, "bool1");  // булево значение как ключ
 
-// помните, обычный объект Object приводит ключи к строкам?
-// Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
-alert(map.get(1)); // "num1"
-alert(map.get("1")); // "str1"
+// // помните, обычный объект Object приводит ключи к строкам?
+// // Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
+// alert(map.get(1)); // "num1"
+// alert(map.get("1")); // "str1"
 
-alert(map.size); // 3
+// alert(map.size); // 3
 
 
+
+
+// let john = { name: "John" };
+// // давайте сохраним количество посещений для каждого пользователя
+// let visitsCountMap = new Map();
+// // объект john - это ключ для значения в объекте Map
+// visitsCountMap.set(john, 123);
+// alert(visitsCountMap.get(john)); // 123
+
+
+
+// // map.keys() – возвращает итерируемый объект по ключам,
+// // map.values() – возвращает итерируемый объект по значениям,
+// // map.entries() – возвращает итерируемый объект по парам вида [ключ, значение], этот вариант используется по умолчанию в for..of.
+
+
+
+// let recipeMap = new Map([
+//     ["огурец", 500],
+//     ["помидор", 350],
+//     ["лук",    50]
+//   ]);
+//   // перебор по ключам (овощи)
+//   for (let vegetable of recipeMap.keys()) {
+//     alert(vegetable); // огурец, помидор, лук
+//   }
+//   // перебор по значениям (числа)
+//   for (let amount of recipeMap.values()) {
+//     alert(amount); // 500, 350, 50
+//   }
+//   // перебор по элементам в формате [ключ, значение]
+//   for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
+//     alert(entry); // огурец,500 (и так далее)
+//   }
+
+
+
+
+//   // массив пар [ключ, значение]
+// let map1 = new Map([
+//     ['1',  'str1'],
+//     [1,    'num1'],
+//     [true, 'bool1']
+//   ]);
+  
+//   alert( map.get('1') ); // str1
+
+
+
+
+//   let obj = {
+//     name: "John",
+//     age: 30
+//   };
+  
+//   let map2 = new Map(Object.entries(obj));
+//   alert( map.get('name') ); // John
+
+
+
+//   let prices = Object.fromEntries([
+//     ['banana', 1],
+//     ['orange', 2],
+//     ['meat', 4]
+//   ]);
+//   // prices = { banana: 1, orange: 2, meat: 4 }
+//   alert(prices.orange); // 2
+
+
+
+//   let map23 = new Map();
+// map.set('banana', 1);
+// map.set('orange', 2);
+// map.set('meat', 4);
+
+// let obj2 = Object.fromEntries(map23); // создаём обычный объект (*)
+// // готово!
+// // obj = { banana: 1, orange: 2, meat: 4 }
+// alert(obj.orange); // 2
+
+
+
+// let set = new Set();
+
+// let john2 = { name: "John" };
+// let pete = { name: "Pete" };
+// let mary = { name: "Mary" };
+// // считаем гостей, некоторые приходят несколько раз
+// set.add(john);
+// set.add(pete);
+// set.add(mary);
+// set.add(john);
+// set.add(mary);
+// // set хранит только 3 уникальных значения
+// alert(set.size); // 3
+// for (let user of set) {
+//   alert(user.name); // John (потом Pete и Mary)
+// }
+
+
+
+// let set11 = new Set(["апельсин", "яблоко", "банан"]);
+
+// for (let value of set) alert(value);
+
+// // то же самое с forEach:
+// set.forEach((value, valueAgain, set) => {
+//   alert(value);
+// });
+
+
+
+// // set.values() – возвращает перебираемый объект для значений,
+// // set.keys() – то же самое, что и set.values(), присутствует для обратной совместимости с Map,
+// // set.entries() – возвращает перебираемый объект для пар вида [значение, значение], присутствует для обратной совместимости с Map.
+
+
+
+// function unique(arr) {
+//     return Array.from(new Set(arr));
+//   }
+//   let values = ["Hare", "Krishna", "Hare", "Krishna",
+//     "Krishna", "Krishna", "Hare", "Hare", ":-O"
+//   ];
+//   alert( unique(values) ); // Hare,Krishna,:-O
+
+
+//   function aclean(arr) {
+//     let map = new Map();
+//     for (let word of arr) {
+//       // разбиваем слово на буквы, сортируем и объединяем снова в строку
+//       let sorted = word.toLowerCase().split("").sort().join(""); // (*)
+//       map.set(sorted, word);
+//     }
+
+//     return Array.from(map.values());
+//   }
+//   let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+//   alert( aclean(arr) );
+
+
+//   let sorted = arr[i] // PAN
+//   .toLowerCase() // pan
+//   .split("") // ["p","a","n"]
+//   .sort() // ["a","n","p"]
+//   .join(""); // anp
+
+
+
+//   function aclean(arr) {
+//     let obj = {};
+//     for (let i = 0; i < arr.length; i++) {
+//       let sorted = arr[i].toLowerCase().split("").sort().join("");
+//       obj[sorted] = arr[i];
+//     }
+  
+//     return Object.values(obj);
+//   }
+//   let arr34 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+//   alert( aclean(arr) );
+
+
+
+// let map8 = new Map();
+// map.set("name", "John");
+// let keys = Array.from(map.keys());
+// keys.push("more");
+// alert(keys); // name, more
+
+
+
+// WeakMap и WeakSet
 
 
 let john = { name: "John" };
-// давайте сохраним количество посещений для каждого пользователя
-let visitsCountMap = new Map();
-// объект john - это ключ для значения в объекте Map
-visitsCountMap.set(john, 123);
-alert(visitsCountMap.get(john)); // 123
+// объект доступен, переменная john — это ссылка на него
+// перепишем ссылку
+john = null;
+// объект будет удалён из памяти
 
 
 
-// map.keys() – возвращает итерируемый объект по ключам,
-// map.values() – возвращает итерируемый объект по значениям,
-// map.entries() – возвращает итерируемый объект по парам вида [ключ, значение], этот вариант используется по умолчанию в for..of.
+let john1 = { name: "John" };
+let array = [ john ];
+john = null; // перезаписываем ссылку на объект
+// объект john хранится в массиве, поэтому он не будет удалён сборщиком мусора
+// мы можем взять его значение как array[0]
 
 
 
-let recipeMap = new Map([
-    ["огурец", 500],
-    ["помидор", 350],
-    ["лук",    50]
-  ]);
-  // перебор по ключам (овощи)
-  for (let vegetable of recipeMap.keys()) {
-    alert(vegetable); // огурец, помидор, лук
-  }
-  // перебор по значениям (числа)
-  for (let amount of recipeMap.values()) {
-    alert(amount); // 500, 350, 50
-  }
-  // перебор по элементам в формате [ключ, значение]
-  for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
-    alert(entry); // огурец,500 (и так далее)
-  }
+let john3 = { name: "John" };
+let map = new Map();
+map.set(john, "...");
+john = null; // перезаписываем ссылку на объект
+// объект john сохранён внутри объекта `Map`,
+// он доступен через map.keys()
+
+
+let weakMap = new WeakMap();
+let obj = {};
+weakMap.set(obj, "ok"); // работает (объект в качестве ключа)
+// нельзя использовать строку в качестве ключа
+weakMap.set("test", "Whoops"); // Ошибка, потому что "test" не объект
 
 
 
-
-  // массив пар [ключ, значение]
-let map1 = new Map([
-    ['1',  'str1'],
-    [1,    'num1'],
-    [true, 'bool1']
-  ]);
-  
-  alert( map.get('1') ); // str1
+let john34 = { name: "John" };
+let weakMap3 = new WeakMap();
+weakMap.set(john, "...");
+john = null; // перезаписываем ссылку на объект
+// объект john удалён из памяти!
 
 
 
+// В WeakMap присутствуют только следующие методы:
 
-  let obj = {
-    name: "John",
-    age: 30
-  };
-  
-  let map2 = new Map(Object.entries(obj));
-  alert( map.get('name') ); // John
+// weakMap.get(key)
+// weakMap.set(key, value)
+// weakMap.delete(key)
+// weakMap.has(key)
 
 
+let visitedSet = new WeakSet();
 
-  let prices = Object.fromEntries([
-    ['banana', 1],
-    ['orange', 2],
-    ['meat', 4]
-  ]);
-  // prices = { banana: 1, orange: 2, meat: 4 }
-  alert(prices.orange); // 2
-
-
-
-  let map23 = new Map();
-map.set('banana', 1);
-map.set('orange', 2);
-map.set('meat', 4);
-
-let obj2 = Object.fromEntries(map23); // создаём обычный объект (*)
-// готово!
-// obj = { banana: 1, orange: 2, meat: 4 }
-alert(obj.orange); // 2
-
-
-
-let set = new Set();
-
-let john2 = { name: "John" };
+let john8 = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
-// считаем гостей, некоторые приходят несколько раз
-set.add(john);
-set.add(pete);
-set.add(mary);
-set.add(john);
-set.add(mary);
-// set хранит только 3 уникальных значения
-alert(set.size); // 3
-for (let user of set) {
-  alert(user.name); // John (потом Pete и Mary)
-}
+
+visitedSet.add(john); // John заходил к нам
+visitedSet.add(pete); // потом Pete
+visitedSet.add(john); // John снова
+
+// visitedSet сейчас содержит двух пользователей
+// проверим, заходил ли John?
+alert(visitedSet.has(john)); // true
+// проверим, заходила ли Mary?
+alert(visitedSet.has(mary)); // false
+john = null;
+// структура данных visitedSet будет очищена автоматически (объект john будет удалён из visitedSet)
 
 
 
-let set11 = new Set(["апельсин", "яблоко", "банан"]);
-
-for (let value of set) alert(value);
-
-// то же самое с forEach:
-set.forEach((value, valueAgain, set) => {
-  alert(value);
-});
+// WeakMap – это Map-подобная коллекция, позволяющая использовать в качестве ключей только объекты, и автоматически удаляющая их вместе с соответствующими значениями, как только они становятся недостижимыми иными путями.
+// WeakSet – это Set-подобная коллекция, которая хранит только объекты и удаляет их, как только они становятся недостижимыми иными путями.
+// Обе этих структуры данных не поддерживают методы и свойства, работающие со всем содержимым сразу или возвращающие информацию о размере коллекции. Возможны только операции на отдельном элементе коллекции.
+// WeakMap и WeakSet используются как вспомогательные структуры данных в дополнение к «основному» месту хранения объекта. Если объект удаляется из основного хранилища и нигде не используется, кроме как в качестве ключа в WeakMap или в WeakSet, то он будет удалён автоматически.
 
 
+let messages = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
+];
+let readMessages = new WeakSet();
+// Два сообщения были прочитаны
+readMessages.add(messages[0]);
+readMessages.add(messages[1]);
+// readMessages содержит 2 элемента
+// ...давайте снова прочитаем первое сообщение!
+readMessages.add(messages[0]);
+// readMessages до сих пор содержит 2 элемента
+// Вопрос: было ли сообщение message[0] прочитано?
+alert("Read message 0: " + readMessages.has(messages[0])); // true
+messages.shift();
+// теперь readMessages содержит 1 элемент (хотя технически память может быть очищена позже)
 
-// set.values() – возвращает перебираемый объект для значений,
-// set.keys() – то же самое, что и set.values(), присутствует для обратной совместимости с Map,
-// set.entries() – возвращает перебираемый объект для пар вида [значение, значение], присутствует для обратной совместимости с Map.
 
 
 
-function unique(arr) {
-    return Array.from(new Set(arr));
-  }
-  let values = ["Hare", "Krishna", "Hare", "Krishna",
-    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+let messages223 = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
   ];
-  alert( unique(values) ); // Hare,Krishna,:-O
-
-
-  function aclean(arr) {
-    let map = new Map();
-    for (let word of arr) {
-      // разбиваем слово на буквы, сортируем и объединяем снова в строку
-      let sorted = word.toLowerCase().split("").sort().join(""); // (*)
-      map.set(sorted, word);
-    }
-
-    return Array.from(map.values());
-  }
-  let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
-  alert( aclean(arr) );
-
-
-  let sorted = arr[i] // PAN
-  .toLowerCase() // pan
-  .split("") // ["p","a","n"]
-  .sort() // ["a","n","p"]
-  .join(""); // anp
-
-
-
-  function aclean(arr) {
-    let obj = {};
-    for (let i = 0; i < arr.length; i++) {
-      let sorted = arr[i].toLowerCase().split("").sort().join("");
-      obj[sorted] = arr[i];
-    }
   
-    return Object.values(obj);
-  }
-  let arr34 = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
-
-  alert( aclean(arr) );
-
-
-
-let map8 = new Map();
-map.set("name", "John");
-let keys = Array.from(map.keys());
-keys.push("more");
-alert(keys); // name, more
-
-
-
+  let readMap = new WeakMap();
+  
+  readMap.set(messages[0], new Date(2017, 1, 1));
+  // Объект Date мы рассмотрим позднее
