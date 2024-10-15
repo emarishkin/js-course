@@ -2779,111 +2779,174 @@
 
 
 
-// WeakMap и WeakSet
+// // WeakMap и WeakSet
 
 
-let john = { name: "John" };
-// объект доступен, переменная john — это ссылка на него
-// перепишем ссылку
-john = null;
-// объект будет удалён из памяти
-
-
-
-let john1 = { name: "John" };
-let array = [ john ];
-john = null; // перезаписываем ссылку на объект
-// объект john хранится в массиве, поэтому он не будет удалён сборщиком мусора
-// мы можем взять его значение как array[0]
+// let john = { name: "John" };
+// // объект доступен, переменная john — это ссылка на него
+// // перепишем ссылку
+// john = null;
+// // объект будет удалён из памяти
 
 
 
-let john3 = { name: "John" };
-let map = new Map();
-map.set(john, "...");
-john = null; // перезаписываем ссылку на объект
-// объект john сохранён внутри объекта `Map`,
-// он доступен через map.keys()
-
-
-let weakMap = new WeakMap();
-let obj = {};
-weakMap.set(obj, "ok"); // работает (объект в качестве ключа)
-// нельзя использовать строку в качестве ключа
-weakMap.set("test", "Whoops"); // Ошибка, потому что "test" не объект
+// let john1 = { name: "John" };
+// let array = [ john ];
+// john = null; // перезаписываем ссылку на объект
+// // объект john хранится в массиве, поэтому он не будет удалён сборщиком мусора
+// // мы можем взять его значение как array[0]
 
 
 
-let john34 = { name: "John" };
-let weakMap3 = new WeakMap();
-weakMap.set(john, "...");
-john = null; // перезаписываем ссылку на объект
-// объект john удалён из памяти!
+// let john3 = { name: "John" };
+// let map = new Map();
+// map.set(john, "...");
+// john = null; // перезаписываем ссылку на объект
+// // объект john сохранён внутри объекта `Map`,
+// // он доступен через map.keys()
+
+
+// let weakMap = new WeakMap();
+// let obj = {};
+// weakMap.set(obj, "ok"); // работает (объект в качестве ключа)
+// // нельзя использовать строку в качестве ключа
+// weakMap.set("test", "Whoops"); // Ошибка, потому что "test" не объект
 
 
 
-// В WeakMap присутствуют только следующие методы:
-
-// weakMap.get(key)
-// weakMap.set(key, value)
-// weakMap.delete(key)
-// weakMap.has(key)
-
-
-let visitedSet = new WeakSet();
-
-let john8 = { name: "John" };
-let pete = { name: "Pete" };
-let mary = { name: "Mary" };
-
-visitedSet.add(john); // John заходил к нам
-visitedSet.add(pete); // потом Pete
-visitedSet.add(john); // John снова
-
-// visitedSet сейчас содержит двух пользователей
-// проверим, заходил ли John?
-alert(visitedSet.has(john)); // true
-// проверим, заходила ли Mary?
-alert(visitedSet.has(mary)); // false
-john = null;
-// структура данных visitedSet будет очищена автоматически (объект john будет удалён из visitedSet)
+// let john34 = { name: "John" };
+// let weakMap3 = new WeakMap();
+// weakMap.set(john, "...");
+// john = null; // перезаписываем ссылку на объект
+// // объект john удалён из памяти!
 
 
 
-// WeakMap – это Map-подобная коллекция, позволяющая использовать в качестве ключей только объекты, и автоматически удаляющая их вместе с соответствующими значениями, как только они становятся недостижимыми иными путями.
-// WeakSet – это Set-подобная коллекция, которая хранит только объекты и удаляет их, как только они становятся недостижимыми иными путями.
-// Обе этих структуры данных не поддерживают методы и свойства, работающие со всем содержимым сразу или возвращающие информацию о размере коллекции. Возможны только операции на отдельном элементе коллекции.
-// WeakMap и WeakSet используются как вспомогательные структуры данных в дополнение к «основному» месту хранения объекта. Если объект удаляется из основного хранилища и нигде не используется, кроме как в качестве ключа в WeakMap или в WeakSet, то он будет удалён автоматически.
+// // В WeakMap присутствуют только следующие методы:
+
+// // weakMap.get(key)
+// // weakMap.set(key, value)
+// // weakMap.delete(key)
+// // weakMap.has(key)
 
 
-let messages = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
-];
-let readMessages = new WeakSet();
-// Два сообщения были прочитаны
-readMessages.add(messages[0]);
-readMessages.add(messages[1]);
-// readMessages содержит 2 элемента
-// ...давайте снова прочитаем первое сообщение!
-readMessages.add(messages[0]);
-// readMessages до сих пор содержит 2 элемента
-// Вопрос: было ли сообщение message[0] прочитано?
-alert("Read message 0: " + readMessages.has(messages[0])); // true
-messages.shift();
-// теперь readMessages содержит 1 элемент (хотя технически память может быть очищена позже)
+// let visitedSet = new WeakSet();
+
+// let john8 = { name: "John" };
+// let pete = { name: "Pete" };
+// let mary = { name: "Mary" };
+
+// visitedSet.add(john); // John заходил к нам
+// visitedSet.add(pete); // потом Pete
+// visitedSet.add(john); // John снова
+
+// // visitedSet сейчас содержит двух пользователей
+// // проверим, заходил ли John?
+// alert(visitedSet.has(john)); // true
+// // проверим, заходила ли Mary?
+// alert(visitedSet.has(mary)); // false
+// john = null;
+// // структура данных visitedSet будет очищена автоматически (объект john будет удалён из visitedSet)
+
+
+
+// // WeakMap – это Map-подобная коллекция, позволяющая использовать в качестве ключей только объекты, и автоматически удаляющая их вместе с соответствующими значениями, как только они становятся недостижимыми иными путями.
+// // WeakSet – это Set-подобная коллекция, которая хранит только объекты и удаляет их, как только они становятся недостижимыми иными путями.
+// // Обе этих структуры данных не поддерживают методы и свойства, работающие со всем содержимым сразу или возвращающие информацию о размере коллекции. Возможны только операции на отдельном элементе коллекции.
+// // WeakMap и WeakSet используются как вспомогательные структуры данных в дополнение к «основному» месту хранения объекта. Если объект удаляется из основного хранилища и нигде не используется, кроме как в качестве ключа в WeakMap или в WeakSet, то он будет удалён автоматически.
+
+
+// let messages = [
+//     {text: "Hello", from: "John"},
+//     {text: "How goes?", from: "John"},
+//     {text: "See you soon", from: "Alice"}
+// ];
+// let readMessages = new WeakSet();
+// // Два сообщения были прочитаны
+// readMessages.add(messages[0]);
+// readMessages.add(messages[1]);
+// // readMessages содержит 2 элемента
+// // ...давайте снова прочитаем первое сообщение!
+// readMessages.add(messages[0]);
+// // readMessages до сих пор содержит 2 элемента
+// // Вопрос: было ли сообщение message[0] прочитано?
+// alert("Read message 0: " + readMessages.has(messages[0])); // true
+// messages.shift();
+// // теперь readMessages содержит 1 элемент (хотя технически память может быть очищена позже)
 
 
 
 
-let messages223 = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
-  ];
+// let messages223 = [
+//     {text: "Hello", from: "John"},
+//     {text: "How goes?", from: "John"},
+//     {text: "See you soon", from: "Alice"}
+//   ];
   
-  let readMap = new WeakMap();
+//   let readMap = new WeakMap();
   
-  readMap.set(messages[0], new Date(2017, 1, 1));
-  // Объект Date мы рассмотрим позднее
+//   readMap.set(messages[0], new Date(2017, 1, 1));
+// // Объект Date мы рассмотрим позднее
+
+
+
+// Object.keys, values, entries
+
+
+// Object.keys(obj) – возвращает массив ключей.
+// Object.values(obj) – возвращает массив значений.
+// Object.entries(obj) – возвращает массив пар [ключ, значение].
+
+
+let user23 = {
+    name: "John",
+    age: 30
+  };
+  
+  // перебор значений
+  for (let value of Object.values(user)) {
+    alert(value); // John, затем 30
+  }
+
+
+  let prices = {
+    banana: 1,
+    orange: 2,
+    meat: 4,
+  };
+  let doublePrices = Object.fromEntries(
+    // преобразовать в массив, затем map, затем fromEntries (обратно в объект)
+    Object.entries(prices).map(([key, value]) => [key, value * 2])
+  );
+
+  alert(doublePrices.meat); // 8
+
+
+
+let salaries = {
+    "John": 100,
+    "Pete": 300,
+    "Mary": 250
+  };
+  function sumSalaries(salaries){
+    let sum=0
+    for(let salary  of Object.values(salaries)){
+        sum+=salary 
+    }
+    return sum
+  }
+  alert(sumSalaries(salaries)); // 650
+
+
+
+
+  function count(obj) {
+    return Object.keys(obj).length;
+  }
+  let user = {
+    name: 'John',
+    age: 30
+  };
+  
+  alert( count(user) ); // 2
+
