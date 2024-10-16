@@ -2951,288 +2951,444 @@
 //   alert( count(user) ); // 2
 
 
-// Деструктурирующее присваивание
+// // Деструктурирующее присваивание
 
-// у нас есть массив с именем и фамилией
-let arr = ["Ilya", "Kantor"];
-// деструктурирующее присваивание
-// записывает firstName = arr[0]
-// и surname = arr[1]
-let [firstName, surname] = arr;
-alert(firstName); // Ilya
-alert(surname);  // Kantor
-
-
-let [firstName1, surname1] = "Ilya Kantor".split(' ');
-alert(firstName); // Ilya
-alert(surname);  // Kantor
+// // у нас есть массив с именем и фамилией
+// let arr = ["Ilya", "Kantor"];
+// // деструктурирующее присваивание
+// // записывает firstName = arr[0]
+// // и surname = arr[1]
+// let [firstName, surname] = arr;
+// alert(firstName); // Ilya
+// alert(surname);  // Kantor
 
 
-// второй элемент не нужен
-let [firstName2233, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
-
-alert( title ); // Consul
-
-
-let user = {};
-[user.name, user.surname] = "Ilya Kantor".split(' ');
-alert(user.name); // Ilya
-alert(user.surname); // Kantor
+// let [firstName1, surname1] = "Ilya Kantor".split(' ');
+// alert(firstName); // Ilya
+// alert(surname);  // Kantor
 
 
+// // второй элемент не нужен
+// let [firstName2233, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
-let user65 = {
-    name: "John",
-    age: 30
-  };
+// alert( title ); // Consul
 
-  // цикл по ключам и значениям
-  for (let [key, value] of Object.entries(user)) {
-    alert(`${key}:${value}`); // name:John, затем age:30
+
+// let user = {};
+// [user.name, user.surname] = "Ilya Kantor".split(' ');
+// alert(user.name); // Ilya
+// alert(user.surname); // Kantor
+
+
+
+// let user65 = {
+//     name: "John",
+//     age: 30
+//   };
+
+//   // цикл по ключам и значениям
+//   for (let [key, value] of Object.entries(user)) {
+//     alert(`${key}:${value}`); // name:John, затем age:30
+//   }
+
+
+
+
+//   let user8796 = new Map();
+// user.set("name", "John");
+// user.set("age", "30");
+
+// // Map перебирает как пары [ключ, значение], что очень удобно для деструктурирования
+// for (let [key, value] of user) {
+//   alert(`${key}:${value}`); // name:John, затем age:30
+// }
+
+
+
+// let guest = "Jane";
+// let admin = "Pete";
+
+// // Давайте поменяем местами значения: сделаем guest = "Pete", а admin = "Jane"
+// [guest, admin] = [admin, guest];
+// alert(`${guest} ${admin}`); // Pete Jane (успешно заменено!)
+
+
+
+// let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// alert(name1); // Julius
+// alert(name2); // Caesar
+// // Дальнейшие элементы нигде не присваиваются
+
+
+
+
+// let [name123, name223, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// // rest это массив элементов, начиная с 3-го
+// alert(rest[0]); // Consul
+// alert(rest[1]); // of the Roman Republic
+// alert(rest.length); // 2
+
+
+
+// let [name1234, name22342, ...titles] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// // теперь titles = ["Consul", "of the Roman Republic"]
+
+
+// // значения по умолчанию
+// let [name = "Guest", surname44 = "Anonymous"] = ["Julius"];
+
+// alert(name);    // Julius (из массива)
+// alert(surname); // Anonymous (значение по умолчанию)
+
+
+// // prompt запустится только для surname
+// let [name34 = prompt('name?'), surname23423 = prompt('surname?')] = ["Julius"];
+// alert(name);    // Julius (из массива)
+// alert(surname); // результат prompt
+
+
+
+// let options = {
+//     title: "Menu",
+//     width: 100,
+//     height: 200
+//   };
+  
+//   let {title2, width, height} = options;
+  
+//   alert(title);  // Menu
+//   alert(width);  // 100
+//   alert(height); // 200
+
+
+
+//   let options3 = {
+//     title: "Menu",
+//     width: 100,
+//     height: 200
+//   };
+  
+//   // { sourceProperty: targetVariable }
+//   let {width: w, height: h, title3} = options;
+  
+//   // width -> w
+//   // height -> h
+//   // title -> title
+  
+//   alert(title);  // Menu
+//   alert(w);      // 100
+//   alert(h);      // 200
+
+
+
+
+
+//   let options232 = {
+//     title: "Menu"
+//   };
+  
+//   let {width3 = 100, height3 = 200, title33} = options;
+  
+//   alert(title);  // Menu
+//   alert(width);  // 100
+//   alert(height); // 200
+
+
+
+//   let options234 = {
+//     title: "Menu"
+//   };
+//   let {width234 = prompt("width?"), title21 = prompt("title?")} = options;
+
+//   alert(title);  // Menu
+//   alert(width);  // (результат prompt)
+
+
+
+//   let options2345 = {
+//     title: "Menu"
+//   };
+  
+//   let {width: w43 = 100, height: h24 = 200, title6} = options;
+  
+//   alert(title);  // Menu
+//   alert(w);      // 100
+//   alert(h);      // 200
+
+
+
+//   let options315 = {
+//     title: "Menu",
+//     height: 200,
+//     width: 100
+//   };
+  
+//   // title = свойство с именем title
+//   // rest = объект с остальными свойствами
+//   let {title343, ...rest145} = options;
+  
+//   // сейчас title="Menu", rest={height: 200, width: 100}
+//   alert(rest.height);  // 200
+//   alert(rest.width);   // 100
+
+
+
+//   let title7874, width4678, height436;
+// // сейчас всё работает
+// ({title, width, height} = {title: "Menu", width: 200, height: 100});
+// alert( title ); // Menu
+
+
+
+// let options325345 = {
+//   size: {
+//     width: 100,
+//     height: 200
+//   },
+//   items: ["Cake", "Donut"],
+//   extra: true
+// };
+
+// // деструктуризация разбита на несколько строк для ясности
+// let {
+//   size: { // положим size сюда
+//     width342,
+//     height342
+//   },
+//   items24: [item1, item2], // добавим элементы к items
+//   title34 = "Menu" // отсутствует в объекте (используется значение по умолчанию)
+// } = options;
+
+// alert(title);  // Menu
+// alert(width);  // 100
+// alert(height); // 200
+// alert(item1);  // Cake
+// alert(item2);  // Donut
+
+
+
+// // мы передаём объект в функцию
+// let options676 = {
+//   title: "My menu",
+//   items: ["Item1", "Item2"]
+// };
+
+// // ...и она немедленно извлекает свойства в переменные
+// function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
+//   // title, items – взято из options,
+//   // width, height – используются значения по умолчанию
+//   alert( `${title} ${width} ${height}` ); // My Menu 200 100
+//   alert( items ); // Item1, Item2
+// }
+// showMenu(options);
+
+
+
+
+// let options3455243 = {
+//   title: "My menu",
+//   items: ["Item1", "Item2"]
+// };
+
+// function showMenu({
+//   title = "Untitled",
+//   width: w = 100,  // width присваиваем в w
+//   height: h = 200, // height присваиваем в h
+//   items: [item1, item2] // первый элемент items присваивается в item1, второй в item2
+// }) {
+//   alert( `${title} ${w} ${h}` ); // My Menu 100 200
+//   alert( item1 ); // Item1
+//   alert( item2 ); // Item2
+// }
+
+// showMenu(options);
+
+
+// let user1 = {
+//   name11: "John",
+//   years: 30
+// };
+
+//  let {name11,years:age,isAdmin=false }=user1
+
+//  alert( name11 ); // John
+// alert( age ); // 30
+// alert( isAdmin ); // false
+
+
+
+// let salaries = {
+//   "John": 100,
+//   "Pete": 300,
+//   "Mary": 250
+// };
+// function topSalary(salaries) {
+//   let max=0
+//   let maxName=null
+//   for (let [name,salary] of Object.entries(salaries)){
+//     if(max<salary){
+//      max=salary
+//      maxName=name
+//     }
+//   }
+//   return maxName
+// }
+// alert(topSalary(salaries))
+
+
+// date
+
+
+let now = new Date();
+alert( now ); // показывает текущие дату и время
+
+
+// 0 соответствует 01.01.1970 UTC+0
+let Jan01_1970 = new Date(0);
+alert( Jan01_1970 );
+
+// теперь добавим 24 часа и получим 02.01.1970 UTC+0
+let Jan02_1970 = new Date(24 * 3600 * 1000);
+alert( Jan02_1970 );
+
+
+// 31 декабря 1969 года
+let Dec31_1969 = new Date(-24 * 3600 * 1000);
+alert( Dec31_1969 );
+
+
+
+let date = new Date("2017-01-26");
+alert(date);
+// Время не указано, поэтому оно ставится в полночь по Гринвичу и
+// меняется в соответствии с часовым поясом места выполнения кода
+// Так что в результате можно получить
+// Thu Jan 26 2017 11:00:00 GMT+1100 (восточно-австралийское время)
+// или
+// Wed Jan 25 2017 16:00:00 GMT-0800 (тихоокеанское время)
+
+
+new Date(2011, 0, 1, 0, 0, 0, 0); // // 1 Jan 2011, 00:00:00
+new Date(2011, 0, 1); // то же самое, так как часы и проч. равны 0
+
+
+let date2 = new Date(2011, 0, 1, 2, 3, 4, 567);
+alert( date ); // 1.01.2011, 02:03:04.567
+
+
+// getFullYear()
+// Получить год (4 цифры)
+// getMonth()
+// Получить месяц, от 0 до 11.
+// getDate()
+// Получить день месяца, от 1 до 31, что несколько противоречит названию метода.
+// getHours(), getMinutes(), getSeconds(), getMilliseconds()
+// Получить, соответственно, часы, минуты, секунды или миллисекунды.
+
+
+
+// текущая дата
+let date22 = new Date();
+// час в вашем текущем часовом поясе
+alert( date.getHours() );
+// час в часовом поясе UTC+0 (лондонское время без перехода на летнее время)
+alert( date.getUTCHours() );
+
+
+
+getTimezoneOffset()
+// Возвращает разницу в минутах между UTC и местным часовым поясом:
+
+// если вы в часовом поясе UTC-1, то выводится 60
+// если вы в часовом поясе UTC+3, выводится -180
+alert( new Date().getTimezoneOffset() );
+
+
+
+let today = new Date();
+today.setHours(0);
+alert(today); // выводится сегодняшняя дата, но значение часа будет 0
+today.setHours(0, 0, 0, 0);
+alert(today); // всё ещё выводится сегодняшняя дата, но время будет ровно 00:00:00.
+
+
+
+let date3= new Date(2013, 0, 32); // 32 Jan 2013 ?!?
+alert(date); // ...1st Feb 2013!
+
+
+
+let date33 = new Date(2016, 1, 28);
+date.setDate(date.getDate() + 2);
+alert( date ); // 1 Mar 2016
+
+
+let date4 = new Date();
+date.setSeconds(date.getSeconds() + 70);
+alert( date ); // выводит правильную дату
+
+
+function diffSubtract(date1, date2) {
+  return date2 - date1;
+}
+
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
+}
+
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
+
+  let start = Date.now();
+  for (let i = 0; i < 100000; i++) f(date1, date2);
+  return Date.now() - start;
+}
+
+alert( 'Время diffSubtract: ' + bench(diffSubtract) + 'мс' );
+alert( 'Время diffGetTime: ' + bench(diffGetTime) + 'мс' );
+
+
+
+let date222= new date(2012,1,20,3,12)
+alert(date)
+
+
+
+function getWeekDay(date){
+let dayweek=['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+return dayweek[date.getDay()];
+}
+let date123 = new Date(2012, 0, 3);  // 3 января 2012 года
+alert( getWeekDay(date123) ); 
+
+
+
+
+let date2222 = new Date(2012, 0, 3);  // 3 января 2012 года
+alert( getLocalDay(date) );       // вторник, нужно показать 2
+function getLocalDay(date) {
+
+  let day = date.getDay();
+
+  if (day == 0) { // день недели 0 (воскресенье) в европейской нумерации будет 7
+    day = 7;
   }
 
-
-
-
-  let user8796 = new Map();
-user.set("name", "John");
-user.set("age", "30");
-
-// Map перебирает как пары [ключ, значение], что очень удобно для деструктурирования
-for (let [key, value] of user) {
-  alert(`${key}:${value}`); // name:John, затем age:30
+  return day;
 }
 
 
 
-let guest = "Jane";
-let admin = "Pete";
-
-// Давайте поменяем местами значения: сделаем guest = "Pete", а admin = "Jane"
-[guest, admin] = [admin, guest];
-alert(`${guest} ${admin}`); // Pete Jane (успешно заменено!)
-
-
-
-let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
-
-alert(name1); // Julius
-alert(name2); // Caesar
-// Дальнейшие элементы нигде не присваиваются
-
-
-
-
-let [name123, name223, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
-
-// rest это массив элементов, начиная с 3-го
-alert(rest[0]); // Consul
-alert(rest[1]); // of the Roman Republic
-alert(rest.length); // 2
-
-
-
-let [name1234, name22342, ...titles] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
-// теперь titles = ["Consul", "of the Roman Republic"]
-
-
-// значения по умолчанию
-let [name = "Guest", surname44 = "Anonymous"] = ["Julius"];
-
-alert(name);    // Julius (из массива)
-alert(surname); // Anonymous (значение по умолчанию)
-
-
-// prompt запустится только для surname
-let [name34 = prompt('name?'), surname23423 = prompt('surname?')] = ["Julius"];
-alert(name);    // Julius (из массива)
-alert(surname); // результат prompt
-
-
-
-let options = {
-    title: "Menu",
-    width: 100,
-    height: 200
-  };
-  
-  let {title2, width, height} = options;
-  
-  alert(title);  // Menu
-  alert(width);  // 100
-  alert(height); // 200
-
-
-
-  let options3 = {
-    title: "Menu",
-    width: 100,
-    height: 200
-  };
-  
-  // { sourceProperty: targetVariable }
-  let {width: w, height: h, title3} = options;
-  
-  // width -> w
-  // height -> h
-  // title -> title
-  
-  alert(title);  // Menu
-  alert(w);      // 100
-  alert(h);      // 200
-
-
-
-
-
-  let options232 = {
-    title: "Menu"
-  };
-  
-  let {width3 = 100, height3 = 200, title33} = options;
-  
-  alert(title);  // Menu
-  alert(width);  // 100
-  alert(height); // 200
-
-
-
-  let options234 = {
-    title: "Menu"
-  };
-  let {width234 = prompt("width?"), title21 = prompt("title?")} = options;
-
-  alert(title);  // Menu
-  alert(width);  // (результат prompt)
-
-
-
-  let options2345 = {
-    title: "Menu"
-  };
-  
-  let {width: w43 = 100, height: h24 = 200, title6} = options;
-  
-  alert(title);  // Menu
-  alert(w);      // 100
-  alert(h);      // 200
-
-
-
-  let options315 = {
-    title: "Menu",
-    height: 200,
-    width: 100
-  };
-  
-  // title = свойство с именем title
-  // rest = объект с остальными свойствами
-  let {title343, ...rest145} = options;
-  
-  // сейчас title="Menu", rest={height: 200, width: 100}
-  alert(rest.height);  // 200
-  alert(rest.width);   // 100
-
-
-
-  let title7874, width4678, height436;
-// сейчас всё работает
-({title, width, height} = {title: "Menu", width: 200, height: 100});
-alert( title ); // Menu
-
-
-
-let options325345 = {
-  size: {
-    width: 100,
-    height: 200
-  },
-  items: ["Cake", "Donut"],
-  extra: true
-};
-
-// деструктуризация разбита на несколько строк для ясности
-let {
-  size: { // положим size сюда
-    width342,
-    height342
-  },
-  items24: [item1, item2], // добавим элементы к items
-  title34 = "Menu" // отсутствует в объекте (используется значение по умолчанию)
-} = options;
-
-alert(title);  // Menu
-alert(width);  // 100
-alert(height); // 200
-alert(item1);  // Cake
-alert(item2);  // Donut
-
-
-
-// мы передаём объект в функцию
-let options676 = {
-  title: "My menu",
-  items: ["Item1", "Item2"]
-};
-
-// ...и она немедленно извлекает свойства в переменные
-function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
-  // title, items – взято из options,
-  // width, height – используются значения по умолчанию
-  alert( `${title} ${width} ${height}` ); // My Menu 200 100
-  alert( items ); // Item1, Item2
-}
-showMenu(options);
-
-
-
-
-let options3455243 = {
-  title: "My menu",
-  items: ["Item1", "Item2"]
-};
-
-function showMenu({
-  title = "Untitled",
-  width: w = 100,  // width присваиваем в w
-  height: h = 200, // height присваиваем в h
-  items: [item1, item2] // первый элемент items присваивается в item1, второй в item2
-}) {
-  alert( `${title} ${w} ${h}` ); // My Menu 100 200
-  alert( item1 ); // Item1
-  alert( item2 ); // Item2
+function getLastDayOfMonth(year, month) {
+  let date = new Date(year, month + 1, 0);
+  return date.getDate();
 }
 
-showMenu(options);
+alert( getLastDayOfMonth(2012, 0) ); // 31
+alert( getLastDayOfMonth(2012, 1) ); // 29
+alert( getLastDayOfMonth(2013, 1) ); // 28
 
 
-let user1 = {
-  name11: "John",
-  years: 30
-};
-
- let {name11,years:age,isAdmin=false }=user1
-
- alert( name11 ); // John
-alert( age ); // 30
-alert( isAdmin ); // false
-
-
-
-let salaries = {
-  "John": 100,
-  "Pete": 300,
-  "Mary": 250
-};
-function topSalary(salaries) {
-  let max=0
-  let maxName=null
-  for (let [name,salary] of Object.entries(salaries)){
-    if(max<salary){
-     max=salary
-     maxName=name
-    }
-  }
-  return maxName
-}
-alert(topSalary(salaries))
