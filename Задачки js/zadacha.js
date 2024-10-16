@@ -2890,63 +2890,349 @@
 
 
 
-// Object.keys, values, entries
+// // Object.keys, values, entries
 
 
-// Object.keys(obj) – возвращает массив ключей.
-// Object.values(obj) – возвращает массив значений.
-// Object.entries(obj) – возвращает массив пар [ключ, значение].
+// // Object.keys(obj) – возвращает массив ключей.
+// // Object.values(obj) – возвращает массив значений.
+// // Object.entries(obj) – возвращает массив пар [ключ, значение].
 
 
-let user23 = {
+// let user23 = {
+//     name: "John",
+//     age: 30
+//   };
+  
+//   // перебор значений
+//   for (let value of Object.values(user)) {
+//     alert(value); // John, затем 30
+//   }
+
+
+//   let prices = {
+//     banana: 1,
+//     orange: 2,
+//     meat: 4,
+//   };
+//   let doublePrices = Object.fromEntries(
+//     // преобразовать в массив, затем map, затем fromEntries (обратно в объект)
+//     Object.entries(prices).map(([key, value]) => [key, value * 2])
+//   );
+
+//   alert(doublePrices.meat); // 8
+
+
+
+// let salaries = {
+//     "John": 100,
+//     "Pete": 300,
+//     "Mary": 250
+//   };
+//   function sumSalaries(salaries){
+//     let sum=0
+//     for(let salary  of Object.values(salaries)){
+//         sum+=salary 
+//     }
+//     return sum
+//   }
+//   alert(sumSalaries(salaries)); // 650
+
+
+
+
+//   function count(obj) {
+//     return Object.keys(obj).length;
+//   }
+//   let user = {
+//     name: 'John',
+//     age: 30
+//   };
+  
+//   alert( count(user) ); // 2
+
+
+// Деструктурирующее присваивание
+
+// у нас есть массив с именем и фамилией
+let arr = ["Ilya", "Kantor"];
+// деструктурирующее присваивание
+// записывает firstName = arr[0]
+// и surname = arr[1]
+let [firstName, surname] = arr;
+alert(firstName); // Ilya
+alert(surname);  // Kantor
+
+
+let [firstName1, surname1] = "Ilya Kantor".split(' ');
+alert(firstName); // Ilya
+alert(surname);  // Kantor
+
+
+// второй элемент не нужен
+let [firstName2233, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert( title ); // Consul
+
+
+let user = {};
+[user.name, user.surname] = "Ilya Kantor".split(' ');
+alert(user.name); // Ilya
+alert(user.surname); // Kantor
+
+
+
+let user65 = {
     name: "John",
     age: 30
   };
-  
-  // перебор значений
-  for (let value of Object.values(user)) {
-    alert(value); // John, затем 30
+
+  // цикл по ключам и значениям
+  for (let [key, value] of Object.entries(user)) {
+    alert(`${key}:${value}`); // name:John, затем age:30
   }
 
 
-  let prices = {
-    banana: 1,
-    orange: 2,
-    meat: 4,
-  };
-  let doublePrices = Object.fromEntries(
-    // преобразовать в массив, затем map, затем fromEntries (обратно в объект)
-    Object.entries(prices).map(([key, value]) => [key, value * 2])
-  );
 
-  alert(doublePrices.meat); // 8
+
+  let user8796 = new Map();
+user.set("name", "John");
+user.set("age", "30");
+
+// Map перебирает как пары [ключ, значение], что очень удобно для деструктурирования
+for (let [key, value] of user) {
+  alert(`${key}:${value}`); // name:John, затем age:30
+}
+
+
+
+let guest = "Jane";
+let admin = "Pete";
+
+// Давайте поменяем местами значения: сделаем guest = "Pete", а admin = "Jane"
+[guest, admin] = [admin, guest];
+alert(`${guest} ${admin}`); // Pete Jane (успешно заменено!)
+
+
+
+let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert(name1); // Julius
+alert(name2); // Caesar
+// Дальнейшие элементы нигде не присваиваются
+
+
+
+
+let [name123, name223, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+// rest это массив элементов, начиная с 3-го
+alert(rest[0]); // Consul
+alert(rest[1]); // of the Roman Republic
+alert(rest.length); // 2
+
+
+
+let [name1234, name22342, ...titles] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// теперь titles = ["Consul", "of the Roman Republic"]
+
+
+// значения по умолчанию
+let [name = "Guest", surname44 = "Anonymous"] = ["Julius"];
+
+alert(name);    // Julius (из массива)
+alert(surname); // Anonymous (значение по умолчанию)
+
+
+// prompt запустится только для surname
+let [name34 = prompt('name?'), surname23423 = prompt('surname?')] = ["Julius"];
+alert(name);    // Julius (из массива)
+alert(surname); // результат prompt
+
+
+
+let options = {
+    title: "Menu",
+    width: 100,
+    height: 200
+  };
+  
+  let {title2, width, height} = options;
+  
+  alert(title);  // Menu
+  alert(width);  // 100
+  alert(height); // 200
+
+
+
+  let options3 = {
+    title: "Menu",
+    width: 100,
+    height: 200
+  };
+  
+  // { sourceProperty: targetVariable }
+  let {width: w, height: h, title3} = options;
+  
+  // width -> w
+  // height -> h
+  // title -> title
+  
+  alert(title);  // Menu
+  alert(w);      // 100
+  alert(h);      // 200
+
+
+
+
+
+  let options232 = {
+    title: "Menu"
+  };
+  
+  let {width3 = 100, height3 = 200, title33} = options;
+  
+  alert(title);  // Menu
+  alert(width);  // 100
+  alert(height); // 200
+
+
+
+  let options234 = {
+    title: "Menu"
+  };
+  let {width234 = prompt("width?"), title21 = prompt("title?")} = options;
+
+  alert(title);  // Menu
+  alert(width);  // (результат prompt)
+
+
+
+  let options2345 = {
+    title: "Menu"
+  };
+  
+  let {width: w43 = 100, height: h24 = 200, title6} = options;
+  
+  alert(title);  // Menu
+  alert(w);      // 100
+  alert(h);      // 200
+
+
+
+  let options315 = {
+    title: "Menu",
+    height: 200,
+    width: 100
+  };
+  
+  // title = свойство с именем title
+  // rest = объект с остальными свойствами
+  let {title343, ...rest145} = options;
+  
+  // сейчас title="Menu", rest={height: 200, width: 100}
+  alert(rest.height);  // 200
+  alert(rest.width);   // 100
+
+
+
+  let title7874, width4678, height436;
+// сейчас всё работает
+({title, width, height} = {title: "Menu", width: 200, height: 100});
+alert( title ); // Menu
+
+
+
+let options325345 = {
+  size: {
+    width: 100,
+    height: 200
+  },
+  items: ["Cake", "Donut"],
+  extra: true
+};
+
+// деструктуризация разбита на несколько строк для ясности
+let {
+  size: { // положим size сюда
+    width342,
+    height342
+  },
+  items24: [item1, item2], // добавим элементы к items
+  title34 = "Menu" // отсутствует в объекте (используется значение по умолчанию)
+} = options;
+
+alert(title);  // Menu
+alert(width);  // 100
+alert(height); // 200
+alert(item1);  // Cake
+alert(item2);  // Donut
+
+
+
+// мы передаём объект в функцию
+let options676 = {
+  title: "My menu",
+  items: ["Item1", "Item2"]
+};
+
+// ...и она немедленно извлекает свойства в переменные
+function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
+  // title, items – взято из options,
+  // width, height – используются значения по умолчанию
+  alert( `${title} ${width} ${height}` ); // My Menu 200 100
+  alert( items ); // Item1, Item2
+}
+showMenu(options);
+
+
+
+
+let options3455243 = {
+  title: "My menu",
+  items: ["Item1", "Item2"]
+};
+
+function showMenu({
+  title = "Untitled",
+  width: w = 100,  // width присваиваем в w
+  height: h = 200, // height присваиваем в h
+  items: [item1, item2] // первый элемент items присваивается в item1, второй в item2
+}) {
+  alert( `${title} ${w} ${h}` ); // My Menu 100 200
+  alert( item1 ); // Item1
+  alert( item2 ); // Item2
+}
+
+showMenu(options);
+
+
+let user1 = {
+  name11: "John",
+  years: 30
+};
+
+ let {name11,years:age,isAdmin=false }=user1
+
+ alert( name11 ); // John
+alert( age ); // 30
+alert( isAdmin ); // false
 
 
 
 let salaries = {
-    "John": 100,
-    "Pete": 300,
-    "Mary": 250
-  };
-  function sumSalaries(salaries){
-    let sum=0
-    for(let salary  of Object.values(salaries)){
-        sum+=salary 
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+function topSalary(salaries) {
+  let max=0
+  let maxName=null
+  for (let [name,salary] of Object.entries(salaries)){
+    if(max<salary){
+     max=salary
+     maxName=name
     }
-    return sum
   }
-  alert(sumSalaries(salaries)); // 650
-
-
-
-
-  function count(obj) {
-    return Object.keys(obj).length;
-  }
-  let user = {
-    name: 'John',
-    age: 30
-  };
-  
-  alert( count(user) ); // 2
-
+  return maxName
+}
+alert(topSalary(salaries))
