@@ -3393,268 +3393,388 @@
 
 
 
-// json
+// // json
 
 
-let user = {
-  name: "John",
-  age: 30,
+// let user = {
+//   name: "John",
+//   age: 30,
 
-  toString() {
-    return `{name: "${this.name}", age: ${this.age}}`;
-  }
-};
-alert(user); // {name: "John", age: 30}
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let student = {
-  name: 'John',
-  age: 30,
-  isAdmin: false,
-  courses: ['html', 'css', 'js'],
-  wife: null
-};
-
-let json = JSON.stringify(student);
-
-alert(typeof json); // мы получили строку!
-
-alert(json);
-/* выведет объект в формате JSON:
-{
-  "name": "John",
-  "age": 30,
-  "isAdmin": false,
-  "courses": ["html", "css", "js"],
-  "wife": null
-}
-*/
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   toString() {
+//     return `{name: "${this.name}", age: ${this.age}}`;
+//   }
+// };
+// alert(user); // {name: "John", age: 30}
 
 
-// JSON.stringify для преобразования объектов в JSON.
-// JSON.parse для преобразования JSON обратно в объект.
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let student = {
+//   name: 'John',
+//   age: 30,
+//   isAdmin: false,
+//   courses: ['html', 'css', 'js'],
+//   wife: null
+// };
+
+// let json = JSON.stringify(student);
+
+// alert(typeof json); // мы получили строку!
+
+// alert(json);
+// /* выведет объект в формате JSON:
+// {
+//   "name": "John",
+//   "age": 30,
+//   "isAdmin": false,
+//   "courses": ["html", "css", "js"],
+//   "wife": null
+// }
+// */
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-let user1 = {
-  sayHi() { // будет пропущено
-    alert("Hello");
-  },
-  [Symbol("id")]: 123, // также будет пропущено
-  something: undefined // как и это - пропущено
-};
-alert( JSON.stringify(user) ); // {} (пустой объект)
+// // JSON.stringify для преобразования объектов в JSON.
+// // JSON.parse для преобразования JSON обратно в объект.
 
 
-
-let meetup = {
-  title: "Conference",
-  room: {
-    number: 23,
-    participants: ["john", "ann"]
-  }
-};
-alert( JSON.stringify(meetup) );
-/* вся структура преобразована в строку:
-{
-  "title":"Conference",
-  "room":{"number":23,"participants":["john","ann"]},
-}
-*/
+// let user1 = {
+//   sayHi() { // будет пропущено
+//     alert("Hello");
+//   },
+//   [Symbol("id")]: 123, // также будет пропущено
+//   something: undefined // как и это - пропущено
+// };
+// alert( JSON.stringify(user) ); // {} (пустой объект)
 
 
 
-let room = {
-  number: 23
-};
-
-let meetup3 = {
-  title: "Conference",
-  participants: [{name: "John"}, {name: "Alice"}],
-  place: room // meetup ссылается на room
-};
-room.occupiedBy = meetup; // room ссылается на meetup
-alert( JSON.stringify(meetup, ['title', 'participants']) );
-// {"title":"Conference","participants":[{},{}]}
-
-
-
-
-let room = {
-  number: 23
-};
-
-let meetup1 = {
-  title: "Conference",
-  participants: [{name: "John"}, {name: "Alice"}],
-  place: room // meetup ссылается на room
-};
-
-room.occupiedBy = meetup; // room ссылается на meetup
-
-alert( JSON.stringify(meetup, ['title', 'participants', 'place', 'name', 'number']) );
-/*
-{
-  "title":"Conference",
-  "participants":[{"name":"John"},{"name":"Alice"}],
-  "place":{"number":23}
-}
-*/
+// let meetup = {
+//   title: "Conference",
+//   room: {
+//     number: 23,
+//     participants: ["john", "ann"]
+//   }
+// };
+// alert( JSON.stringify(meetup) );
+// /* вся структура преобразована в строку:
+// {
+//   "title":"Conference",
+//   "room":{"number":23,"participants":["john","ann"]},
+// }
+// */
 
 
 
-let user3 = {
-  name: "John",
-  age: 25,
-  roles: {
-    isAdmin: false,
-    isEditor: true
-  }
-};
-alert(JSON.stringify(user, null, 2));
-/* отступ в 2 пробела:
-{
-  "name": "John",
-  "age": 25,
-  "roles": {
-    "isAdmin": false,
-    "isEditor": true
-  }
-}
-*/
-/* для JSON.stringify(user, null, 4) результат содержит больше отступов:
-{
-    "name": "John",
-    "age": 25,
-    "roles": {
-        "isAdmin": false,
-        "isEditor": true
-    }
-}
-*/
+// let room = {
+//   number: 23
+// };
+
+// let meetup3 = {
+//   title: "Conference",
+//   participants: [{name: "John"}, {name: "Alice"}],
+//   place: room // meetup ссылается на room
+// };
+// room.occupiedBy = meetup; // room ссылается на meetup
+// alert( JSON.stringify(meetup, ['title', 'participants']) );
+// // {"title":"Conference","participants":[{},{}]}
 
 
 
-let room = {
-  number: 23
-};
-let meetup34 = {
-  title: "Conference",
-  date: new Date(Date.UTC(2017, 0, 1)),
-  room
-};
-alert( JSON.stringify(meetup) );
-/*
-  {
-    "title":"Conference",
-    "date":"2017-01-01T00:00:00.000Z",  // (1)
-    "room": {"number":23}               // (2)
-  }
-*/
+
+// let room = {
+//   number: 23
+// };
+
+// let meetup1 = {
+//   title: "Conference",
+//   participants: [{name: "John"}, {name: "Alice"}],
+//   place: room // meetup ссылается на room
+// };
+
+// room.occupiedBy = meetup; // room ссылается на meetup
+
+// alert( JSON.stringify(meetup, ['title', 'participants', 'place', 'name', 'number']) );
+// /*
+// {
+//   "title":"Conference",
+//   "participants":[{"name":"John"},{"name":"Alice"}],
+//   "place":{"number":23}
+// }
+// */
 
 
-let room = {
-  number: 23,
-  toJSON() {
-    return this.number;
-  }
-};
-let meetup5 = {
-  title: "Conference",
-  room
-};
 
-alert( JSON.stringify(room) ); // 23
+// let user3 = {
+//   name: "John",
+//   age: 25,
+//   roles: {
+//     isAdmin: false,
+//     isEditor: true
+//   }
+// };
+// alert(JSON.stringify(user, null, 2));
+// /* отступ в 2 пробела:
+// {
+//   "name": "John",
+//   "age": 25,
+//   "roles": {
+//     "isAdmin": false,
+//     "isEditor": true
+//   }
+// }
+// */
+// /* для JSON.stringify(user, null, 4) результат содержит больше отступов:
+// {
+//     "name": "John",
+//     "age": 25,
+//     "roles": {
+//         "isAdmin": false,
+//         "isEditor": true
+//     }
+// }
+// */
 
-alert( JSON.stringify(meetup) );
-/*
-  {
-    "title":"Conference",
-    "room": 23
-  }
-*/
 
 
-let user7 = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
-user = JSON.parse(user);
-alert( user.friends[1] ); // 1
+// let room = {
+//   number: 23
+// };
+// let meetup34 = {
+//   title: "Conference",
+//   date: new Date(Date.UTC(2017, 0, 1)),
+//   room
+// };
+// alert( JSON.stringify(meetup) );
+// /*
+//   {
+//     "title":"Conference",
+//     "date":"2017-01-01T00:00:00.000Z",  // (1)
+//     "room": {"number":23}               // (2)
+//   }
+// */
 
 
-// let json = `{
-//   name: "John",                     // Ошибка: имя свойства без кавычек
-//   "surname": 'Smith',               // Ошибка: одинарные кавычки в значении (должны быть двойными)
-//   'isAdmin': false,                 // Ошибка: одинарные кавычки в ключе (должны быть двойными)
-//   "birthday": new Date(2000, 2, 3), // Ошибка: не допускается конструктор "new", только значения
-//   "gender": "male"                  // Ошибка: отсутствует запятая после непоследнего свойства
-//   "friends": [0,1,2,3],             // Ошибка: не должно быть запятой после последнего свойства
+// let room = {
+//   number: 23,
+//   toJSON() {
+//     return this.number;
+//   }
+// };
+// let meetup5 = {
+//   title: "Conference",
+//   room
+// };
+
+// alert( JSON.stringify(room) ); // 23
+
+// alert( JSON.stringify(meetup) );
+// /*
+//   {
+//     "title":"Conference",
+//     "room": 23
+//   }
+// */
+
+
+// let user7 = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+// user = JSON.parse(user);
+// alert( user.friends[1] ); // 1
+
+
+// // let json = `{
+// //   name: "John",                     // Ошибка: имя свойства без кавычек
+// //   "surname": 'Smith',               // Ошибка: одинарные кавычки в значении (должны быть двойными)
+// //   'isAdmin': false,                 // Ошибка: одинарные кавычки в ключе (должны быть двойными)
+// //   "birthday": new Date(2000, 2, 3), // Ошибка: не допускается конструктор "new", только значения
+// //   "gender": "male"                  // Ошибка: отсутствует запятая после непоследнего свойства
+// //   "friends": [0,1,2,3],             // Ошибка: не должно быть запятой после последнего свойства
+// // }`;
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+// let meetup2 = JSON.parse(str, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+
+// alert( meetup.date.getDate() ); // 30 - теперь работает!
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+// let schedule = `{
+//   "meetups": [
+//     {"title":"Conference","date":"2017-11-30T12:00:00.000Z"},
+//     {"title":"Birthday","date":"2017-04-18T12:00:00.000Z"}
+//   ]
 // }`;
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
-
-let meetup2 = JSON.parse(str, function(key, value) {
-  if (key == 'date') return new Date(value);
-  return value;
-});
-
-alert( meetup.date.getDate() ); // 30 - теперь работает!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// schedule = JSON.parse(schedule, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+// alert( schedule.meetups[1].date.getDate() ); // 18 - отлично!
 
 
 
-let schedule = `{
-  "meetups": [
-    {"title":"Conference","date":"2017-11-30T12:00:00.000Z"},
-    {"title":"Birthday","date":"2017-04-18T12:00:00.000Z"}
-  ]
-}`;
-schedule = JSON.parse(schedule, function(key, value) {
-  if (key == 'date') return new Date(value);
-  return value;
-});
-alert( schedule.meetups[1].date.getDate() ); // 18 - отлично!
+// let userr = {
+//   name: "Василий Иванович",
+//   age: 35
+// };
+
+// let json1=JSON.stringify(userr)
+// alert(json1)
+// let userr1=JSON.parse(json1)
+// alert(userr1)
 
 
 
-let userr = {
-  name: "Василий Иванович",
-  age: 35
-};
+// let room = {
+//   number: 23
+// };
 
-let json1=JSON.stringify(userr)
-alert(json1)
-let userr1=JSON.parse(json1)
-alert(userr1)
+// let meetup222 = {
+//   title: "Совещание",
+//   occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+//   place: room
+// };
+
+// // цикличные ссылки
+// room.occupiedBy = meetup;
+// meetup.self = meetup;
+
+// alert( JSON.stringify(meetup, function replacer(key, value) {
+//   return (key != "" && value == meetup) ? undefined : value;
+// }));
+
+// /* в результате должно быть:
+// {
+//   "title":"Совещание",
+//   "occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
+//   "place":{"number":23}
+// }
+// */
 
 
 
-let room = {
-  number: 23
-};
+// recursion
 
-let meetup222 = {
-  title: "Совещание",
-  occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
-  place: room
-};
+function pow(x, n) {
+  let result = 1;
+  // умножаем result на x n раз в цикле
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
 
-// цикличные ссылки
-room.occupiedBy = meetup;
-meetup.self = meetup;
-
-alert( JSON.stringify(meetup, function replacer(key, value) {
-  return (key != "" && value == meetup) ? undefined : value;
-}));
-
-/* в результате должно быть:
-{
-  "title":"Совещание",
-  "occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
-  "place":{"number":23}
+  return result;
 }
-*/
+alert( pow(2, 3) ); // 8
+
+
+
+function pow(x, n) {
+  if (n == 1) {
+    return x;
+  } else {
+    return x * pow(x, n - 1);
+  }
+}
+alert( pow(3, 4) ); // 81
+
+
+function pow(x, n) { return (n == 1)? x:(x * pow(x, n - 1))}
+alert( pow(2, 5) );
+
+
+
+
+let company = { // тот же самый объект, сжатый для краткости
+  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+  development: {
+    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+    internals: [{name: 'Jack', salary: 1300}]
+  }
+};
+
+// Функция для подсчёта суммы зарплат
+function sumSalaries(department) {
+  if (Array.isArray(department)) { // случай (1)
+    return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива
+  } else { // случай (2)
+    let sum = 0;
+    for (let subdep of Object.values(department)) {
+      sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+    }
+    return sum;
+  }
+}
+alert(sumSalaries(company)); // 6700
+
+
+
+function sumTo(n) { 
+  let sum=0
+   for(let i=0;i<=n;i++){
+    sum+=i
+   }
+   return sum
+ }
+
+alert( sumTo(100) ); // 5050
+
+
+
+function sumTo(n) {return (n==1)?1:(n+sumTo(n-1)) }
+alert( sumTo(100) ); // 5050
+
+
+function sumTo(n) {
+  return n * (n + 1) / 2;
+}
+alert( sumTo(100) );
+
+
+
+function factorial(n) {return (n==1)?1:(n*factorial(n-1)) }
+alert( factorial(5) ); 
+
+
+
+
+function fib(n) {
+  return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+}
+alert( fib(3) ); // 2
+alert( fib(7) ); // 13
+
+
+
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+function printList(list) {
+
+  alert(list.value); // выводим текущий элемент
+
+  if (list.next) {
+    printList(list.next); // делаем то же самое для остальной части списка
+  }
+
+}
+
+printList(list);
 
 
 
