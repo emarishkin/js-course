@@ -3238,157 +3238,423 @@
 // alert(topSalary(salaries))
 
 
-// date
+// // date
 
 
-let now = new Date();
-alert( now ); // показывает текущие дату и время
+// let now = new Date();
+// alert( now ); // показывает текущие дату и время
 
 
-// 0 соответствует 01.01.1970 UTC+0
-let Jan01_1970 = new Date(0);
-alert( Jan01_1970 );
+// // 0 соответствует 01.01.1970 UTC+0
+// let Jan01_1970 = new Date(0);
+// alert( Jan01_1970 );
 
-// теперь добавим 24 часа и получим 02.01.1970 UTC+0
-let Jan02_1970 = new Date(24 * 3600 * 1000);
-alert( Jan02_1970 );
-
-
-// 31 декабря 1969 года
-let Dec31_1969 = new Date(-24 * 3600 * 1000);
-alert( Dec31_1969 );
+// // теперь добавим 24 часа и получим 02.01.1970 UTC+0
+// let Jan02_1970 = new Date(24 * 3600 * 1000);
+// alert( Jan02_1970 );
 
 
-
-let date = new Date("2017-01-26");
-alert(date);
-// Время не указано, поэтому оно ставится в полночь по Гринвичу и
-// меняется в соответствии с часовым поясом места выполнения кода
-// Так что в результате можно получить
-// Thu Jan 26 2017 11:00:00 GMT+1100 (восточно-австралийское время)
-// или
-// Wed Jan 25 2017 16:00:00 GMT-0800 (тихоокеанское время)
-
-
-new Date(2011, 0, 1, 0, 0, 0, 0); // // 1 Jan 2011, 00:00:00
-new Date(2011, 0, 1); // то же самое, так как часы и проч. равны 0
-
-
-let date2 = new Date(2011, 0, 1, 2, 3, 4, 567);
-alert( date ); // 1.01.2011, 02:03:04.567
-
-
-// getFullYear()
-// Получить год (4 цифры)
-// getMonth()
-// Получить месяц, от 0 до 11.
-// getDate()
-// Получить день месяца, от 1 до 31, что несколько противоречит названию метода.
-// getHours(), getMinutes(), getSeconds(), getMilliseconds()
-// Получить, соответственно, часы, минуты, секунды или миллисекунды.
+// // 31 декабря 1969 года
+// let Dec31_1969 = new Date(-24 * 3600 * 1000);
+// alert( Dec31_1969 );
 
 
 
-// текущая дата
-let date22 = new Date();
-// час в вашем текущем часовом поясе
-alert( date.getHours() );
-// час в часовом поясе UTC+0 (лондонское время без перехода на летнее время)
-alert( date.getUTCHours() );
+// let date = new Date("2017-01-26");
+// alert(date);
+// // Время не указано, поэтому оно ставится в полночь по Гринвичу и
+// // меняется в соответствии с часовым поясом места выполнения кода
+// // Так что в результате можно получить
+// // Thu Jan 26 2017 11:00:00 GMT+1100 (восточно-австралийское время)
+// // или
+// // Wed Jan 25 2017 16:00:00 GMT-0800 (тихоокеанское время)
+
+
+// new Date(2011, 0, 1, 0, 0, 0, 0); // // 1 Jan 2011, 00:00:00
+// new Date(2011, 0, 1); // то же самое, так как часы и проч. равны 0
+
+
+// let date2 = new Date(2011, 0, 1, 2, 3, 4, 567);
+// alert( date ); // 1.01.2011, 02:03:04.567
+
+
+// // getFullYear()
+// // Получить год (4 цифры)
+// // getMonth()
+// // Получить месяц, от 0 до 11.
+// // getDate()
+// // Получить день месяца, от 1 до 31, что несколько противоречит названию метода.
+// // getHours(), getMinutes(), getSeconds(), getMilliseconds()
+// // Получить, соответственно, часы, минуты, секунды или миллисекунды.
 
 
 
-getTimezoneOffset()
-// Возвращает разницу в минутах между UTC и местным часовым поясом:
-
-// если вы в часовом поясе UTC-1, то выводится 60
-// если вы в часовом поясе UTC+3, выводится -180
-alert( new Date().getTimezoneOffset() );
-
-
-
-let today = new Date();
-today.setHours(0);
-alert(today); // выводится сегодняшняя дата, но значение часа будет 0
-today.setHours(0, 0, 0, 0);
-alert(today); // всё ещё выводится сегодняшняя дата, но время будет ровно 00:00:00.
+// // текущая дата
+// let date22 = new Date();
+// // час в вашем текущем часовом поясе
+// alert( date.getHours() );
+// // час в часовом поясе UTC+0 (лондонское время без перехода на летнее время)
+// alert( date.getUTCHours() );
 
 
 
-let date3= new Date(2013, 0, 32); // 32 Jan 2013 ?!?
-alert(date); // ...1st Feb 2013!
+// getTimezoneOffset()
+// // Возвращает разницу в минутах между UTC и местным часовым поясом:
+
+// // если вы в часовом поясе UTC-1, то выводится 60
+// // если вы в часовом поясе UTC+3, выводится -180
+// alert( new Date().getTimezoneOffset() );
 
 
 
-let date33 = new Date(2016, 1, 28);
-date.setDate(date.getDate() + 2);
-alert( date ); // 1 Mar 2016
+// let today = new Date();
+// today.setHours(0);
+// alert(today); // выводится сегодняшняя дата, но значение часа будет 0
+// today.setHours(0, 0, 0, 0);
+// alert(today); // всё ещё выводится сегодняшняя дата, но время будет ровно 00:00:00.
 
 
-let date4 = new Date();
-date.setSeconds(date.getSeconds() + 70);
-alert( date ); // выводит правильную дату
+
+// let date3= new Date(2013, 0, 32); // 32 Jan 2013 ?!?
+// alert(date); // ...1st Feb 2013!
 
 
-function diffSubtract(date1, date2) {
-  return date2 - date1;
+
+// let date33 = new Date(2016, 1, 28);
+// date.setDate(date.getDate() + 2);
+// alert( date ); // 1 Mar 2016
+
+
+// let date4 = new Date();
+// date.setSeconds(date.getSeconds() + 70);
+// alert( date ); // выводит правильную дату
+
+
+// function diffSubtract(date1, date2) {
+//   return date2 - date1;
+// }
+
+// function diffGetTime(date1, date2) {
+//   return date2.getTime() - date1.getTime();
+// }
+
+// function bench(f) {
+//   let date1 = new Date(0);
+//   let date2 = new Date();
+
+//   let start = Date.now();
+//   for (let i = 0; i < 100000; i++) f(date1, date2);
+//   return Date.now() - start;
+// }
+
+// alert( 'Время diffSubtract: ' + bench(diffSubtract) + 'мс' );
+// alert( 'Время diffGetTime: ' + bench(diffGetTime) + 'мс' );
+
+
+
+// let date222= new date(2012,1,20,3,12)
+// alert(date)
+
+
+
+// function getWeekDay(date){
+// let dayweek=['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+// return dayweek[date.getDay()];
+// }
+// let date123 = new Date(2012, 0, 3);  // 3 января 2012 года
+// alert( getWeekDay(date123) ); 
+
+
+
+
+// let date2222 = new Date(2012, 0, 3);  // 3 января 2012 года
+// alert( getLocalDay(date) );       // вторник, нужно показать 2
+// function getLocalDay(date) {
+
+//   let day = date.getDay();
+
+//   if (day == 0) { // день недели 0 (воскресенье) в европейской нумерации будет 7
+//     day = 7;
+//   }
+
+//   return day;
+// }
+
+
+
+// function getLastDayOfMonth(year, month) {
+//   let date = new Date(year, month + 1, 0);
+//   return date.getDate();
+// }
+
+// alert( getLastDayOfMonth(2012, 0) ); // 31
+// alert( getLastDayOfMonth(2012, 1) ); // 29
+// alert( getLastDayOfMonth(2013, 1) ); // 28
+
+
+
+// // json
+
+
+// let user = {
+//   name: "John",
+//   age: 30,
+
+//   toString() {
+//     return `{name: "${this.name}", age: ${this.age}}`;
+//   }
+// };
+// alert(user); // {name: "John", age: 30}
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let student = {
+//   name: 'John',
+//   age: 30,
+//   isAdmin: false,
+//   courses: ['html', 'css', 'js'],
+//   wife: null
+// };
+
+// let json = JSON.stringify(student);
+
+// alert(typeof json); // мы получили строку!
+
+// alert(json);
+// /* выведет объект в формате JSON:
+// {
+//   "name": "John",
+//   "age": 30,
+//   "isAdmin": false,
+//   "courses": ["html", "css", "js"],
+//   "wife": null
+// }
+// */
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// // JSON.stringify для преобразования объектов в JSON.
+// // JSON.parse для преобразования JSON обратно в объект.
+
+
+// let user1 = {
+//   sayHi() { // будет пропущено
+//     alert("Hello");
+//   },
+//   [Symbol("id")]: 123, // также будет пропущено
+//   something: undefined // как и это - пропущено
+// };
+// alert( JSON.stringify(user) ); // {} (пустой объект)
+
+
+
+// let meetup = {
+//   title: "Conference",
+//   room: {
+//     number: 23,
+//     participants: ["john", "ann"]
+//   }
+// };
+// alert( JSON.stringify(meetup) );
+// /* вся структура преобразована в строку:
+// {
+//   "title":"Conference",
+//   "room":{"number":23,"participants":["john","ann"]},
+// }
+// */
+
+
+
+// let room = {
+//   number: 23
+// };
+
+// let meetup3 = {
+//   title: "Conference",
+//   participants: [{name: "John"}, {name: "Alice"}],
+//   place: room // meetup ссылается на room
+// };
+// room.occupiedBy = meetup; // room ссылается на meetup
+// alert( JSON.stringify(meetup, ['title', 'participants']) );
+// // {"title":"Conference","participants":[{},{}]}
+
+
+
+
+// let room = {
+//   number: 23
+// };
+
+// let meetup1 = {
+//   title: "Conference",
+//   participants: [{name: "John"}, {name: "Alice"}],
+//   place: room // meetup ссылается на room
+// };
+
+// room.occupiedBy = meetup; // room ссылается на meetup
+
+// alert( JSON.stringify(meetup, ['title', 'participants', 'place', 'name', 'number']) );
+// /*
+// {
+//   "title":"Conference",
+//   "participants":[{"name":"John"},{"name":"Alice"}],
+//   "place":{"number":23}
+// }
+// */
+
+
+
+// let user3 = {
+//   name: "John",
+//   age: 25,
+//   roles: {
+//     isAdmin: false,
+//     isEditor: true
+//   }
+// };
+// alert(JSON.stringify(user, null, 2));
+// /* отступ в 2 пробела:
+// {
+//   "name": "John",
+//   "age": 25,
+//   "roles": {
+//     "isAdmin": false,
+//     "isEditor": true
+//   }
+// }
+// */
+// /* для JSON.stringify(user, null, 4) результат содержит больше отступов:
+// {
+//     "name": "John",
+//     "age": 25,
+//     "roles": {
+//         "isAdmin": false,
+//         "isEditor": true
+//     }
+// }
+// */
+
+
+
+// let room = {
+//   number: 23
+// };
+// let meetup34 = {
+//   title: "Conference",
+//   date: new Date(Date.UTC(2017, 0, 1)),
+//   room
+// };
+// alert( JSON.stringify(meetup) );
+// /*
+//   {
+//     "title":"Conference",
+//     "date":"2017-01-01T00:00:00.000Z",  // (1)
+//     "room": {"number":23}               // (2)
+//   }
+// */
+
+
+// let room = {
+//   number: 23,
+//   toJSON() {
+//     return this.number;
+//   }
+// };
+// let meetup5 = {
+//   title: "Conference",
+//   room
+// };
+
+// alert( JSON.stringify(room) ); // 23
+
+// alert( JSON.stringify(meetup) );
+// /*
+//   {
+//     "title":"Conference",
+//     "room": 23
+//   }
+// */
+
+
+// let user7 = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+// user = JSON.parse(user);
+// alert( user.friends[1] ); // 1
+
+
+// // let json = `{
+// //   name: "John",                     // Ошибка: имя свойства без кавычек
+// //   "surname": 'Smith',               // Ошибка: одинарные кавычки в значении (должны быть двойными)
+// //   'isAdmin': false,                 // Ошибка: одинарные кавычки в ключе (должны быть двойными)
+// //   "birthday": new Date(2000, 2, 3), // Ошибка: не допускается конструктор "new", только значения
+// //   "gender": "male"                  // Ошибка: отсутствует запятая после непоследнего свойства
+// //   "friends": [0,1,2,3],             // Ошибка: не должно быть запятой после последнего свойства
+// // }`;
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+// let meetup2 = JSON.parse(str, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+
+// alert( meetup.date.getDate() ); // 30 - теперь работает!
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+// let schedule = `{
+//   "meetups": [
+//     {"title":"Conference","date":"2017-11-30T12:00:00.000Z"},
+//     {"title":"Birthday","date":"2017-04-18T12:00:00.000Z"}
+//   ]
+// }`;
+// schedule = JSON.parse(schedule, function(key, value) {
+//   if (key == 'date') return new Date(value);
+//   return value;
+// });
+// alert( schedule.meetups[1].date.getDate() ); // 18 - отлично!
+
+
+
+// let userr = {
+//   name: "Василий Иванович",
+//   age: 35
+// };
+
+// let json1=JSON.stringify(userr)
+// alert(json1)
+// let userr1=JSON.parse(json1)
+// alert(userr1)
+
+
+
+let room = {
+  number: 23
+};
+
+let meetup = {
+  title: "Совещание",
+  occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+  place: room
+};
+
+// цикличные ссылки
+room.occupiedBy = meetup;
+meetup.self = meetup;
+
+alert( JSON.stringify(meetup, function replacer(key, value) {
+  return (key != "" && value == meetup) ? undefined : value;
+}));
+
+/* в результате должно быть:
+{
+  "title":"Совещание",
+  "occupiedBy":[{"name":"Иванов"},{"name":"Петров"}],
+  "place":{"number":23}
 }
+*/
 
-function diffGetTime(date1, date2) {
-  return date2.getTime() - date1.getTime();
-}
-
-function bench(f) {
-  let date1 = new Date(0);
-  let date2 = new Date();
-
-  let start = Date.now();
-  for (let i = 0; i < 100000; i++) f(date1, date2);
-  return Date.now() - start;
-}
-
-alert( 'Время diffSubtract: ' + bench(diffSubtract) + 'мс' );
-alert( 'Время diffGetTime: ' + bench(diffGetTime) + 'мс' );
-
-
-
-let date222= new date(2012,1,20,3,12)
-alert(date)
-
-
-
-function getWeekDay(date){
-let dayweek=['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
-return dayweek[date.getDay()];
-}
-let date123 = new Date(2012, 0, 3);  // 3 января 2012 года
-alert( getWeekDay(date123) ); 
-
-
-
-
-let date2222 = new Date(2012, 0, 3);  // 3 января 2012 года
-alert( getLocalDay(date) );       // вторник, нужно показать 2
-function getLocalDay(date) {
-
-  let day = date.getDay();
-
-  if (day == 0) { // день недели 0 (воскресенье) в европейской нумерации будет 7
-    day = 7;
-  }
-
-  return day;
-}
-
-
-
-function getLastDayOfMonth(year, month) {
-  let date = new Date(year, month + 1, 0);
-  return date.getDate();
-}
-
-alert( getLastDayOfMonth(2012, 0) ); // 31
-alert( getLastDayOfMonth(2012, 1) ); // 29
-alert( getLastDayOfMonth(2013, 1) ); // 28
 
 
