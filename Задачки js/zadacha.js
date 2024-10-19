@@ -3778,101 +3778,171 @@
 
 
 
-// function-object
+// // function-object
 
 
-function ask(question, ...handlers) {
-    let isYes = confirm(question);
+// function ask(question, ...handlers) {
+//     let isYes = confirm(question);
   
-    for(let handler of handlers) {
-      if (handler.length == 0) {
-        if (isYes) handler();
-      } else {
-        handler(isYes);
-      }
+//     for(let handler of handlers) {
+//       if (handler.length == 0) {
+//         if (isYes) handler();
+//       } else {
+//         handler(isYes);
+//       }
+//     }
+  
+//   }
+//   // для положительных ответов вызываются оба типа обработчиков
+//   // для отрицательных - только второго типа
+//   ask("Вопрос?", () => alert('Вы ответили да'), result => alert(result));
+
+
+
+//   function sayHi() {
+//     alert("Hi");
+//     // давайте посчитаем, сколько вызовов мы сделали
+//     sayHi.counter++;
+//   }
+//   sayHi.counter = 0; // начальное значение
+//   sayHi(); // Hi
+//   sayHi(); // Hi
+//   alert( sayHi.counter ); // Вызвана 2 раза
+
+
+
+//   function makeCounter() {
+//     // вместо
+//     // let count = 0
+  
+//     function counter() {
+//       return counter.count++;
+//     };
+//     counter.count = 0;
+//     return counter;
+//   }
+
+//   let counter = makeCounter();
+//   alert( counter() ); // 0
+//   alert( counter() ); // 1
+
+
+
+  
+  
+//   let sayHi = function func(who) {
+//     if (who) {
+//       alert(Hello, who);
+//     } else {
+//       func("Guest"); // Теперь всё в порядке
+//     }
+//   };
+//   let welcome = sayHi;
+//   sayHi = null;
+//   welcome(); // Hello, Guest (вложенный вызов работает)
+
+
+
+  
+
+//   function makeCounter() {
+//     let count = 0;
+  
+//     function counter() {
+//       return count++;
+//     }
+//     counter.set = value => count = value;
+//     counter.decrease = () => count--;
+//     return counter;
+//   }
+  
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function sum(a){
+
+// let currentSum = a
+
+// function f(b){
+//     currentSum+=b
+//     return f
+// }
+// f.toString = function() {
+//     return currentSum;
+//   };
+// return f
+// }
+// alert( sum(1)(21) ); // 3
+// alert( sum(5)(-1)(2) ); // 6
+// alert( sum(6)(-1)(-2)(-3) ); // 0
+// alert( sum(0)(1)(2)(3)(4)(5) ); // 15
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+// new-function and settimeout-setinterval
+
+
+let func = new Function([arg1, arg2, ...argN], functionBody);
+
+
+let sum = new Function('a', 'b', 'return a + b');
+alert( sum(1, 2) ); // 3
+
+
+let sayHi = new Function('alert("Hello")');
+sayHi(); // Hello
+
+
+function sayHi(phrase, who) {
+    alert( phrase + ', ' + who );
+  }
+  setTimeout(sayHi, 1000, "Привет", "Джон"); // Привет, Джон
+
+
+
+
+  // повторить с интервалом 2 секунды
+let timerId = setInterval(() => alert('tick'), 2000);
+// остановить вывод через 5 секунд
+setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
+
+
+
+let start = Date.now();
+let times = [];
+setTimeout(function run() {
+  times.push(Date.now() - start); // запоминаем задержку от предыдущего вызова
+  if (start + 100 < Date.now()) alert(times); // показываем задержку через 100 мс
+  else setTimeout(run); // если нужно ещё запланировать
+});
+// пример вывода:
+// 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ function printNumbers(from, to){
+  let current=from
+    let timerId = setInterval(function() {
+    alert(current);
+    if(current==to){
+     clearInterval(timerId)
     }
-  
-  }
-  // для положительных ответов вызываются оба типа обработчиков
-  // для отрицательных - только второго типа
-  ask("Вопрос?", () => alert('Вы ответили да'), result => alert(result));
+     current++
+    },1000)
+
+ }
 
 
 
-  function sayHi() {
-    alert("Hi");
-    // давайте посчитаем, сколько вызовов мы сделали
-    sayHi.counter++;
-  }
-  sayHi.counter = 0; // начальное значение
-  sayHi(); // Hi
-  sayHi(); // Hi
-  alert( sayHi.counter ); // Вызвана 2 раза
-
-
-
-  function makeCounter() {
-    // вместо
-    // let count = 0
-  
-    function counter() {
-      return counter.count++;
-    };
-    counter.count = 0;
-    return counter;
-  }
-
-  let counter = makeCounter();
-  alert( counter() ); // 0
-  alert( counter() ); // 1
-
-
-
-  
-  
-  let sayHi = function func(who) {
-    if (who) {
-      alert(Hello, who);
-    } else {
-      func("Guest"); // Теперь всё в порядке
+ function printNumbers(from, to) {
+  let current = from;
+  setTimeout(function go() {
+    alert(current);
+    if (current < to) {
+      setTimeout(go, 1000);
     }
-  };
-  let welcome = sayHi;
-  sayHi = null;
-  welcome(); // Hello, Guest (вложенный вызов работает)
-
-
-
-  
-
-  function makeCounter() {
-    let count = 0;
-  
-    function counter() {
-      return count++;
-    }
-    counter.set = value => count = value;
-    counter.decrease = () => count--;
-    return counter;
-  }
-  
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function sum(a){
-
-let currentSum = a
-
-function f(b){
-    currentSum+=b
-    return f
+    current++;
+  }, 1000);
 }
-f.toString = function() {
-    return currentSum;
-  };
-return f
-}
-alert( sum(1)(21) ); // 3
-alert( sum(5)(-1)(2) ); // 6
-alert( sum(6)(-1)(-2)(-3) ); // 0
-alert( sum(0)(1)(2)(3)(4)(5) ); // 15
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+// использование:
+printNumbers(5, 10);
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
