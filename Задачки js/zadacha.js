@@ -4126,155 +4126,236 @@
   
   
   
-  function defer(f, ms) {
-    return function() {
-      setTimeout(() => f.apply(this, arguments), ms)
-    };
-  }
-  function sayHi(who) {
-    alert('Hello, ' + who);
-  }
-  let sayHiDeferred = defer(sayHi, 10000);
-  sayHiDeferred("John"); // выводит "Hello, John" через 10 секунды
+//   function defer(f, ms) {
+//     return function() {
+//       setTimeout(() => f.apply(this, arguments), ms)
+//     };
+//   }
+//   function sayHi(who) {
+//     alert('Hello, ' + who);
+//   }
+//   let sayHiDeferred = defer(sayHi, 10000);
+//   sayHiDeferred("John"); // выводит "Hello, John" через 10 секунды
 
 
 
-//   property-descriptors
+// //   property-descriptors
 
-let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);
-// obj
-// Объект, из которого мы получаем информацию.
-// propertyName
-// Имя свойства.
-
-
-
-let user = {
-    name: "John"
-  };
-  let descriptor1 = Object.getOwnPropertyDescriptor(user, 'name');
-  alert( JSON.stringify(descriptor, null, 2 ) );
-  /* дескриптор свойства:
-  {
-    "value": "John",
-    "writable": true,
-    "enumerable": true,
-    "configurable": true
-  }
-  */
-
-
-  Object.defineProperty(obj, propertyName, descriptor)
-//   obj, propertyName
-//   Объект и его свойство, для которого нужно применить дескриптор.
-//   descriptor
-//   Применяемый дескриптор.
+// let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);
+// // obj
+// // Объект, из которого мы получаем информацию.
+// // propertyName
+// // Имя свойства.
 
 
 
-let user1 = {};
-
-Object.defineProperty(user, "name", {
-  value: "John"
-});
-let descriptor2 = Object.getOwnPropertyDescriptor(user, 'name');
-alert( JSON.stringify(descriptor, null, 2 ) );
-/*
-{
-  "value": "John",
-  "writable": false,
-  "enumerable": false,
-  "configurable": false
-}
- */
+// let user = {
+//     name: "John"
+//   };
+//   let descriptor1 = Object.getOwnPropertyDescriptor(user, 'name');
+//   alert( JSON.stringify(descriptor, null, 2 ) );
+//   /* дескриптор свойства:
+//   {
+//     "value": "John",
+//     "writable": true,
+//     "enumerable": true,
+//     "configurable": true
+//   }
+//   */
 
 
+//   Object.defineProperty(obj, propertyName, descriptor)
+// //   obj, propertyName
+// //   Объект и его свойство, для которого нужно применить дескриптор.
+// //   descriptor
+// //   Применяемый дескриптор.
 
-let user = { };
-Object.defineProperty(user, "name", {
-  value: "John",
-  // для нового свойства необходимо явно указывать все флаги, для которых значение true
-  enumerable: true,
-  configurable: true
-});
-alert(user.name); // John
-user.name = "Pete"; // Ошибка
 
+
+// let user1 = {};
+
+// Object.defineProperty(user, "name", {
+//   value: "John"
+// });
+// let descriptor2 = Object.getOwnPropertyDescriptor(user, 'name');
+// alert( JSON.stringify(descriptor, null, 2 ) );
+// /*
+// {
+//   "value": "John",
+//   "writable": false,
+//   "enumerable": false,
+//   "configurable": false
+// }
+//  */
+
+
+
+// let user = { };
+// Object.defineProperty(user, "name", {
+//   value: "John",
+//   // для нового свойства необходимо явно указывать все флаги, для которых значение true
+//   enumerable: true,
+//   configurable: true
+// });
+// alert(user.name); // John
+// user.name = "Pete"; // Ошибка
+
+
+
+// let user = {
+//     name: "John",
+//     toString() {
+//       return this.name;
+//     }
+//   };
+//   // По умолчанию оба свойства выведутся:
+//   for (let key in user) alert(key); // name, toString
+
+
+
+
+//   let user = {
+//     name: "John",
+//     toString() {
+//       return this.name;
+//     }
+//   };
+//   Object.defineProperty(user, "toString", {
+//     enumerable: false
+//   });
+//   // Теперь наше свойство toString пропало из цикла:
+//   for (let key in user) alert(key); // name
+
+
+
+
+//   let descriptor23 = Object.getOwnPropertyDescriptor(Math, 'PI');
+
+// alert( JSON.stringify(descriptor, null, 2 ) );
+// /*
+// {
+//   "value": 3.141592653589793,
+//   "writable": false,
+//   "enumerable": false,
+//   "configurable": false
+// }
+// */
+
+
+// let user = {
+//     name: "John"
+//   };
+//   Object.defineProperty(user, "name", {
+//     configurable: false
+//   });
+//   user.name = "Pete"; // работает
+//   delete user.name; // Ошибка
+
+
+
+//   Object.defineProperties(user, {
+//     name: { value: "John", writable: false },
+//     surname: { value: "Smith", writable: false },
+//     // ...
+//   });
+
+
+
+// //   Object.preventExtensions(obj)
+// // Запрещает добавлять новые свойства в объект.
+// // Object.seal(obj)
+// // Запрещает добавлять/удалять свойства. Устанавливает configurable: false для всех существующих свойств.
+// // Object.freeze(obj)
+// // Запрещает добавлять/удалять/изменять свойства. Устанавливает configurable: false, writable: false для всех существующих свойств.
+// // А также есть методы для их проверки:
+
+// // Object.isExtensible(obj)
+// // Возвращает false, если добавление свойств запрещено, иначе true.
+// // Object.isSealed(obj)
+// // Возвращает true, если добавление/удаление свойств запрещено и для всех существующих свойств установлено configurable: false.
+// // Object.isFrozen(obj)
+// // Возвращает true, если добавление/удаление/изменение свойств запрещено, и для всех текущих свойств установлено configurable: false, writable: false.
+
+
+
+// property-accessors
 
 
 let user = {
     name: "John",
-    toString() {
-      return this.name;
+    surname: "Smith",
+  
+    get fullName() {
+      return `${this.name} ${this.surname}`;
     }
   };
-  // По умолчанию оба свойства выведутся:
-  for (let key in user) alert(key); // name, toString
+  alert(user.fullName); // John Smith
 
 
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  let user1 = {
+    name: "John",
+    surname: "Smith",
+  
+    get fullName() {
+      return `${this.name} ${this.surname}`;
+    },
+    set fullName(value) {
+      [this.name, this.surname] = value.split(" ");
+    }
+  };
+  // set fullName запустится с данным значением
+  user.fullName = "Alice Cooper";
+  alert(user.name); // Alice
+  alert(user.surname); // Cooper
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
   let user = {
     name: "John",
-    toString() {
-      return this.name;
+    surname: "Smith"
+  }; 
+  Object.defineProperty(user, 'fullName', {
+    get() {
+      return `${this.name} ${this.surname}`;
+    },
+    set(value) {
+      [this.name, this.surname] = value.split(" ");
+    }
+  });
+  alert(user.fullName); // John Smith
+  for(let key in user) alert(key); // name, surname
+
+
+
+ 
+  let user = {
+    get name() {
+      return this._name;
+    },
+    set name(value) {
+      if (value.length < 4) {
+        alert("Имя слишком короткое, должно быть более 4 символов");
+        return;
+      }
+      this._name = value;
     }
   };
-  Object.defineProperty(user, "toString", {
-    enumerable: false
-  });
-  // Теперь наше свойство toString пропало из цикла:
-  for (let key in user) alert(key); // name
+  user.name = "Pete";
+  alert(user.name); // Pete
+  user.name = ""; // Имя слишком короткое...
 
 
 
 
-  let descriptor23 = Object.getOwnPropertyDescriptor(Math, 'PI');
-
-alert( JSON.stringify(descriptor, null, 2 ) );
-/*
-{
-  "value": 3.141592653589793,
-  "writable": false,
-  "enumerable": false,
-  "configurable": false
-}
-*/
-
-
-let user = {
-    name: "John"
-  };
-  Object.defineProperty(user, "name", {
-    configurable: false
-  });
-  user.name = "Pete"; // работает
-  delete user.name; // Ошибка
+  function User(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  let john = new User("John", 25);
+  alert( john.age ); // 25
 
 
 
-  Object.defineProperties(user, {
-    name: { value: "John", writable: false },
-    surname: { value: "Smith", writable: false },
-    // ...
-  });
-
-
-
-//   Object.preventExtensions(obj)
-// Запрещает добавлять новые свойства в объект.
-// Object.seal(obj)
-// Запрещает добавлять/удалять свойства. Устанавливает configurable: false для всех существующих свойств.
-// Object.freeze(obj)
-// Запрещает добавлять/удалять/изменять свойства. Устанавливает configurable: false, writable: false для всех существующих свойств.
-// А также есть методы для их проверки:
-
-// Object.isExtensible(obj)
-// Возвращает false, если добавление свойств запрещено, иначе true.
-// Object.isSealed(obj)
-// Возвращает true, если добавление/удаление свойств запрещено и для всех существующих свойств установлено configurable: false.
-// Object.isFrozen(obj)
-// Возвращает true, если добавление/удаление/изменение свойств запрещено, и для всех текущих свойств установлено configurable: false, writable: false.
-
-
-
+  
