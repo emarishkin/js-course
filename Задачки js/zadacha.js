@@ -4278,84 +4278,262 @@
 
 
 
-// property-accessors
+// // property-accessors
 
 
-let user = {
-    name: "John",
-    surname: "Smith",
+// let user = {
+//     name: "John",
+//     surname: "Smith",
   
-    get fullName() {
-      return `${this.name} ${this.surname}`;
-    }
-  };
-  alert(user.fullName); // John Smith
+//     get fullName() {
+//       return `${this.name} ${this.surname}`;
+//     }
+//   };
+//   alert(user.fullName); // John Smith
 
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  let user1 = {
-    name: "John",
-    surname: "Smith",
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   let user1 = {
+//     name: "John",
+//     surname: "Smith",
   
-    get fullName() {
-      return `${this.name} ${this.surname}`;
-    },
-    set fullName(value) {
-      [this.name, this.surname] = value.split(" ");
-    }
-  };
-  // set fullName запустится с данным значением
-  user.fullName = "Alice Cooper";
-  alert(user.name); // Alice
-  alert(user.surname); // Cooper
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//     get fullName() {
+//       return `${this.name} ${this.surname}`;
+//     },
+//     set fullName(value) {
+//       [this.name, this.surname] = value.split(" ");
+//     }
+//   };
+//   // set fullName запустится с данным значением
+//   user.fullName = "Alice Cooper";
+//   alert(user.name); // Alice
+//   alert(user.surname); // Cooper
+//   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-  let user = {
-    name: "John",
-    surname: "Smith"
-  }; 
-  Object.defineProperty(user, 'fullName', {
-    get() {
-      return `${this.name} ${this.surname}`;
-    },
-    set(value) {
-      [this.name, this.surname] = value.split(" ");
-    }
-  });
-  alert(user.fullName); // John Smith
-  for(let key in user) alert(key); // name, surname
+//   let user = {
+//     name: "John",
+//     surname: "Smith"
+//   }; 
+//   Object.defineProperty(user, 'fullName', {
+//     get() {
+//       return `${this.name} ${this.surname}`;
+//     },
+//     set(value) {
+//       [this.name, this.surname] = value.split(" ");
+//     }
+//   });
+//   alert(user.fullName); // John Smith
+//   for(let key in user) alert(key); // name, surname
 
 
 
  
-  let user = {
-    get name() {
-      return this._name;
-    },
-    set name(value) {
-      if (value.length < 4) {
-        alert("Имя слишком короткое, должно быть более 4 символов");
-        return;
-      }
-      this._name = value;
+//   let user = {
+//     get name() {
+//       return this._name;
+//     },
+//     set name(value) {
+//       if (value.length < 4) {
+//         alert("Имя слишком короткое, должно быть более 4 символов");
+//         return;
+//       }
+//       this._name = value;
+//     }
+//   };
+//   user.name = "Pete";
+//   alert(user.name); // Pete
+//   user.name = ""; // Имя слишком короткое...
+
+
+
+
+//   function User(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   let john = new User("John", 25);
+//   alert( john.age ); // 25
+
+
+
+// prototype-inheritance
+
+
+let animal = {
+    eats: true,
+    walk() {
+      alert("Animal walk");
     }
   };
-  user.name = "Pete";
-  alert(user.name); // Pete
-  user.name = ""; // Имя слишком короткое...
+  let rabbit = {
+    jumps: true,
+    __proto__: animal
+  };
+  let longEar = {
+    earLength: 10,
+    __proto__: rabbit
+  };
+  // walk взят из цепочки прототипов
+  longEar.walk(); // Animal walk
+  alert(longEar.jumps); // true (из rabbit)
 
 
 
 
-  function User(name, age) {
-    this.name = name;
-    this.age = age;
-  }
-  let john = new User("John", 25);
-  alert( john.age ); // 25
-
-
-
+  let animal1 = {
+    eats: true,
+    walk() {
+      /* этот метод не будет использоваться в rabbit */
+    }
+  };
+  let rabbit1 = {
+    __proto__: animal
+  };
+  rabbit.walk = function() {
+    alert("Rabbit! Bounce-bounce!");
+  };
+  rabbit.walk(); // Rabbit! Bounce-bounce!
   
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  let user = {
+    name: "John",
+    surname: "Smith",
+  
+    set fullName(value) {
+      [this.name, this.surname] = value.split(" ");
+    },
+    get fullName() {
+      return `${this.name} ${this.surname}`;
+    }
+  };
+  let admin = {
+    __proto__: user,
+    isAdmin: true
+  };
+  alert(admin.fullName); // John Smith (*)
+  // срабатывает сеттер!
+  admin.fullName = "Alice Cooper"; // (**)
+  alert(admin.name); // Alice
+  alert(admin.surname); // Cooper
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+// prototype-inheritance
+let animal4 = {
+    walk() {
+      if (!this.isSleeping) {
+        alert(`I walk`);
+      }
+    },
+    sleep() {
+      this.isSleeping = true;
+    }
+  };
+  let rabbit = {
+    name: "White Rabbit",
+    __proto__: animal
+  };
+  // модифицирует rabbit.isSleeping
+  rabbit.sleep();
+  alert(rabbit.isSleeping); // true
+  alert(animal.isSleeping); // undefined (нет такого свойства в прототипе)
+
+
+
+
+  let animal78 = {
+    eats: true
+  };
+  let rabbit = {
+    jumps: true,
+    __proto__: animal
+  };
+  // Object.keys возвращает только собственные ключи
+  alert(Object.keys(rabbit)); // jumps
+  // for..in проходит и по своим, и по унаследованным ключам
+  for(let prop in rabbit) alert(prop); // jumps, затем eats
+
+
+
+
+  let animal23 = {
+    eats: true
+  };
+  
+  let rabbit = {
+    jumps: true,
+    __proto__: animal
+  };
+  
+  for(let prop in rabbit) {
+    let isOwn = rabbit.hasOwnProperty(prop);
+  
+    if (isOwn) {
+      alert(`Our: ${prop}`); // Our: jumps
+    } else {
+      alert(`Inherited: ${prop}`); // Inherited: eats
+    }
+  }
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  let head = {
+    glasses: 1
+  };
+  
+  let table = {
+    pen: 3,
+    __proto__: head
+  };
+  
+  let bed = {
+    sheet: 1,
+    pillow: 2,
+    __proto__: table
+  };
+  
+  let pockets = {
+    money: 2000,
+    __proto__: bed
+  };
+  
+  alert( pockets.pen ); // 3
+  alert( bed.glasses ); // 1
+  alert( table.money ); // undefined
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+  let hamster = {
+    stomach: [],
+  
+    eat(food) {
+      // присвоение значения this.stomach вместо вызова this.stomach.push
+      this.stomach = [food];
+    }
+  };
+  
+  let speedy = {
+     __proto__: hamster
+  };
+  
+  let lazy = {
+    __proto__: hamster
+  };
+  
+  // Шустрый хомяк нашёл еду
+  speedy.eat("apple");
+  alert( speedy.stomach ); // apple
+  
+  // Живот ленивого хомяка пуст
+  alert( lazy.stomach ); // <ничего>
