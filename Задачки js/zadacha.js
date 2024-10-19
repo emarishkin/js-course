@@ -3878,71 +3878,233 @@
 
 
 
-// new-function and settimeout-setinterval
+// // new-function and settimeout-setinterval
 
 
-let func = new Function([arg1, arg2, ...argN], functionBody);
+// let func = new Function([arg1, arg2, ...argN], functionBody);
 
 
-let sum = new Function('a', 'b', 'return a + b');
-alert( sum(1, 2) ); // 3
+// let sum = new Function('a', 'b', 'return a + b');
+// alert( sum(1, 2) ); // 3
 
 
-let sayHi = new Function('alert("Hello")');
-sayHi(); // Hello
+// let sayHi = new Function('alert("Hello")');
+// sayHi(); // Hello
 
 
-function sayHi(phrase, who) {
-    alert( phrase + ', ' + who );
+// function sayHi(phrase, who) {
+//     alert( phrase + ', ' + who );
+//   }
+//   setTimeout(sayHi, 1000, "Привет", "Джон"); // Привет, Джон
+
+
+
+
+//   // повторить с интервалом 2 секунды
+// let timerId = setInterval(() => alert('tick'), 2000);
+// // остановить вывод через 5 секунд
+// setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
+
+
+
+// let start = Date.now();
+// let times = [];
+// setTimeout(function run() {
+//   times.push(Date.now() - start); // запоминаем задержку от предыдущего вызова
+//   if (start + 100 < Date.now()) alert(times); // показываем задержку через 100 мс
+//   else setTimeout(run); // если нужно ещё запланировать
+// });
+// // пример вывода:
+// // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  function printNumbers(from, to){
+//   let current=from
+//     let timerId = setInterval(function() {
+//     alert(current);
+//     if(current==to){
+//      clearInterval(timerId)
+//     }
+//      current++
+//     },1000)
+
+//  }
+
+
+
+//  function printNumbers(from, to) {
+//   let current = from;
+//   setTimeout(function go() {
+//     alert(current);
+//     if (current < to) {
+//       setTimeout(go, 1000);
+//     }
+//     current++;
+//   }, 1000);
+// }
+// // использование:
+// printNumbers(5, 10);
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+// bind
+
+function sayHi() {
+    alert(this.name);
   }
-  setTimeout(sayHi, 1000, "Привет", "Джон"); // Привет, Джон
-
-
-
-
-  // повторить с интервалом 2 секунды
-let timerId = setInterval(() => alert('tick'), 2000);
-// остановить вывод через 5 секунд
-setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
-
-
-
-let start = Date.now();
-let times = [];
-setTimeout(function run() {
-  times.push(Date.now() - start); // запоминаем задержку от предыдущего вызова
-  if (start + 100 < Date.now()) alert(times); // показываем задержку через 100 мс
-  else setTimeout(run); // если нужно ещё запланировать
-});
-// пример вывода:
-// 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- function printNumbers(from, to){
-  let current=from
-    let timerId = setInterval(function() {
-    alert(current);
-    if(current==to){
-     clearInterval(timerId)
+  
+  let user = { name: "John" };
+  let admin = { name: "Admin" };
+  
+  // используем 'call' для передачи различных объектов в качестве 'this'
+  sayHi.call( user ); // John
+  sayHi.call( admin ); // Admin
+  
+  
+  
+  
+  
+  function say(phrase) {
+    alert(this.name + ': ' + phrase);
+  }
+  let user3 = { name: "John" };
+  // 'user' становится 'this', и "Hello" становится первым аргументом
+  say.call( user, "Hello" ); // John: Hello
+  
+  
+  
+  
+  let user33 = {
+    firstName: "Вася",
+    sayHi() {
+      alert(Привет, this.firstName);
     }
-     current++
-    },1000)
-
- }
-
-
-
- function printNumbers(from, to) {
-  let current = from;
-  setTimeout(function go() {
-    alert(current);
-    if (current < to) {
-      setTimeout(go, 1000);
-    }
-    current++;
+  };
+  setTimeout(function() {
+    user.sayHi(); // Привет, Вася!
   }, 1000);
-}
-// использование:
-printNumbers(5, 10);
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  
+  
+  let user12 = {
+    firstName: "Вася"
+  };
+  function func() {
+    alert(this.firstName);
+  }
+  let funcUser = func.bind(user);
+  funcUser(); // Вася
+  
+  
+  
+  let user11 = {
+    firstName: "Вася"
+  };
+  function func(phrase) {
+    alert(phrase + ', ' + this.firstName);
+  }
+  // привязка this к user
+  let funcUser11 = func.bind(user);
+  funcUser("Привет"); // Привет, Вася (аргумент "Привет" передан, при этом this = user)
+  
+  
+  
+  
+  let user22 = {
+    firstName: "Вася",
+    sayHi() {
+      alert(Привет, this.firstName);
+    }
+  };
+  let sayHi = user.sayHi.bind(user); // (*)
+  sayHi(); // Привет, Вася!
+  setTimeout(sayHi, 1000); // Привет, Вася!
+  
+  
+  
+  
+  let user333 = {
+    firstName: "Вася",
+    say(phrase) {
+      alert(phrase, this.firstName);
+    }
+  };
+  let say = user.say.bind(user);
+  say("Привет"); // Привет, Вася (аргумент "Привет" передан в функцию "say")
+  say("Пока"); // Пока, Вася (аргумент "Пока" передан в функцию "say")
+  
+  
+  
+  
+  function mul(a, b) {
+    return a * b;
+  }
+  let double = mul.bind(null, 2);
+  alert( double(3) ); // = mul(2, 3) = 6
+  alert( double(4) ); // = mul(2, 4) = 8
+  alert( double(5) ); // = mul(2, 5) = 10
+  
+  
+  
+  function mul(a, b) {
+    return a * b;
+  }
+  let triple = mul.bind(null, 3);
+  alert( triple(3) ); // = mul(3, 3) = 9
+  alert( triple(4) ); // = mul(3, 4) = 12
+  alert( triple(5) ); // = mul(3, 5) = 15
+  
+  
+  
+  
+  function f() {
+    alert(this.name);
+  }
+  f = f.bind( {name: "Вася"} ).bind( {name: "Петя"} );
+  f(); // Вася
+  
+  
+  
+  
+  function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+  }
+  let user111 = {
+    name: 'Вася',
+  
+    loginOk() {
+      alert(this.name );
+    },
+  
+    loginFail() {
+      alert(this.name );
+    },
+  
+  };
+  askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+  
+  
+  
+  
+  
+  function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+  }
+  
+  let user123 = {
+    name: 'John',
+  
+    login(result) {
+      alert( this.name + (result ? ' logged in' : ' failed to log in') );
+    }
+  };
+  
+  askPassword(() => user.login(true), () => user.login(false));
+  
+  askPassword(user.login.bind(user, true), user.login.bind(user, false));
