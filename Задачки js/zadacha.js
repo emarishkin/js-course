@@ -3949,162 +3949,332 @@
 
 
 
-// bind
+// // bind
 
-function sayHi() {
-    alert(this.name);
+// function sayHi() {
+//     alert(this.name);
+//   }
+  
+//   let user = { name: "John" };
+//   let admin = { name: "Admin" };
+  
+//   // используем 'call' для передачи различных объектов в качестве 'this'
+//   sayHi.call( user ); // John
+//   sayHi.call( admin ); // Admin
+  
+  
+  
+  
+  
+//   function say(phrase) {
+//     alert(this.name + ': ' + phrase);
+//   }
+//   let user3 = { name: "John" };
+//   // 'user' становится 'this', и "Hello" становится первым аргументом
+//   say.call( user, "Hello" ); // John: Hello
+  
+  
+  
+  
+//   let user33 = {
+//     firstName: "Вася",
+//     sayHi() {
+//       alert(Привет, this.firstName);
+//     }
+//   };
+//   setTimeout(function() {
+//     user.sayHi(); // Привет, Вася!
+//   }, 1000);
+  
+  
+  
+//   let user12 = {
+//     firstName: "Вася"
+//   };
+//   function func() {
+//     alert(this.firstName);
+//   }
+//   let funcUser = func.bind(user);
+//   funcUser(); // Вася
+  
+  
+  
+//   let user11 = {
+//     firstName: "Вася"
+//   };
+//   function func(phrase) {
+//     alert(phrase + ', ' + this.firstName);
+//   }
+//   // привязка this к user
+//   let funcUser11 = func.bind(user);
+//   funcUser("Привет"); // Привет, Вася (аргумент "Привет" передан, при этом this = user)
+  
+  
+  
+  
+//   let user22 = {
+//     firstName: "Вася",
+//     sayHi() {
+//       alert(Привет, this.firstName);
+//     }
+//   };
+//   let sayHi = user.sayHi.bind(user); // (*)
+//   sayHi(); // Привет, Вася!
+//   setTimeout(sayHi, 1000); // Привет, Вася!
+  
+  
+  
+  
+//   let user333 = {
+//     firstName: "Вася",
+//     say(phrase) {
+//       alert(phrase, this.firstName);
+//     }
+//   };
+//   let say = user.say.bind(user);
+//   say("Привет"); // Привет, Вася (аргумент "Привет" передан в функцию "say")
+//   say("Пока"); // Пока, Вася (аргумент "Пока" передан в функцию "say")
+  
+  
+  
+  
+//   function mul(a, b) {
+//     return a * b;
+//   }
+//   let double = mul.bind(null, 2);
+//   alert( double(3) ); // = mul(2, 3) = 6
+//   alert( double(4) ); // = mul(2, 4) = 8
+//   alert( double(5) ); // = mul(2, 5) = 10
+  
+  
+  
+//   function mul(a, b) {
+//     return a * b;
+//   }
+//   let triple = mul.bind(null, 3);
+//   alert( triple(3) ); // = mul(3, 3) = 9
+//   alert( triple(4) ); // = mul(3, 4) = 12
+//   alert( triple(5) ); // = mul(3, 5) = 15
+  
+  
+  
+  
+//   function f() {
+//     alert(this.name);
+//   }
+//   f = f.bind( {name: "Вася"} ).bind( {name: "Петя"} );
+//   f(); // Вася
+  
+  
+  
+  
+//   function askPassword(ok, fail) {
+//     let password = prompt("Password?", '');
+//     if (password == "rockstar") ok();
+//     else fail();
+//   }
+//   let user111 = {
+//     name: 'Вася',
+  
+//     loginOk() {
+//       alert(this.name );
+//     },
+  
+//     loginFail() {
+//       alert(this.name );
+//     },
+  
+//   };
+//   askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+  
+  
+  
+  
+  
+//   function askPassword(ok, fail) {
+//     let password = prompt("Password?", '');
+//     if (password == "rockstar") ok();
+//     else fail();
+//   }
+  
+//   let user123 = {
+//     name: 'John',
+  
+//     login(result) {
+//       alert( this.name + (result ? ' logged in' : ' failed to log in') );
+//     }
+//   };
+  
+//   askPassword(() => user.login(true), () => user.login(false));
+  
+//   askPassword(user.login.bind(user, true), user.login.bind(user, false));
+
+
+// 
+// let group = {
+//     title: "Our Group",
+//     students: ["John", "Pete", "Alice"],
+  
+//     showList() {
+//       this.students.forEach(
+//         student => alert(this.title + ': ' + student)
+//       );
+//     }
+//   };
+//   group.showList();
+  
+  
+  
+  
+  function defer(f, ms) {
+    return function() {
+      setTimeout(() => f.apply(this, arguments), ms)
+    };
   }
-  
-  let user = { name: "John" };
-  let admin = { name: "Admin" };
-  
-  // используем 'call' для передачи различных объектов в качестве 'this'
-  sayHi.call( user ); // John
-  sayHi.call( admin ); // Admin
-  
-  
-  
-  
-  
-  function say(phrase) {
-    alert(this.name + ': ' + phrase);
+  function sayHi(who) {
+    alert('Hello, ' + who);
   }
-  let user3 = { name: "John" };
-  // 'user' становится 'this', и "Hello" становится первым аргументом
-  say.call( user, "Hello" ); // John: Hello
-  
-  
-  
-  
-  let user33 = {
-    firstName: "Вася",
-    sayHi() {
-      alert(Привет, this.firstName);
+  let sayHiDeferred = defer(sayHi, 10000);
+  sayHiDeferred("John"); // выводит "Hello, John" через 10 секунды
+
+
+
+//   property-descriptors
+
+let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);
+// obj
+// Объект, из которого мы получаем информацию.
+// propertyName
+// Имя свойства.
+
+
+
+let user = {
+    name: "John"
+  };
+  let descriptor1 = Object.getOwnPropertyDescriptor(user, 'name');
+  alert( JSON.stringify(descriptor, null, 2 ) );
+  /* дескриптор свойства:
+  {
+    "value": "John",
+    "writable": true,
+    "enumerable": true,
+    "configurable": true
+  }
+  */
+
+
+  Object.defineProperty(obj, propertyName, descriptor)
+//   obj, propertyName
+//   Объект и его свойство, для которого нужно применить дескриптор.
+//   descriptor
+//   Применяемый дескриптор.
+
+
+
+let user1 = {};
+
+Object.defineProperty(user, "name", {
+  value: "John"
+});
+let descriptor2 = Object.getOwnPropertyDescriptor(user, 'name');
+alert( JSON.stringify(descriptor, null, 2 ) );
+/*
+{
+  "value": "John",
+  "writable": false,
+  "enumerable": false,
+  "configurable": false
+}
+ */
+
+
+
+let user = { };
+Object.defineProperty(user, "name", {
+  value: "John",
+  // для нового свойства необходимо явно указывать все флаги, для которых значение true
+  enumerable: true,
+  configurable: true
+});
+alert(user.name); // John
+user.name = "Pete"; // Ошибка
+
+
+
+let user = {
+    name: "John",
+    toString() {
+      return this.name;
     }
   };
-  setTimeout(function() {
-    user.sayHi(); // Привет, Вася!
-  }, 1000);
-  
-  
-  
-  let user12 = {
-    firstName: "Вася"
-  };
-  function func() {
-    alert(this.firstName);
-  }
-  let funcUser = func.bind(user);
-  funcUser(); // Вася
-  
-  
-  
-  let user11 = {
-    firstName: "Вася"
-  };
-  function func(phrase) {
-    alert(phrase + ', ' + this.firstName);
-  }
-  // привязка this к user
-  let funcUser11 = func.bind(user);
-  funcUser("Привет"); // Привет, Вася (аргумент "Привет" передан, при этом this = user)
-  
-  
-  
-  
-  let user22 = {
-    firstName: "Вася",
-    sayHi() {
-      alert(Привет, this.firstName);
+  // По умолчанию оба свойства выведутся:
+  for (let key in user) alert(key); // name, toString
+
+
+
+
+  let user = {
+    name: "John",
+    toString() {
+      return this.name;
     }
   };
-  let sayHi = user.sayHi.bind(user); // (*)
-  sayHi(); // Привет, Вася!
-  setTimeout(sayHi, 1000); // Привет, Вася!
-  
-  
-  
-  
-  let user333 = {
-    firstName: "Вася",
-    say(phrase) {
-      alert(phrase, this.firstName);
-    }
+  Object.defineProperty(user, "toString", {
+    enumerable: false
+  });
+  // Теперь наше свойство toString пропало из цикла:
+  for (let key in user) alert(key); // name
+
+
+
+
+  let descriptor23 = Object.getOwnPropertyDescriptor(Math, 'PI');
+
+alert( JSON.stringify(descriptor, null, 2 ) );
+/*
+{
+  "value": 3.141592653589793,
+  "writable": false,
+  "enumerable": false,
+  "configurable": false
+}
+*/
+
+
+let user = {
+    name: "John"
   };
-  let say = user.say.bind(user);
-  say("Привет"); // Привет, Вася (аргумент "Привет" передан в функцию "say")
-  say("Пока"); // Пока, Вася (аргумент "Пока" передан в функцию "say")
-  
-  
-  
-  
-  function mul(a, b) {
-    return a * b;
-  }
-  let double = mul.bind(null, 2);
-  alert( double(3) ); // = mul(2, 3) = 6
-  alert( double(4) ); // = mul(2, 4) = 8
-  alert( double(5) ); // = mul(2, 5) = 10
-  
-  
-  
-  function mul(a, b) {
-    return a * b;
-  }
-  let triple = mul.bind(null, 3);
-  alert( triple(3) ); // = mul(3, 3) = 9
-  alert( triple(4) ); // = mul(3, 4) = 12
-  alert( triple(5) ); // = mul(3, 5) = 15
-  
-  
-  
-  
-  function f() {
-    alert(this.name);
-  }
-  f = f.bind( {name: "Вася"} ).bind( {name: "Петя"} );
-  f(); // Вася
-  
-  
-  
-  
-  function askPassword(ok, fail) {
-    let password = prompt("Password?", '');
-    if (password == "rockstar") ok();
-    else fail();
-  }
-  let user111 = {
-    name: 'Вася',
-  
-    loginOk() {
-      alert(this.name );
-    },
-  
-    loginFail() {
-      alert(this.name );
-    },
-  
-  };
-  askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
-  
-  
-  
-  
-  
-  function askPassword(ok, fail) {
-    let password = prompt("Password?", '');
-    if (password == "rockstar") ok();
-    else fail();
-  }
-  
-  let user123 = {
-    name: 'John',
-  
-    login(result) {
-      alert( this.name + (result ? ' logged in' : ' failed to log in') );
-    }
-  };
-  
-  askPassword(() => user.login(true), () => user.login(false));
-  
-  askPassword(user.login.bind(user, true), user.login.bind(user, false));
+  Object.defineProperty(user, "name", {
+    configurable: false
+  });
+  user.name = "Pete"; // работает
+  delete user.name; // Ошибка
+
+
+
+  Object.defineProperties(user, {
+    name: { value: "John", writable: false },
+    surname: { value: "Smith", writable: false },
+    // ...
+  });
+
+
+
+//   Object.preventExtensions(obj)
+// Запрещает добавлять новые свойства в объект.
+// Object.seal(obj)
+// Запрещает добавлять/удалять свойства. Устанавливает configurable: false для всех существующих свойств.
+// Object.freeze(obj)
+// Запрещает добавлять/удалять/изменять свойства. Устанавливает configurable: false, writable: false для всех существующих свойств.
+// А также есть методы для их проверки:
+
+// Object.isExtensible(obj)
+// Возвращает false, если добавление свойств запрещено, иначе true.
+// Object.isSealed(obj)
+// Возвращает true, если добавление/удаление свойств запрещено и для всех существующих свойств установлено configurable: false.
+// Object.isFrozen(obj)
+// Возвращает true, если добавление/удаление/изменение свойств запрещено, и для всех текущих свойств установлено configurable: false, writable: false.
+
+
+
