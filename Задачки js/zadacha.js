@@ -3658,123 +3658,221 @@
 
 
 
-// recursion
+// // recursion
 
-function pow(x, n) {
-  let result = 1;
-  // умножаем result на x n раз в цикле
-  for (let i = 0; i < n; i++) {
-    result *= x;
-  }
+// function pow(x, n) {
+//   let result = 1;
+//   // умножаем result на x n раз в цикле
+//   for (let i = 0; i < n; i++) {
+//     result *= x;
+//   }
 
-  return result;
-}
-alert( pow(2, 3) ); // 8
-
-
-
-function pow(x, n) {
-  if (n == 1) {
-    return x;
-  } else {
-    return x * pow(x, n - 1);
-  }
-}
-alert( pow(3, 4) ); // 81
-
-
-function pow(x, n) { return (n == 1)? x:(x * pow(x, n - 1))}
-alert( pow(2, 5) );
+//   return result;
+// }
+// alert( pow(2, 3) ); // 8
 
 
 
-
-let company = { // тот же самый объект, сжатый для краткости
-  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
-  development: {
-    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
-    internals: [{name: 'Jack', salary: 1300}]
-  }
-};
-
-// Функция для подсчёта суммы зарплат
-function sumSalaries(department) {
-  if (Array.isArray(department)) { // случай (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива
-  } else { // случай (2)
-    let sum = 0;
-    for (let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
-    }
-    return sum;
-  }
-}
-alert(sumSalaries(company)); // 6700
+// function pow(x, n) {
+//   if (n == 1) {
+//     return x;
+//   } else {
+//     return x * pow(x, n - 1);
+//   }
+// }
+// alert( pow(3, 4) ); // 81
 
 
-
-function sumTo(n) { 
-  let sum=0
-   for(let i=0;i<=n;i++){
-    sum+=i
-   }
-   return sum
- }
-
-alert( sumTo(100) ); // 5050
-
-
-
-function sumTo(n) {return (n==1)?1:(n+sumTo(n-1)) }
-alert( sumTo(100) ); // 5050
-
-
-function sumTo(n) {
-  return n * (n + 1) / 2;
-}
-alert( sumTo(100) );
-
-
-
-function factorial(n) {return (n==1)?1:(n*factorial(n-1)) }
-alert( factorial(5) ); 
+// function pow(x, n) { return (n == 1)? x:(x * pow(x, n - 1))}
+// alert( pow(2, 5) );
 
 
 
 
-function fib(n) {
-  return n <= 1 ? n : fib(n - 1) + fib(n - 2);
-}
-alert( fib(3) ); // 2
-alert( fib(7) ); // 13
+// let company = { // тот же самый объект, сжатый для краткости
+//   sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+//   development: {
+//     sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+//     internals: [{name: 'Jack', salary: 1300}]
+//   }
+// };
+
+// // Функция для подсчёта суммы зарплат
+// function sumSalaries(department) {
+//   if (Array.isArray(department)) { // случай (1)
+//     return department.reduce((prev, current) => prev + current.salary, 0); // сумма элементов массива
+//   } else { // случай (2)
+//     let sum = 0;
+//     for (let subdep of Object.values(department)) {
+//       sum += sumSalaries(subdep); // рекурсивно вызывается для подотделов, суммируя результаты
+//     }
+//     return sum;
+//   }
+// }
+// alert(sumSalaries(company)); // 6700
 
 
 
-let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
+// function sumTo(n) { 
+//   let sum=0
+//    for(let i=0;i<=n;i++){
+//     sum+=i
+//    }
+//    return sum
+//  }
+
+// alert( sumTo(100) ); // 5050
+
+
+
+// function sumTo(n) {return (n==1)?1:(n+sumTo(n-1)) }
+// alert( sumTo(100) ); // 5050
+
+
+// function sumTo(n) {
+//   return n * (n + 1) / 2;
+// }
+// alert( sumTo(100) );
+
+
+
+// function factorial(n) {return (n==1)?1:(n*factorial(n-1)) }
+// alert( factorial(5) ); 
+
+
+
+
+// function fib(n) {
+//   return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+// }
+// alert( fib(3) ); // 2
+// alert( fib(7) ); // 13
+
+
+
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null
+//       }
+//     }
+//   }
+// };
+
+// function printList(list) {
+
+//   alert(list.value); // выводим текущий элемент
+
+//   if (list.next) {
+//     printList(list.next); // делаем то же самое для остальной части списка
+//   }
+
+// }
+
+// printList(list);
+
+
+
+// function-object
+
+
+function ask(question, ...handlers) {
+    let isYes = confirm(question);
+  
+    for(let handler of handlers) {
+      if (handler.length == 0) {
+        if (isYes) handler();
+      } else {
+        handler(isYes);
       }
     }
+  
   }
-};
+  // для положительных ответов вызываются оба типа обработчиков
+  // для отрицательных - только второго типа
+  ask("Вопрос?", () => alert('Вы ответили да'), result => alert(result));
 
-function printList(list) {
 
-  alert(list.value); // выводим текущий элемент
 
-  if (list.next) {
-    printList(list.next); // делаем то же самое для остальной части списка
+  function sayHi() {
+    alert("Hi");
+    // давайте посчитаем, сколько вызовов мы сделали
+    sayHi.counter++;
+  }
+  sayHi.counter = 0; // начальное значение
+  sayHi(); // Hi
+  sayHi(); // Hi
+  alert( sayHi.counter ); // Вызвана 2 раза
+
+
+
+  function makeCounter() {
+    // вместо
+    // let count = 0
+  
+    function counter() {
+      return counter.count++;
+    };
+    counter.count = 0;
+    return counter;
   }
 
+  let counter = makeCounter();
+  alert( counter() ); // 0
+  alert( counter() ); // 1
+
+
+
+  
+  
+  let sayHi = function func(who) {
+    if (who) {
+      alert(Hello, who);
+    } else {
+      func("Guest"); // Теперь всё в порядке
+    }
+  };
+  let welcome = sayHi;
+  sayHi = null;
+  welcome(); // Hello, Guest (вложенный вызов работает)
+
+
+
+  
+
+  function makeCounter() {
+    let count = 0;
+  
+    function counter() {
+      return count++;
+    }
+    counter.set = value => count = value;
+    counter.decrease = () => count--;
+    return counter;
+  }
+  
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function sum(a){
+
+let currentSum = a
+
+function f(b){
+    currentSum+=b
+    return f
 }
-
-printList(list);
-
-
+f.toString = function() {
+    return currentSum;
+  };
+return f
+}
+alert( sum(1)(21) ); // 3
+alert( sum(5)(-1)(2) ); // 6
+alert( sum(6)(-1)(-2)(-3) ); // 0
+alert( sum(0)(1)(2)(3)(4)(5) ); // 15
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
