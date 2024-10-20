@@ -4540,39 +4540,137 @@
 
 
 
-// F.prototype
+// // F.prototype
 
 
-let animal = {
+// let animal = {
+//     eats: true
+//   };
+  
+//   function Rabbit(name) {
+//     this.name = name;
+//   }
+//   Rabbit.prototype = animal;
+//   let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
+//   alert( rabbit.eats ); // true
+
+
+
+//   function Rabbit() {}
+// // по умолчанию:
+// // Rabbit.prototype = { constructor: Rabbit }
+// alert( Rabbit.prototype.constructor == Rabbit ); // true
+
+
+
+
+// function User(name) {
+//     this.name = name;
+//   }
+  
+//   let user = new User('John');
+//   let user2 = new user.constructor('Pete');
+  
+//   alert( user2.name ); // Pete (сработало!)
+
+
+
+// native-prototypes
+
+
+let obj = {};
+alert(obj.__proto__ === Object.prototype); // true
+// obj.toString === obj.__proto__.toString === Object.prototype.toString
+
+
+function f() {}
+alert(f.__proto__ == Function.prototype); // true
+alert(f.__proto__.__proto__ == Object.prototype); // true, наследует от Object
+
+
+
+if (!String.prototype.repeat) { // Если такого метода нет
+    // добавляем его в прототип
+  
+    String.prototype.repeat = function(n) {
+      // повторить строку n раз
+  
+      // на самом деле код должен быть немного более сложным
+      // (полный алгоритм можно найти в спецификации)
+      // но даже неполный полифил зачастую достаточно хорош для использования
+      return new Array(n + 1).join(this);
+    };
+  }
+  alert( "La".repeat(3) ); // LaLaLa
+
+
+
+  let obj0 = {
+    0: "Hello",
+    1: "world!",
+    length: 2,
+  };
+  obj.join = Array.prototype.join;
+  alert( obj.join(',') ); // Hello,world!
+
+
+
+  Function.prototype.defer = function(ms) {
+    setTimeout(this, ms);
+  };
+  function f() {
+    alert("Hello!");
+  }
+  f.defer(1000); // выведет "Hello!" через 1 секунду
+
+
+  
+
+  Function.prototype.defer = function(ms) {
+    let f = this;
+    return function(...args) {
+      setTimeout(() => f.apply(this, args), ms);
+    }
+  };
+  // check it
+  function f(a, b) {
+    alert( a + b );
+  }
+  f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+
+
+
+
+  let animal = {
     eats: true
   };
   
-  function Rabbit(name) {
+  let rabbit = Object.create(animal, {
+    jumps: {
+      value: true
+    }
+  });
+  
+  alert(rabbit.jumps); // true
+
+
+
+
+  let obj = Object.create(null);
+let key = prompt("What's the key?", "__proto__");
+obj[key] = "some value";
+alert(obj[key]); // "some value"
+
+
+function Rabbit(name) {
     this.name = name;
   }
-  Rabbit.prototype = animal;
-  let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
-  alert( rabbit.eats ); // true
-
-
-
-  function Rabbit() {}
-// по умолчанию:
-// Rabbit.prototype = { constructor: Rabbit }
-alert( Rabbit.prototype.constructor == Rabbit ); // true
-
-
-
-
-function User(name) {
-    this.name = name;
+  Rabbit.prototype.sayHi = function() {
+    alert( this.name );
   }
-  
-  let user = new User('John');
-  let user2 = new user.constructor('Pete');
-  
-  alert( user2.name ); // Pete (сработало!)
+  let rabbit5 = new Rabbit("Rabbit");
+  rabbit.sayHi();                        // Rabbit
+  Rabbit.prototype.sayHi();              // undefined
+  Object.getPrototypeOf(rabbit).sayHi(); // undefined
+  rabbit.__proto__.sayHi();              // undefined
 
-
-
-  
