@@ -4575,102 +4575,246 @@
 
 
 
-// native-prototypes
+// // native-prototypes
 
 
-let obj = {};
-alert(obj.__proto__ === Object.prototype); // true
-// obj.toString === obj.__proto__.toString === Object.prototype.toString
+// let obj = {};
+// alert(obj.__proto__ === Object.prototype); // true
+// // obj.toString === obj.__proto__.toString === Object.prototype.toString
 
 
-function f() {}
-alert(f.__proto__ == Function.prototype); // true
-alert(f.__proto__.__proto__ == Object.prototype); // true, наследует от Object
+// function f() {}
+// alert(f.__proto__ == Function.prototype); // true
+// alert(f.__proto__.__proto__ == Object.prototype); // true, наследует от Object
 
 
 
-if (!String.prototype.repeat) { // Если такого метода нет
-    // добавляем его в прототип
+// if (!String.prototype.repeat) { // Если такого метода нет
+//     // добавляем его в прототип
   
-    String.prototype.repeat = function(n) {
-      // повторить строку n раз
+//     String.prototype.repeat = function(n) {
+//       // повторить строку n раз
   
-      // на самом деле код должен быть немного более сложным
-      // (полный алгоритм можно найти в спецификации)
-      // но даже неполный полифил зачастую достаточно хорош для использования
-      return new Array(n + 1).join(this);
+//       // на самом деле код должен быть немного более сложным
+//       // (полный алгоритм можно найти в спецификации)
+//       // но даже неполный полифил зачастую достаточно хорош для использования
+//       return new Array(n + 1).join(this);
+//     };
+//   }
+//   alert( "La".repeat(3) ); // LaLaLa
+
+
+
+//   let obj0 = {
+//     0: "Hello",
+//     1: "world!",
+//     length: 2,
+//   };
+//   obj.join = Array.prototype.join;
+//   alert( obj.join(',') ); // Hello,world!
+
+
+
+//   Function.prototype.defer = function(ms) {
+//     setTimeout(this, ms);
+//   };
+//   function f() {
+//     alert("Hello!");
+//   }
+//   f.defer(1000); // выведет "Hello!" через 1 секунду
+
+
+  
+
+//   Function.prototype.defer = function(ms) {
+//     let f = this;
+//     return function(...args) {
+//       setTimeout(() => f.apply(this, args), ms);
+//     }
+//   };
+//   // check it
+//   function f(a, b) {
+//     alert( a + b );
+//   }
+//   f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+
+
+
+
+//   let animal = {
+//     eats: true
+//   };
+  
+//   let rabbit = Object.create(animal, {
+//     jumps: {
+//       value: true
+//     }
+//   });
+  
+//   alert(rabbit.jumps); // true
+
+
+
+
+//   let obj = Object.create(null);
+// let key = prompt("What's the key?", "__proto__");
+// obj[key] = "some value";
+// alert(obj[key]); // "some value"
+
+
+// function Rabbit(name) {
+//     this.name = name;
+//   }
+//   Rabbit.prototype.sayHi = function() {
+//     alert( this.name );
+//   }
+//   let rabbit5 = new Rabbit("Rabbit");
+//   rabbit.sayHi();                        // Rabbit
+//   Rabbit.prototype.sayHi();              // undefined
+//   Object.getPrototypeOf(rabbit).sayHi(); // undefined
+//   rabbit.__proto__.sayHi();              // undefined
+
+
+
+{
+  // выполняем некоторые действия с локальной переменной, которые не должны быть видны снаружи
+
+  let message = "Hello"; // переменная видна только в этом блоке
+
+  alert(message); // Hello
+}
+alert(message); // ReferenceError: message is not defined
+
+
+
+function makeCounter() {
+  let count = 0;
+
+  return function() {
+    return count++; // есть доступ к внешней переменной "count"
+  };
+}
+let counter = makeCounter();
+alert( counter() ); // 0
+alert( counter() ); // 1
+alert( counter() ); // 2
+
+
+
+// !!!!!!!!!!!!!!!!!!!
+function Counter1() {
+  let count = 0;
+
+  this.up = function() {
+    return ++count;
+  };
+
+  this.down = function() {
+    return --count;
+  };
+}
+
+let counter1 = new Counter();
+alert( counter.up() ); // 1
+alert( counter.up() ); // 2
+alert( counter.down() ); // 1
+// !!!!!!!!!!!!!!!!!!!
+
+
+
+
+function sum(a) {
+  return function(b) {
+    return a + b; // берёт "a" из внешнего лексического окружения
+  };
+
+}
+alert( sum(1)(2) ); // 3
+alert( sum(5)(-1) ); // 4
+
+
+
+function inBetween(a, b) {
+  return function(x) {
+    return x >= a && x <= b;
+  };
+}
+let arr2 = [1, 2, 3, 4, 5, 6, 7];
+alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+
+
+
+function inArray(arr) {
+  return function(x) {
+    return arr.includes(x);
+  };
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+
+
+
+
+let users = [
+  { name: "Иван", age: 20, surname: "Иванов" },
+  { name: "Пётр", age: 18, surname: "Петров" },
+  { name: "Анна", age: 19, surname: "Каренина" }
+];
+// по имени (Анна, Иван, Пётр)
+users.sort((a, b) => a.name > b.name ? 1 : -1);
+
+// по возрасту (Пётр, Анна, Иван)
+users.sort((a, b) => a.age > b.age ? 1 : -1);
+
+
+
+
+
+
+function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i < 10) {
+    let shooter = function() { // функция shooter
+      alert( i ); // должна выводить порядковый номер
     };
+    shooters.push(shooter); // и добавлять стрелка в массив
+    i++;
   }
-  alert( "La".repeat(3) ); // LaLaLa
+
+  // ...а в конце вернуть массив из всех стрелков
+  return shooters;
+}
+
+let army = makeArmy();
+
+// все стрелки выводят 10 вместо их порядковых номеров (0, 1, 2, 3...)
+army[0](); // 10 от стрелка с порядковым номером 0
+army[1](); // 10 от стрелка с порядковым номером 1
+army[2](); // 10 ...и т.д.
 
 
 
-  let obj0 = {
-    0: "Hello",
-    1: "world!",
-    length: 2,
-  };
-  obj.join = Array.prototype.join;
-  alert( obj.join(',') ); // Hello,world!
 
+function makeArmy() {
+  let shooters = [];
 
-
-  Function.prototype.defer = function(ms) {
-    setTimeout(this, ms);
-  };
-  function f() {
-    alert("Hello!");
+  let i = 0;
+  while (i < 10) {
+      let j = i;
+      let shooter = function() { // функция shooter
+        alert( j ); // должна выводить порядковый номер
+      };
+    shooters.push(shooter);
+    i++;
   }
-  f.defer(1000); // выведет "Hello!" через 1 секунду
 
+  return shooters;
+}
 
-  
-
-  Function.prototype.defer = function(ms) {
-    let f = this;
-    return function(...args) {
-      setTimeout(() => f.apply(this, args), ms);
-    }
-  };
-  // check it
-  function f(a, b) {
-    alert( a + b );
-  }
-  f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
-
-
-
-
-  let animal = {
-    eats: true
-  };
-  
-  let rabbit = Object.create(animal, {
-    jumps: {
-      value: true
-    }
-  });
-  
-  alert(rabbit.jumps); // true
-
-
-
-
-  let obj = Object.create(null);
-let key = prompt("What's the key?", "__proto__");
-obj[key] = "some value";
-alert(obj[key]); // "some value"
-
-
-function Rabbit(name) {
-    this.name = name;
-  }
-  Rabbit.prototype.sayHi = function() {
-    alert( this.name );
-  }
-  let rabbit5 = new Rabbit("Rabbit");
-  rabbit.sayHi();                        // Rabbit
-  Rabbit.prototype.sayHi();              // undefined
-  Object.getPrototypeOf(rabbit).sayHi(); // undefined
-  rabbit.__proto__.sayHi();              // undefined
-
+let army1 = makeArmy();
+// теперь код работает правильно
+army[0](); // 0
+army[5](); // 5
