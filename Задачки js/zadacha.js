@@ -4676,145 +4676,242 @@
 
 
 
-{
-  // выполняем некоторые действия с локальной переменной, которые не должны быть видны снаружи
+// {
+//   // выполняем некоторые действия с локальной переменной, которые не должны быть видны снаружи
 
-  let message = "Hello"; // переменная видна только в этом блоке
+//   let message = "Hello"; // переменная видна только в этом блоке
 
-  alert(message); // Hello
+//   alert(message); // Hello
+// }
+// alert(message); // ReferenceError: message is not defined
+
+
+
+// function makeCounter() {
+//   let count = 0;
+
+//   return function() {
+//     return count++; // есть доступ к внешней переменной "count"
+//   };
+// }
+// let counter = makeCounter();
+// alert( counter() ); // 0
+// alert( counter() ); // 1
+// alert( counter() ); // 2
+
+
+
+// // !!!!!!!!!!!!!!!!!!!
+// function Counter1() {
+//   let count = 0;
+
+//   this.up = function() {
+//     return ++count;
+//   };
+
+//   this.down = function() {
+//     return --count;
+//   };
+// }
+
+// let counter1 = new Counter();
+// alert( counter.up() ); // 1
+// alert( counter.up() ); // 2
+// alert( counter.down() ); // 1
+// // !!!!!!!!!!!!!!!!!!!
+
+
+
+
+// function sum(a) {
+//   return function(b) {
+//     return a + b; // берёт "a" из внешнего лексического окружения
+//   };
+
+// }
+// alert( sum(1)(2) ); // 3
+// alert( sum(5)(-1) ); // 4
+
+
+
+// function inBetween(a, b) {
+//   return function(x) {
+//     return x >= a && x <= b;
+//   };
+// }
+// let arr2 = [1, 2, 3, 4, 5, 6, 7];
+// alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+
+
+
+// function inArray(arr) {
+//   return function(x) {
+//     return arr.includes(x);
+//   };
+// }
+
+// let arr = [1, 2, 3, 4, 5, 6, 7];
+// alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+
+
+
+
+// let users = [
+//   { name: "Иван", age: 20, surname: "Иванов" },
+//   { name: "Пётр", age: 18, surname: "Петров" },
+//   { name: "Анна", age: 19, surname: "Каренина" }
+// ];
+// // по имени (Анна, Иван, Пётр)
+// users.sort((a, b) => a.name > b.name ? 1 : -1);
+
+// // по возрасту (Пётр, Анна, Иван)
+// users.sort((a, b) => a.age > b.age ? 1 : -1);
+
+
+
+
+
+
+// function makeArmy() {
+//   let shooters = [];
+
+//   let i = 0;
+//   while (i < 10) {
+//     let shooter = function() { // функция shooter
+//       alert( i ); // должна выводить порядковый номер
+//     };
+//     shooters.push(shooter); // и добавлять стрелка в массив
+//     i++;
+//   }
+
+//   // ...а в конце вернуть массив из всех стрелков
+//   return shooters;
+// }
+
+// let army = makeArmy();
+
+// // все стрелки выводят 10 вместо их порядковых номеров (0, 1, 2, 3...)
+// army[0](); // 10 от стрелка с порядковым номером 0
+// army[1](); // 10 от стрелка с порядковым номером 1
+// army[2](); // 10 ...и т.д.
+
+
+
+
+// function makeArmy() {
+//   let shooters = [];
+
+//   let i = 0;
+//   while (i < 10) {
+//       let j = i;
+//       let shooter = function() { // функция shooter
+//         alert( j ); // должна выводить порядковый номер
+//       };
+//     shooters.push(shooter);
+//     i++;
+//   }
+
+//   return shooters;
+// }
+
+// let army1 = makeArmy();
+// // теперь код работает правильно
+// army[0](); // 0
+// army[5](); // 5
+
+
+
+// class
+
+let date= new Date();
+
+console.log(date.getFullYear())
+console.log(date.getMonth()+1)
+console.log(date.getDate())
+console.log(date.getHours())
+
+date.setFullYear(2922)
+console.log(date.getFullYear())
+
+
+let arr = [5,3,2,6]
+console.log(arr.join("  ,  "))
+console.log(arr.sort())
+console.log(arr.reverse())
+let stroka= arr.sort().join(", ")
+
+console.log(stroka.split(", "))
+console.log(arr.sort().join(".."))
+
+
+class Person {
+    constructor(name, age,happiness){
+        this.name=name
+        this.age=age
+        this.happiness=happiness
+    }
+    info(){
+        console.log("Возраст:"+ this.age + "счастлив ли он:"+ this.happiness)
+        }
 }
-alert(message); // ReferenceError: message is not defined
+
+ 
+let alex = new Person("Alex","20","true")
+let Bob = new Person("Bob","11","false")
+
+alex.info()
+Bob.info()
 
 
-
-function makeCounter() {
-  let count = 0;
-
-  return function() {
-    return count++; // есть доступ к внешней переменной "count"
-  };
-}
-let counter = makeCounter();
-alert( counter() ); // 0
-alert( counter() ); // 1
-alert( counter() ); // 2
-
-
-
-// !!!!!!!!!!!!!!!!!!!
-function Counter1() {
-  let count = 0;
-
-  this.up = function() {
-    return ++count;
-  };
-
-  this.down = function() {
-    return --count;
-  };
-}
-
-let counter1 = new Counter();
-alert( counter.up() ); // 1
-alert( counter.up() ); // 2
-alert( counter.down() ); // 1
-// !!!!!!!!!!!!!!!!!!!
-
-
-
-
-function sum(a) {
-  return function(b) {
-    return a + b; // берёт "a" из внешнего лексического окружения
-  };
-
-}
-alert( sum(1)(2) ); // 3
-alert( sum(5)(-1) ); // 4
-
-
-
-function inBetween(a, b) {
-  return function(x) {
-    return x >= a && x <= b;
-  };
-}
-let arr2 = [1, 2, 3, 4, 5, 6, 7];
-alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
-
-
-
-function inArray(arr) {
-  return function(x) {
-    return arr.includes(x);
-  };
-}
-
-let arr = [1, 2, 3, 4, 5, 6, 7];
-alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
-
-
-
-
-let users = [
-  { name: "Иван", age: 20, surname: "Иванов" },
-  { name: "Пётр", age: 18, surname: "Петров" },
-  { name: "Анна", age: 19, surname: "Каренина" }
-];
-// по имени (Анна, Иван, Пётр)
-users.sort((a, b) => a.name > b.name ? 1 : -1);
-
-// по возрасту (Пётр, Анна, Иван)
-users.sort((a, b) => a.age > b.age ? 1 : -1);
+console.log(alex.age)
+console.log(Bob.name)
 
 
 
 
 
-
-function makeArmy() {
-  let shooters = [];
-
-  let i = 0;
-  while (i < 10) {
-    let shooter = function() { // функция shooter
-      alert( i ); // должна выводить порядковый номер
-    };
-    shooters.push(shooter); // и добавлять стрелка в массив
-    i++;
-  }
-
-  // ...а в конце вернуть массив из всех стрелков
-  return shooters;
-}
-
-let army = makeArmy();
-
-// все стрелки выводят 10 вместо их порядковых номеров (0, 1, 2, 3...)
-army[0](); // 10 от стрелка с порядковым номером 0
-army[1](); // 10 от стрелка с порядковым номером 1
-army[2](); // 10 ...и т.д.
-
-
-
-
-function makeArmy() {
-  let shooters = [];
-
-  let i = 0;
-  while (i < 10) {
-      let j = i;
-      let shooter = function() { // функция shooter
-        alert( j ); // должна выводить порядковый номер
+function makeClass(phrase) {
+    // объявляем класс и возвращаем его
+    return class {
+      sayHi() {
+        alert(phrase);
       };
-    shooters.push(shooter);
-    i++;
+    };
   }
+  
+  // Создаём новый класс
+  let User = makeClass("Привет");
+  
+  new User().sayHi(); // Привет
 
-  return shooters;
-}
 
-let army1 = makeArmy();
-// теперь код работает правильно
-army[0](); // 0
-army[5](); // 5
+
+
+
+
+  class User1 {
+
+    constructor(name) {
+      // вызывает сеттер
+      this.name = name;
+    }
+    get name() {
+      return this._name;
+    }
+    set name(value) {
+      if (value.length < 4) {
+        alert("Имя слишком короткое.");
+        return;
+      }
+      this._name = value;
+    }
+  
+  }
+  let user = new User("Иван");
+  alert(user.name); // Иван
+  user = new User(""); // Имя слишком короткое.
+
+
+
+
+
