@@ -4916,163 +4916,283 @@
 
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-class Animal {
-    constructor(name) {
-      this.speed = 0;
-      this.name = name;
+// class Animal {
+//     constructor(name) {
+//       this.speed = 0;
+//       this.name = name;
+//     }
+//     run(speed) {
+//       this.speed = speed;
+//       alert(`${this.name} бежит со скоростью ${this.speed}.`);
+//     }
+//     stop() {
+//       this.speed = 0;
+//       alert(`${this.name} стоит неподвижно.`);
+//     }
+//   }
+  
+//   let animal = new Animal("Мой питомец");
+
+
+//   class Rabbit extends Animal {
+//     hide() {
+//       alert(`${this.name} прячется!`);
+//     }
+//   }
+  
+//   let rabbit = new Rabbit("Белый кролик");
+  
+//   rabbit.run(5); // Белый кролик бежит со скоростью 5.
+//   rabbit.hide(); // Белый кролик прячется!
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+//   function f(phrase) {
+//     return class {
+//       sayHi() { alert(phrase); }
+//     };
+//   }
+  
+//   class User extends f("Привет") {}
+  
+//   new User().sayHi(); // Привет
+
+
+
+
+
+
+//   class Animal {
+
+//     constructor(name) {
+//       this.speed = 0;
+//       this.name = name;
+//     }
+  
+//     run(speed) {
+//       this.speed = speed;
+//       alert(`${this.name} бежит со скоростью ${this.speed}.`);
+//     }
+  
+//     stop() {
+//       this.speed = 0;
+//       alert(`${this.name} стоит.`);
+//     }
+  
+//   }
+  
+//   class Rabbit extends Animal {
+//     hide() {
+//       alert(`${this.name} прячется!`);
+//     }
+  
+//     stop() {
+//       super.stop(); // вызываем родительский метод stop
+//       this.hide(); // и затем hide
+//     }
+//   }
+  
+//   let rabbit1 = new Rabbit("Белый кролик");
+  
+//   rabbit.run(5); // Белый кролик бежит со скоростью 5.
+//   rabbit.stop(); // Белый кролик стоит. Белый кролик прячется!
+
+
+
+
+
+//   class Animal {
+
+//     constructor(name) {
+//       this.speed = 0;
+//       this.name = name;
+//     }
+  
+//     // ...
+//   }
+//   class Rabbit extends Animal {
+  
+//     constructor(name, earLength) {
+//       super(name);
+//       this.earLength = earLength;
+//     }
+  
+//     // ...
+//   }
+//   // теперь работает
+//   let rabbit11 = new Rabbit("Белый кролик", 10);
+//   alert(rabbit.name); // Белый кролик
+//   alert(rabbit.earLength); // 10
+
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   class Animal {
+//     showName() {  // вместо this.name = 'animal'
+//       alert('animal');
+//     }
+  
+//     constructor() {
+//       this.showName(); // вместо alert(this.name);
+//     }
+//   }
+  
+//   class Rabbit extends Animal {
+//     showName() {
+//       alert('rabbit');
+//     }
+//   }
+  
+//   new Animal(); // animal
+//   new Rabbit(); // rabbit
+// //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+// class Animal {
+
+//     constructor(name) {
+//       this.name = name;
+//     }
+  
+//   }
+  
+//   class Rabbit extends Animal {
+//     constructor(name) {
+//       super(name);
+//       this.created = Date.now();
+//     }
+//   }
+  
+//   let rabbit232 = new Rabbit("Белый кролик"); // ошибки нет
+//   alert(rabbit.name); // White Rabbit
+
+
+
+
+
+class Article {
+    constructor(title, date) {
+      this.title = title;
+      this.date = date;
     }
-    run(speed) {
-      this.speed = speed;
-      alert(`${this.name} бежит со скоростью ${this.speed}.`);
-    }
-    stop() {
-      this.speed = 0;
-      alert(`${this.name} стоит неподвижно.`);
+  
+    static compare(articleA, articleB) {
+      return articleA.date - articleB.date;
     }
   }
   
-  let animal = new Animal("Мой питомец");
+  // использование
+  let articles = [
+    new Article("HTML", new Date(2019, 1, 1)),
+    new Article("CSS", new Date(2019, 0, 1)),
+    new Article("JavaScript", new Date(2019, 11, 1))
+  ];
+  
+  articles.sort(Article.compare);
+  
+  alert( articles[0].title ); // CSS
 
 
+
+
+
+  class Article {
+    constructor(title, date) {
+      this.title = title;
+      this.date = date;
+    }
+  
+    static createTodays() {
+      // помним, что this = Article
+      return new this("Сегодняшний дайджест", new Date());
+    }
+  }
+  
+  let article = Article.createTodays();
+  
+  alert( article.title ); // Сегодняшний дайджест
+
+
+
+
+
+  class Article {
+    static publisher = "Илья Кантор";
+  }
+  alert( Article.publisher ); // Илья Кантор
+
+
+
+
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  class Animal {
+
+    constructor(name, speed) {
+      this.speed = speed;
+      this.name = name;
+    }
+  
+    run(speed = 0) {
+      this.speed += speed;
+      alert(`${this.name} бежит со скоростью ${this.speed}.`);
+    }
+  
+    static compare(animalA, animalB) {
+      return animalA.speed - animalB.speed;
+    }
+  
+  }
+  
+  // Наследует от Animal
   class Rabbit extends Animal {
     hide() {
       alert(`${this.name} прячется!`);
     }
   }
   
-  let rabbit = new Rabbit("Белый кролик");
+  let rabbits = [
+    new Rabbit("Белый кролик", 10),
+    new Rabbit("Чёрный кролик", 5)
+  ];
   
-  rabbit.run(5); // Белый кролик бежит со скоростью 5.
-  rabbit.hide(); // Белый кролик прячется!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-  function f(phrase) {
-    return class {
-      sayHi() { alert(phrase); }
-    };
-  }
+  rabbits.sort(Rabbit.compare);
   
-  class User extends f("Привет") {}
-  
-  new User().sayHi(); // Привет
+  rabbits[0].run(); // Чёрный кролик бежит со скоростью 5.
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
 
 
-
-  class Animal {
-
-    constructor(name) {
-      this.speed = 0;
-      this.name = name;
-    }
-  
-    run(speed) {
-      this.speed = speed;
-      alert(`${this.name} бежит со скоростью ${this.speed}.`);
-    }
-  
-    stop() {
-      this.speed = 0;
-      alert(`${this.name} стоит.`);
-    }
-  
-  }
-  
-  class Rabbit extends Animal {
-    hide() {
-      alert(`${this.name} прячется!`);
-    }
-  
-    stop() {
-      super.stop(); // вызываем родительский метод stop
-      this.hide(); // и затем hide
-    }
-  }
-  
-  let rabbit1 = new Rabbit("Белый кролик");
-  
-  rabbit.run(5); // Белый кролик бежит со скоростью 5.
-  rabbit.stop(); // Белый кролик стоит. Белый кролик прячется!
-
-
-
-
-
-  class Animal {
-
-    constructor(name) {
-      this.speed = 0;
-      this.name = name;
-    }
-  
-    // ...
-  }
-  class Rabbit extends Animal {
-  
-    constructor(name, earLength) {
-      super(name);
-      this.earLength = earLength;
-    }
-  
-    // ...
-  }
-  // теперь работает
-  let rabbit11 = new Rabbit("Белый кролик", 10);
-  alert(rabbit.name); // Белый кролик
-  alert(rabbit.earLength); // 10
-
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  class Animal {
-    showName() {  // вместо this.name = 'animal'
-      alert('animal');
-    }
-  
-    constructor() {
-      this.showName(); // вместо alert(this.name);
-    }
-  }
-  
-  class Rabbit extends Animal {
-    showName() {
-      alert('rabbit');
-    }
-  }
-  
-  new Animal(); // animal
-  new Rabbit(); // rabbit
-//   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-class Animal {
-
+  class Rabbit {
     constructor(name) {
       this.name = name;
     }
-  
   }
   
-  class Rabbit extends Animal {
+  let rabbit = new Rabbit("Rab");
+  
+  // метод hasOwnProperty от Object.prototype
+  alert( rabbit.hasOwnProperty('name') ); // true
+
+
+
+
+  class Rabbit extends Object {
     constructor(name) {
-      super(name);
-      this.created = Date.now();
+      super(); // надо вызвать конструктор родителя, когда наследуемся
+      this.name = name;
     }
   }
   
-  let rabbit232 = new Rabbit("Белый кролик"); // ошибки нет
-  alert(rabbit.name); // White Rabbit
-
-
-
-
-
+  let rabbit2 = new Rabbit("Кроль");
   
+  alert( rabbit.hasOwnProperty('name') ); // true
