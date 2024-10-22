@@ -5075,124 +5075,198 @@
 
 
 
-class Article {
-    constructor(title, date) {
-      this.title = title;
-      this.date = date;
-    }
+// class Article {
+//     constructor(title, date) {
+//       this.title = title;
+//       this.date = date;
+//     }
   
-    static compare(articleA, articleB) {
-      return articleA.date - articleB.date;
+//     static compare(articleA, articleB) {
+//       return articleA.date - articleB.date;
+//     }
+//   }
+  
+//   // использование
+//   let articles = [
+//     new Article("HTML", new Date(2019, 1, 1)),
+//     new Article("CSS", new Date(2019, 0, 1)),
+//     new Article("JavaScript", new Date(2019, 11, 1))
+//   ];
+  
+//   articles.sort(Article.compare);
+  
+//   alert( articles[0].title ); // CSS
+
+
+
+
+
+//   class Article {
+//     constructor(title, date) {
+//       this.title = title;
+//       this.date = date;
+//     }
+  
+//     static createTodays() {
+//       // помним, что this = Article
+//       return new this("Сегодняшний дайджест", new Date());
+//     }
+//   }
+  
+//   let article = Article.createTodays();
+  
+//   alert( article.title ); // Сегодняшний дайджест
+
+
+
+
+
+//   class Article {
+//     static publisher = "Илья Кантор";
+//   }
+//   alert( Article.publisher ); // Илья Кантор
+
+
+
+
+
+
+
+// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   class Animal {
+
+//     constructor(name, speed) {
+//       this.speed = speed;
+//       this.name = name;
+//     }
+  
+//     run(speed = 0) {
+//       this.speed += speed;
+//       alert(`${this.name} бежит со скоростью ${this.speed}.`);
+//     }
+  
+//     static compare(animalA, animalB) {
+//       return animalA.speed - animalB.speed;
+//     }
+  
+//   }
+  
+//   // Наследует от Animal
+//   class Rabbit extends Animal {
+//     hide() {
+//       alert(`${this.name} прячется!`);
+//     }
+//   }
+  
+//   let rabbits = [
+//     new Rabbit("Белый кролик", 10),
+//     new Rabbit("Чёрный кролик", 5)
+//   ];
+  
+//   rabbits.sort(Rabbit.compare);
+  
+//   rabbits[0].run(); // Чёрный кролик бежит со скоростью 5.
+//   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+//   class Rabbit {
+//     constructor(name) {
+//       this.name = name;
+//     }
+//   }
+  
+//   let rabbit = new Rabbit("Rab");
+  
+//   // метод hasOwnProperty от Object.prototype
+//   alert( rabbit.hasOwnProperty('name') ); // true
+
+
+
+
+//   class Rabbit extends Object {
+//     constructor(name) {
+//       super(); // надо вызвать конструктор родителя, когда наследуемся
+//       this.name = name;
+//     }
+//   }
+  
+//   let rabbit2 = new Rabbit("Кроль");
+  
+//   alert( rabbit.hasOwnProperty('name') ); // true
+
+
+
+// extend-natives
+
+
+// добавим один метод (можно более одного)
+class PowerArray extends Array {
+    isEmpty() {
+      return this.length === 0;
     }
   }
   
-  // использование
-  let articles = [
-    new Article("HTML", new Date(2019, 1, 1)),
-    new Article("CSS", new Date(2019, 0, 1)),
-    new Article("JavaScript", new Date(2019, 11, 1))
-  ];
+  let arr = new PowerArray(1, 2, 5, 10, 50);
+  alert(arr.isEmpty()); // false
   
-  articles.sort(Article.compare);
-  
-  alert( articles[0].title ); // CSS
+  let filteredArr = arr.filter(item => item >= 10);
+  alert(filteredArr); // 10, 50
+  alert(filteredArr.isEmpty()); // false
 
 
 
 
 
-  class Article {
-    constructor(title, date) {
-      this.title = title;
-      this.date = date;
+  class PowerArray extends Array {
+    isEmpty() {
+      return this.length === 0;
     }
   
-    static createTodays() {
-      // помним, что this = Article
-      return new this("Сегодняшний дайджест", new Date());
+    // встроенные методы массива будут использовать этот метод как конструктор
+    static get [Symbol.species]() {
+      return Array;
     }
   }
   
-  let article = Article.createTodays();
+  let arr32 = new PowerArray(1, 2, 5, 10, 50);
+  alert(arr.isEmpty()); // false
   
-  alert( article.title ); // Сегодняшний дайджест
+  // filter создаст новый массив, используя arr.constructor[Symbol.species] как конструктор
+  let filteredArr234 = arr.filter(item => item >= 10);
+  
+  // filteredArr не является PowerArray, это Array
+  alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 
 
 
 
-
-  class Article {
-    static publisher = "Илья Кантор";
-  }
-  alert( Article.publisher ); // Илья Кантор
-
-
-
-
-
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  class Animal {
-
-    constructor(name, speed) {
-      this.speed = speed;
-      this.name = name;
+  // примесь
+let sayHiMixin = {
+    sayHi() {
+      alert(`Привет, ${this.name}`);
+    },
+    sayBye() {
+      alert(`Пока, ${this.name}`);
     }
+  };
   
-    run(speed = 0) {
-      this.speed += speed;
-      alert(`${this.name} бежит со скоростью ${this.speed}.`);
-    }
-  
-    static compare(animalA, animalB) {
-      return animalA.speed - animalB.speed;
-    }
-  
-  }
-  
-  // Наследует от Animal
-  class Rabbit extends Animal {
-    hide() {
-      alert(`${this.name} прячется!`);
-    }
-  }
-  
-  let rabbits = [
-    new Rabbit("Белый кролик", 10),
-    new Rabbit("Чёрный кролик", 5)
-  ];
-  
-  rabbits.sort(Rabbit.compare);
-  
-  rabbits[0].run(); // Чёрный кролик бежит со скоростью 5.
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-  class Rabbit {
+  // использование:
+  class User {
     constructor(name) {
       this.name = name;
     }
   }
   
-  let rabbit = new Rabbit("Rab");
+  // копируем методы
+  Object.assign(User.prototype, sayHiMixin);
   
-  // метод hasOwnProperty от Object.prototype
-  alert( rabbit.hasOwnProperty('name') ); // true
+  // теперь User может сказать Привет
+  new User("Вася").sayHi(); // Привет, Вася!
 
 
 
 
-  class Rabbit extends Object {
-    constructor(name) {
-      super(); // надо вызвать конструктор родителя, когда наследуемся
-      this.name = name;
-    }
-  }
   
-  let rabbit2 = new Rabbit("Кроль");
-  
-  alert( rabbit.hasOwnProperty('name') ); // true
