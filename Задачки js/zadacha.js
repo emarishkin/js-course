@@ -4821,66 +4821,141 @@
 
 
 
-// class
+// // class
 
-let date= new Date();
+// let date= new Date();
 
-console.log(date.getFullYear())
-console.log(date.getMonth()+1)
-console.log(date.getDate())
-console.log(date.getHours())
+// console.log(date.getFullYear())
+// console.log(date.getMonth()+1)
+// console.log(date.getDate())
+// console.log(date.getHours())
 
-date.setFullYear(2922)
-console.log(date.getFullYear())
-
-
-let arr = [5,3,2,6]
-console.log(arr.join("  ,  "))
-console.log(arr.sort())
-console.log(arr.reverse())
-let stroka= arr.sort().join(", ")
-
-console.log(stroka.split(", "))
-console.log(arr.sort().join(".."))
+// date.setFullYear(2922)
+// console.log(date.getFullYear())
 
 
-class Person {
-    constructor(name, age,happiness){
-        this.name=name
-        this.age=age
-        this.happiness=happiness
-    }
-    info(){
-        console.log("Возраст:"+ this.age + "счастлив ли он:"+ this.happiness)
-        }
-}
+// let arr = [5,3,2,6]
+// console.log(arr.join("  ,  "))
+// console.log(arr.sort())
+// console.log(arr.reverse())
+// let stroka= arr.sort().join(", ")
+
+// console.log(stroka.split(", "))
+// console.log(arr.sort().join(".."))
+
+
+// class Person {
+//     constructor(name, age,happiness){
+//         this.name=name
+//         this.age=age
+//         this.happiness=happiness
+//     }
+//     info(){
+//         console.log("Возраст:"+ this.age + "счастлив ли он:"+ this.happiness)
+//         }
+// }
 
  
-let alex = new Person("Alex","20","true")
-let Bob = new Person("Bob","11","false")
+// let alex = new Person("Alex","20","true")
+// let Bob = new Person("Bob","11","false")
 
-alex.info()
-Bob.info()
-
-
-console.log(alex.age)
-console.log(Bob.name)
+// alex.info()
+// Bob.info()
 
 
+// console.log(alex.age)
+// console.log(Bob.name)
 
 
 
-function makeClass(phrase) {
-    // объявляем класс и возвращаем его
+
+
+// function makeClass(phrase) {
+//     // объявляем класс и возвращаем его
+//     return class {
+//       sayHi() {
+//         alert(phrase);
+//       };
+//     };
+//   }
+  
+//   // Создаём новый класс
+//   let User = makeClass("Привет");
+  
+//   new User().sayHi(); // Привет
+
+
+
+
+
+
+//   class User1 {
+
+//     constructor(name) {
+//       // вызывает сеттер
+//       this.name = name;
+//     }
+//     get name() {
+//       return this._name;
+//     }
+//     set name(value) {
+//       if (value.length < 4) {
+//         alert("Имя слишком короткое.");
+//         return;
+//       }
+//       this._name = value;
+//     }
+  
+//   }
+//   let user = new User("Иван");
+//   alert(user.name); // Иван
+//   user = new User(""); // Имя слишком короткое.
+
+
+
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+class Animal {
+    constructor(name) {
+      this.speed = 0;
+      this.name = name;
+    }
+    run(speed) {
+      this.speed = speed;
+      alert(`${this.name} бежит со скоростью ${this.speed}.`);
+    }
+    stop() {
+      this.speed = 0;
+      alert(`${this.name} стоит неподвижно.`);
+    }
+  }
+  
+  let animal = new Animal("Мой питомец");
+
+
+  class Rabbit extends Animal {
+    hide() {
+      alert(`${this.name} прячется!`);
+    }
+  }
+  
+  let rabbit = new Rabbit("Белый кролик");
+  
+  rabbit.run(5); // Белый кролик бежит со скоростью 5.
+  rabbit.hide(); // Белый кролик прячется!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+  function f(phrase) {
     return class {
-      sayHi() {
-        alert(phrase);
-      };
+      sayHi() { alert(phrase); }
     };
   }
   
-  // Создаём новый класс
-  let User = makeClass("Привет");
+  class User extends f("Привет") {}
   
   new User().sayHi(); // Привет
 
@@ -4889,29 +4964,115 @@ function makeClass(phrase) {
 
 
 
-  class User1 {
+  class Animal {
 
     constructor(name) {
-      // вызывает сеттер
+      this.speed = 0;
       this.name = name;
     }
-    get name() {
-      return this._name;
+  
+    run(speed) {
+      this.speed = speed;
+      alert(`${this.name} бежит со скоростью ${this.speed}.`);
     }
-    set name(value) {
-      if (value.length < 4) {
-        alert("Имя слишком короткое.");
-        return;
-      }
-      this._name = value;
+  
+    stop() {
+      this.speed = 0;
+      alert(`${this.name} стоит.`);
     }
   
   }
-  let user = new User("Иван");
-  alert(user.name); // Иван
-  user = new User(""); // Имя слишком короткое.
+  
+  class Rabbit extends Animal {
+    hide() {
+      alert(`${this.name} прячется!`);
+    }
+  
+    stop() {
+      super.stop(); // вызываем родительский метод stop
+      this.hide(); // и затем hide
+    }
+  }
+  
+  let rabbit1 = new Rabbit("Белый кролик");
+  
+  rabbit.run(5); // Белый кролик бежит со скоростью 5.
+  rabbit.stop(); // Белый кролик стоит. Белый кролик прячется!
 
 
 
 
 
+  class Animal {
+
+    constructor(name) {
+      this.speed = 0;
+      this.name = name;
+    }
+  
+    // ...
+  }
+  class Rabbit extends Animal {
+  
+    constructor(name, earLength) {
+      super(name);
+      this.earLength = earLength;
+    }
+  
+    // ...
+  }
+  // теперь работает
+  let rabbit11 = new Rabbit("Белый кролик", 10);
+  alert(rabbit.name); // Белый кролик
+  alert(rabbit.earLength); // 10
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  class Animal {
+    showName() {  // вместо this.name = 'animal'
+      alert('animal');
+    }
+  
+    constructor() {
+      this.showName(); // вместо alert(this.name);
+    }
+  }
+  
+  class Rabbit extends Animal {
+    showName() {
+      alert('rabbit');
+    }
+  }
+  
+  new Animal(); // animal
+  new Rabbit(); // rabbit
+//   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+class Animal {
+
+    constructor(name) {
+      this.name = name;
+    }
+  
+  }
+  
+  class Rabbit extends Animal {
+    constructor(name) {
+      super(name);
+      this.created = Date.now();
+    }
+  }
+  
+  let rabbit232 = new Rabbit("Белый кролик"); // ошибки нет
+  alert(rabbit.name); // White Rabbit
+
+
+
+
+
+  
