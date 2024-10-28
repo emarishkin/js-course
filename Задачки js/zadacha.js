@@ -5269,88 +5269,161 @@
 
 
 
-// примесь custom-errors
-let sayHiMixin = {
-    sayHi() {
-      alert(Привет, this.name);
-    },
-    sayBye() {
-      alert(Пока, this.name);
-    }
-  };
+// // примесь custom-errors
+// let sayHiMixin = {
+//     sayHi() {
+//       alert(Привет, this.name);
+//     },
+//     sayBye() {
+//       alert(Пока, this.name);
+//     }
+//   };
   
-  // использование:
-  class User {
-    constructor(name) {
-      this.name = name;
-    }
+//   // использование:
+//   class User {
+//     constructor(name) {
+//       this.name = name;
+//     }
+//   }
+  
+//   // копируем методы
+//   Object.assign(User.prototype, sayHiMixin);
+  
+//   // теперь User может сказать Привет
+//   new User("Вася").sayHi(); // Привет, Вася!
+  
+  
+  
+  
+  
+//   let sayMixin = {
+//     say(phrase) {
+//       alert(phrase);
+//     }
+//   };
+  
+//   let sayHiMixin1 = {
+//     proto: sayMixin, // (или мы можем использовать Object.setPrototypeOf для задания прототипа)
+  
+//     sayHi() {
+//       // вызываем метод родителя
+//       super.say(Привет, this.name); // (*)
+//     },
+//     sayBye() {
+//       super.say(Пока, this.name); // (*)
+//     }
+//   };
+  
+//   class User {
+//     constructor(name) {
+//       this.name = name;
+//     }
+//   }
+  
+//   // копируем методы
+//   Object.assign(User.prototype, sayHiMixin);
+  
+//   // теперь User может сказать Привет
+//   new User("Вася").sayHi(); // Привет, Вася!
+  
+  
+  
+  
+//   let json = "{ некорректный JSON }";
+//   try {
+//     let user = JSON.parse(json); // <-- тут возникает ошибка...
+//     alert( user.name ); // не сработает
+  
+//   } catch (e) {
+//     // ...выполнение прыгает сюда
+//     alert( "Извините, в данных ошибка, мы попробуем получить их ещё раз." );
+//     alert( e.name );
+//     alert( e.message );
+//   }
+  
+  
+  
+  
+//   let json1 = '{ "age": 30 }'; // данные неполны
+//   try {
+//     let user = JSON.parse(json); // <-- выполнится без ошибок
+//     if (!user.name) {
+//       throw new SyntaxError("Данные неполны: нет имени"); // (*)
+//     }
+//     alert( user.name );
+//   } catch(e) {
+//     alert( "JSON Error: " + e.message ); // JSON Error: Данные неполны: нет имени
+//   }
+
+
+// callbacks
+
+loadScript('/my/script.js', function() {
+  // эта функция вызовется после того, как загрузится скрипт
+  newFunction(); // теперь всё работает  
+});
+
+
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () => callback(null, script);
+//   script.onerror = () => callback(new Error(Не удалось загрузить скрипт ${src}));
+
+  document.head.append(script);
+}
+
+
+
+loadScript('1.js', function(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...и так далее, пока все скрипты не будут загружены (*)
+          }
+        });
+
+      }
+    })
   }
-  
-  // копируем методы
-  Object.assign(User.prototype, sayHiMixin);
-  
-  // теперь User может сказать Привет
-  new User("Вася").sayHi(); // Привет, Вася!
-  
-  
-  
-  
-  
-  let sayMixin = {
-    say(phrase) {
-      alert(phrase);
-    }
-  };
-  
-  let sayHiMixin1 = {
-    proto: sayMixin, // (или мы можем использовать Object.setPrototypeOf для задания прототипа)
-  
-    sayHi() {
-      // вызываем метод родителя
-      super.say(Привет, this.name); // (*)
-    },
-    sayBye() {
-      super.say(Пока, this.name); // (*)
-    }
-  };
-  
-  class User {
-    constructor(name) {
-      this.name = name;
-    }
+});
+
+
+loadScript('1.js', step1);
+
+function step1(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', step2);
   }
-  
-  // копируем методы
-  Object.assign(User.prototype, sayHiMixin);
-  
-  // теперь User может сказать Привет
-  new User("Вася").sayHi(); // Привет, Вася!
-  
-  
-  
-  
-  let json = "{ некорректный JSON }";
-  try {
-    let user = JSON.parse(json); // <-- тут возникает ошибка...
-    alert( user.name ); // не сработает
-  
-  } catch (e) {
-    // ...выполнение прыгает сюда
-    alert( "Извините, в данных ошибка, мы попробуем получить их ещё раз." );
-    alert( e.name );
-    alert( e.message );
+}
+
+function step2(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('3.js', step3);
   }
-  
-  
-  
-  
-  let json1 = '{ "age": 30 }'; // данные неполны
-  try {
-    let user = JSON.parse(json); // <-- выполнится без ошибок
-    if (!user.name) {
-      throw new SyntaxError("Данные неполны: нет имени"); // (*)
-    }
-    alert( user.name );
-  } catch(e) {
-    alert( "JSON Error: " + e.message ); // JSON Error: Данные неполны: нет имени
+}
+
+function step3(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...и так далее, пока все скрипты не будут загружены (*)
   }
+};
