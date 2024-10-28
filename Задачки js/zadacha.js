@@ -5199,57 +5199,83 @@
 
 
 
-// extend-natives
+// // extend-natives
 
 
-// добавим один метод (можно более одного)
-class PowerArray extends Array {
-    isEmpty() {
-      return this.length === 0;
-    }
-  }
+// // добавим один метод (можно более одного)
+// class PowerArray extends Array {
+//     isEmpty() {
+//       return this.length === 0;
+//     }
+//   }
   
-  let arr = new PowerArray(1, 2, 5, 10, 50);
-  alert(arr.isEmpty()); // false
+//   let arr = new PowerArray(1, 2, 5, 10, 50);
+//   alert(arr.isEmpty()); // false
   
-  let filteredArr = arr.filter(item => item >= 10);
-  alert(filteredArr); // 10, 50
-  alert(filteredArr.isEmpty()); // false
+//   let filteredArr = arr.filter(item => item >= 10);
+//   alert(filteredArr); // 10, 50
+//   alert(filteredArr.isEmpty()); // false
 
 
 
 
 
-  class PowerArray extends Array {
-    isEmpty() {
-      return this.length === 0;
-    }
+//   class PowerArray extends Array {
+//     isEmpty() {
+//       return this.length === 0;
+//     }
   
-    // встроенные методы массива будут использовать этот метод как конструктор
-    static get [Symbol.species]() {
-      return Array;
-    }
-  }
+//     // встроенные методы массива будут использовать этот метод как конструктор
+//     static get [Symbol.species]() {
+//       return Array;
+//     }
+//   }
   
-  let arr32 = new PowerArray(1, 2, 5, 10, 50);
-  alert(arr.isEmpty()); // false
+//   let arr32 = new PowerArray(1, 2, 5, 10, 50);
+//   alert(arr.isEmpty()); // false
   
-  // filter создаст новый массив, используя arr.constructor[Symbol.species] как конструктор
-  let filteredArr234 = arr.filter(item => item >= 10);
+//   // filter создаст новый массив, используя arr.constructor[Symbol.species] как конструктор
+//   let filteredArr234 = arr.filter(item => item >= 10);
   
-  // filteredArr не является PowerArray, это Array
-  alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
+//   // filteredArr не является PowerArray, это Array
+//   alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 
 
 
 
-  // примесь
+//   // примесь
+// let sayHiMixin = {
+//     sayHi() {
+//       alert(`Привет, ${this.name}`);
+//     },
+//     sayBye() {
+//       alert(`Пока, ${this.name}`);
+//     }
+//   };
+  
+//   // использование:
+//   class User {
+//     constructor(name) {
+//       this.name = name;
+//     }
+//   }
+  
+//   // копируем методы
+//   Object.assign(User.prototype, sayHiMixin);
+  
+//   // теперь User может сказать Привет
+//   new User("Вася").sayHi(); // Привет, Вася!
+
+
+
+
+// примесь custom-errors
 let sayHiMixin = {
     sayHi() {
-      alert(`Привет, ${this.name}`);
+      alert(Привет, this.name);
     },
     sayBye() {
-      alert(`Пока, ${this.name}`);
+      alert(Пока, this.name);
     }
   };
   
@@ -5265,8 +5291,66 @@ let sayHiMixin = {
   
   // теперь User может сказать Привет
   new User("Вася").sayHi(); // Привет, Вася!
-
-
-
-
   
+  
+  
+  
+  
+  let sayMixin = {
+    say(phrase) {
+      alert(phrase);
+    }
+  };
+  
+  let sayHiMixin1 = {
+    proto: sayMixin, // (или мы можем использовать Object.setPrototypeOf для задания прототипа)
+  
+    sayHi() {
+      // вызываем метод родителя
+      super.say(Привет, this.name); // (*)
+    },
+    sayBye() {
+      super.say(Пока, this.name); // (*)
+    }
+  };
+  
+  class User {
+    constructor(name) {
+      this.name = name;
+    }
+  }
+  
+  // копируем методы
+  Object.assign(User.prototype, sayHiMixin);
+  
+  // теперь User может сказать Привет
+  new User("Вася").sayHi(); // Привет, Вася!
+  
+  
+  
+  
+  let json = "{ некорректный JSON }";
+  try {
+    let user = JSON.parse(json); // <-- тут возникает ошибка...
+    alert( user.name ); // не сработает
+  
+  } catch (e) {
+    // ...выполнение прыгает сюда
+    alert( "Извините, в данных ошибка, мы попробуем получить их ещё раз." );
+    alert( e.name );
+    alert( e.message );
+  }
+  
+  
+  
+  
+  let json1 = '{ "age": 30 }'; // данные неполны
+  try {
+    let user = JSON.parse(json); // <-- выполнится без ошибок
+    if (!user.name) {
+      throw new SyntaxError("Данные неполны: нет имени"); // (*)
+    }
+    alert( user.name );
+  } catch(e) {
+    alert( "JSON Error: " + e.message ); // JSON Error: Данные неполны: нет имени
+  }
