@@ -5694,159 +5694,216 @@
 // alert(generator.next().value); // 1622650073
 
 
-// https://learn.javascript.ru/modules-intro
-// modules-intro
+// // https://learn.javascript.ru/modules-intro
+// // modules-intro
 
 
-// 📁 sayHi.js
-export function sayHi(user) {
-  alert(`Hello, ${user}!`);
+// // 📁 sayHi.js
+// export function sayHi(user) {
+//   alert(`Hello, ${user}!`);
+// }
+
+
+// // 📁 main.js
+// import {sayHi} from './sayHi.js';
+// alert(sayHi); // function...
+// sayHi('John'); // Hello, John!
+
+
+
+
+// // 📁 admin.js
+// export let admin = {
+//   name: "John"
+// };
+
+// // 📁 1.js
+// import {admin} from './admin.js';
+// admin.name = "Pete";
+
+// // 📁 2.js
+// import {admin} from './admin.js';
+// alert(admin.name); // Pete
+// // Оба файла, 1.js и 2.js, импортируют один и тот же объект
+// // Изменения, сделанные в 1.js, будут видны в 2.js
+
+
+
+// // 📁 admin.js
+// export let admin = { };
+// export function sayHi() {
+//   alert(`Ready to serve, ${admin.name}!`);
+// }
+// // В init.js, первом скрипте нашего приложения, мы установим admin.name. Тогда все это увидят, включая вызовы, сделанные из самого admin.js:
+
+// // 📁 init.js
+// import {admin} from './admin.js';
+// admin.name = "Pete";
+// // Другой модуль тоже увидит admin.name:
+
+// // 📁 other.js
+// import {admin, sayHi} from './admin.js';
+// alert(admin.name); // Pete
+// sayHi(); // Ready to serve, Pete!
+
+
+
+
+// // экспорт массива
+// export let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// // экспорт константы
+// export const MODULES_BECAME_STANDARD_YEAR = 2015;
+// // экспорт класса
+// export class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+
+
+// // 📁 say.js
+// function sayHi(user) {
+//   alert(`Hello, ${user}!`);
+// }
+// function sayBye(user) {
+//   alert(`Bye, ${user}!`);
+// }
+// export {sayHi, sayBye}; // список экспортируемых переменных
+
+
+// // 📁 main.js
+// import {sayHi, sayBye} from './say.js';
+// sayHi('John'); // Hello, John!
+// sayBye('John'); // Bye, John!
+
+
+
+
+// // 📁 main.js
+// import {sayHi as hi, sayBye as bye} from './say.js';
+// hi('John'); // Hello, John!
+// bye('John'); // Bye, John!
+
+
+
+
+
+// // 📁 say.js
+// export {sayHi as hi, sayBye as bye};
+// // Теперь hi и bye – официальные имена для внешнего кода, их нужно использовать при импорте:
+// // 📁 main.js
+// import * as say from './say.js';
+// say.hi('John'); // Hello, John!
+// say.bye('John'); // Bye, John!
+
+
+
+
+// // Именованный экспорт	                 Экспорт по умолчанию
+// // export class User {...}	           export default class User {...}
+// // import {User} from ...	                 import User from ...
+
+
+
+
+// function sayHi(user) {
+//   alert(`Hello, ${user}!`);
+// }
+// // то же самое, как если бы мы добавили "export default" перед функцией
+// export {sayHi as default};
+
+
+
+// // 📁 user.js
+// export default class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+// export function sayHi(user) {
+//   alert(`Hello, ${user}!`);
+// }
+
+
+
+// // 📁 main.js
+// import {default as User, sayHi} from './user.js';
+// new User('John');
+
+
+
+
+
+// let modulePath = prompt("Какой модуль загружать?");
+
+// import(modulePath)
+//   // .then(obj => <объект модуля>)
+//   {/* .catch(err => <ошибка загрузки, например если нет такого модуля>)? */}
+
+
+//   // 📁 say.js
+// export function hi() {
+//   alert(`Привет`);
+// }
+
+// export function bye() {
+//   alert(`Пока`);
+// }
+
+
+// https://learn.javascript.ru/currying-partials
+// currying-partials
+
+
+function curry(f) { // curry(f) выполняет каррирование
+  return function(a) {
+    return function(b) {
+      return f(a, b);
+    };
+  };
+}
+// использование
+function sum(a, b) {
+  return a + b;
+}
+let curriedSum = curry(sum);
+alert( curriedSum(1)(2) ); // 3
+
+
+
+
+function sum(a, b) {
+  return a + b;
+}
+let curriedSum4 = _.curry(sum); // используем _.curry из lodash
+alert( curriedSum(1, 2) ); // 3, можно вызывать как обычно
+alert( curriedSum(1)(2) ); // 3, а можно частично
+
+
+function curry(func) {
+
+  return function curried(...args) {
+    if (args.length >= func.length) {
+      return func.apply(this, args);
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      }
+    }
+  };
+
 }
 
-
-// 📁 main.js
-import {sayHi} from './sayHi.js';
-alert(sayHi); // function...
-sayHi('John'); // Hello, John!
-
-
-
-
-// 📁 admin.js
-export let admin = {
-  name: "John"
-};
-
-// 📁 1.js
-import {admin} from './admin.js';
-admin.name = "Pete";
-
-// 📁 2.js
-import {admin} from './admin.js';
-alert(admin.name); // Pete
-// Оба файла, 1.js и 2.js, импортируют один и тот же объект
-// Изменения, сделанные в 1.js, будут видны в 2.js
-
-
-
-// 📁 admin.js
-export let admin = { };
-export function sayHi() {
-  alert(`Ready to serve, ${admin.name}!`);
-}
-// В init.js, первом скрипте нашего приложения, мы установим admin.name. Тогда все это увидят, включая вызовы, сделанные из самого admin.js:
-
-// 📁 init.js
-import {admin} from './admin.js';
-admin.name = "Pete";
-// Другой модуль тоже увидит admin.name:
-
-// 📁 other.js
-import {admin, sayHi} from './admin.js';
-alert(admin.name); // Pete
-sayHi(); // Ready to serve, Pete!
-
-
-
-
-// экспорт массива
-export let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-// экспорт константы
-export const MODULES_BECAME_STANDARD_YEAR = 2015;
-// экспорт класса
-export class User {
-  constructor(name) {
-    this.name = name;
-  }
+function sum(a, b, c) {
+  return a + b + c;
 }
 
+let curriedSum3 = curry(sum);
 
-
-// 📁 say.js
-function sayHi(user) {
-  alert(`Hello, ${user}!`);
-}
-function sayBye(user) {
-  alert(`Bye, ${user}!`);
-}
-export {sayHi, sayBye}; // список экспортируемых переменных
-
-
-// 📁 main.js
-import {sayHi, sayBye} from './say.js';
-sayHi('John'); // Hello, John!
-sayBye('John'); // Bye, John!
+alert( curriedSum(1, 2, 3) ); // 6, всё ещё можно вызывать нормально
+alert( curriedSum(1)(2,3) ); // 6, каррирование первого аргумента
+alert( curriedSum(1)(2)(3) ); // 6, каррирование всех аргументов
 
 
 
-
-// 📁 main.js
-import {sayHi as hi, sayBye as bye} from './say.js';
-hi('John'); // Hello, John!
-bye('John'); // Bye, John!
-
-
-
-
-
-// 📁 say.js
-export {sayHi as hi, sayBye as bye};
-// Теперь hi и bye – официальные имена для внешнего кода, их нужно использовать при импорте:
-// 📁 main.js
-import * as say from './say.js';
-say.hi('John'); // Hello, John!
-say.bye('John'); // Bye, John!
-
-
-
-
-// Именованный экспорт	                 Экспорт по умолчанию
-// export class User {...}	           export default class User {...}
-// import {User} from ...	                 import User from ...
-
-
-
-
-function sayHi(user) {
-  alert(`Hello, ${user}!`);
-}
-// то же самое, как если бы мы добавили "export default" перед функцией
-export {sayHi as default};
-
-
-
-// 📁 user.js
-export default class User {
-  constructor(name) {
-    this.name = name;
-  }
-}
-export function sayHi(user) {
-  alert(`Hello, ${user}!`);
-}
-
-
-
-// 📁 main.js
-import {default as User, sayHi} from './user.js';
-new User('John');
-
-
-
-
-
-let modulePath = prompt("Какой модуль загружать?");
-
-import(modulePath)
-  // .then(obj => <объект модуля>)
-  {/* .catch(err => <ошибка загрузки, например если нет такого модуля>)? */}
-
-
-  // 📁 say.js
-export function hi() {
-  alert(`Привет`);
-}
-
-export function bye() {
-  alert(`Пока`);
-}
