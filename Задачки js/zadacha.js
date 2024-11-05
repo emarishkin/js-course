@@ -5429,94 +5429,158 @@
 // };
 
 
-// promise
-let promise = new Promise(function(resolve, reject) {
-    setTimeout(() => resolve("done!"), 1000);
-  });
+// // promise
+// let promise = new Promise(function(resolve, reject) {
+//     setTimeout(() => resolve("done!"), 1000);
+//   });
   
-  // resolve запустит первую функцию, переданную в .then
-  promise.then(
-    result => alert(result), // выведет "done!" через одну секунду
-    error => alert(error) // не будет запущена
-  );
-  
-  
-  let promise1 = new Promise(function(resolve, reject) {
-    setTimeout(() => reject(new Error("Whoops!")), 1000);
-  });
-  
-  // reject запустит вторую функцию, переданную в .then
-  promise.then(
-    result => alert(result), // не будет запущена
-    error => alert(error) // выведет "Error: Whoops!" спустя одну секунду
-  );
+//   // resolve запустит первую функцию, переданную в .then
+//   promise.then(
+//     result => alert(result), // выведет "done!" через одну секунду
+//     error => alert(error) // не будет запущена
+//   );
   
   
+//   let promise1 = new Promise(function(resolve, reject) {
+//     setTimeout(() => reject(new Error("Whoops!")), 1000);
+//   });
   
-  
-  let promise2 = new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error("Ошибка!")), 1000);
-  });
-  // .catch(f) это то же самое, что promise.then(null, f)
-  promise.catch(alert); // выведет "Error: Ошибка!" спустя одну секунду
-  
-  
-  
-  new Promise((resolve, reject) => {
-    /* сделать что-то, что займёт время, и после вызвать resolve или может reject */
-  })
-    // выполнится, когда промис завершится, независимо от того, успешно или нет
-    // .finally(() => остановить индикатор загрузки)
-    // таким образом, индикатор загрузки всегда останавливается, прежде чем мы продолжим
-    // .then(result => показать результат, err => показать ошибку)
+//   // reject запустит вторую функцию, переданную в .then
+//   promise.then(
+//     result => alert(result), // не будет запущена
+//     error => alert(error) // выведет "Error: Whoops!" спустя одну секунду
+//   );
   
   
   
   
-    new Promise((resolve, reject) => {
-      setTimeout(() => resolve("value"), 2000);
-    })
-      .finally(() => alert("Промис завершён")) // срабатывает первым
-      .then(result => alert(result)); // <-- .then показывает "value"
+//   let promise2 = new Promise((resolve, reject) => {
+//     setTimeout(() => reject(new Error("Ошибка!")), 1000);
+//   });
+//   // .catch(f) это то же самое, что promise.then(null, f)
+//   promise.catch(alert); // выведет "Error: Ошибка!" спустя одну секунду
   
   
   
-      new Promise((resolve, reject) => {
-        throw new Error("error");
-      })
-        .finally(() => alert("Промис завершён")) // срабатывает первым
-        .catch(err => alert(err));  // <-- .catch показывает ошибку
+//   new Promise((resolve, reject) => {
+//     /* сделать что-то, что займёт время, и после вызвать resolve или может reject */
+//   })
+//     // выполнится, когда промис завершится, независимо от того, успешно или нет
+//     // .finally(() => остановить индикатор загрузки)
+//     // таким образом, индикатор загрузки всегда останавливается, прежде чем мы продолжим
+//     // .then(result => показать результат, err => показать ошибку)
   
   
   
   
-        function loadScript(src, callback) {
-          let script = document.createElement('script');
-          script.src = src;
+//     new Promise((resolve, reject) => {
+//       setTimeout(() => resolve("value"), 2000);
+//     })
+//       .finally(() => alert("Промис завершён")) // срабатывает первым
+//       .then(result => alert(result)); // <-- .then показывает "value"
+  
+  
+  
+//       new Promise((resolve, reject) => {
+//         throw new Error("error");
+//       })
+//         .finally(() => alert("Промис завершён")) // срабатывает первым
+//         .catch(err => alert(err));  // <-- .catch показывает ошибку
+  
+  
+  
+  
+//         function loadScript(src, callback) {
+//           let script = document.createElement('script');
+//           script.src = src;
         
-          script.onload = () => callback(null, script);
-        //   script.onerror = () => callback(new Error(Ошибка загрузки скрипта ${src}));
+//           script.onload = () => callback(null, script);
+//         //   script.onerror = () => callback(new Error(Ошибка загрузки скрипта ${src}));
         
-          document.head.append(script);
-        }
+//           document.head.append(script);
+//         }
   
   
   
   
-        let promise3 = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
-      promise.then(
-    // script => alert(${script.src} загружен!),
-    // error => alert(Ошибка: ${error.message})
-  );
-  promise.then(script => alert('Ещё один обработчик...'));
+//         let promise3 = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+//       promise.then(
+//     // script => alert(${script.src} загружен!),
+//     // error => alert(Ошибка: ${error.message})
+//   );
+//   promise.then(script => alert('Ещё один обработчик...'));
   
   
-  // Промисы  Колбэки
-  // Промисы позволяют делать вещи в естественном порядке. Сперва мы запускаем loadScript(script), и затем (.then) мы пишем, что делать с результатом.  У нас должна быть функцияcallback на момент вызова loadScript(script, callback). Другими словами, нам нужно знать что делать с результатом до того, как вызовется loadScript.
-  // Мы можем вызывать .then у Promise столько раз, сколько захотим. Каждый раз мы добавляем нового «фаната», новую функцию-подписчика в «список подписок». Больше об этом в следующей главе: Цепочка промисов.  Колбэк может быть только один.
+//   // Промисы  Колбэки
+//   // Промисы позволяют делать вещи в естественном порядке. Сперва мы запускаем loadScript(script), и затем (.then) мы пишем, что делать с результатом.  У нас должна быть функцияcallback на момент вызова loadScript(script, callback). Другими словами, нам нужно знать что делать с результатом до того, как вызовется loadScript.
+//   // Мы можем вызывать .then у Promise столько раз, сколько захотим. Каждый раз мы добавляем нового «фаната», новую функцию-подписчика в «список подписок». Больше об этом в следующей главе: Цепочка промисов.  Колбэк может быть только один.
   
   
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  delay(3000).then(() => alert('выполнилось через 3 секунды'));
+//   function delay(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+//   }
+//   delay(3000).then(() => alert('выполнилось через 3 секунды'));
+
+
+
+// https://learn.javascript.ru/generators
+// generators
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+// "функция-генератор" создаёт объект "генератор"
+let generator = generateSequence();
+alert(generator); // [object Generator]
+
+
+
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+let generator1 = generateSequence();
+let one = generator1.next();
+alert(JSON.stringify(one)); // {value: 1, done: false}
+
+
+let three = generator.next();
+alert(JSON.stringify(three)); // {value: 3, done: true}
+
+
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+let generator2 = generateSequence();
+for(let value of generator) {
+  alert(value); // 1, затем 2
+}
+
+
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+let generator3 = generateSequence();
+for(let value of generator) {
+  alert(value); // 1, затем 2, затем 3
+}
+
+
+
+function* generateSequence() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+let sequence = [0, ...generateSequence()];
+alert(sequence); // 0, 1, 2, 3
