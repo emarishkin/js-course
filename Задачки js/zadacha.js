@@ -5586,109 +5586,267 @@
 // alert(sequence); // 0, 1, 2, 3
 
 
-// generators2
+// // generators2
 
 
-let range = {
-  from: 1,
-  to: 5,
-  // for..of range вызывает этот метод один раз в самом начале
-  [Symbol.iterator]() {
-    // ...он возвращает перебираемый объект:
-    // далее for..of работает только с этим объектом, запрашивая следующие значения
-    return {
-      current: this.from,
-      last: this.to,
-      // next() вызывается при каждой итерации цикла for..of
-      next() {
-        // нужно вернуть значение как объект {done:.., value :...}
-        if (this.current <= this.last) {
-          return { done: false, value: this.current++ };
-        } else {
-          return { done: true };
-        }
-      }
-    };
-  }
+// let range = {
+//   from: 1,
+//   to: 5,
+//   // for..of range вызывает этот метод один раз в самом начале
+//   [Symbol.iterator]() {
+//     // ...он возвращает перебираемый объект:
+//     // далее for..of работает только с этим объектом, запрашивая следующие значения
+//     return {
+//       current: this.from,
+//       last: this.to,
+//       // next() вызывается при каждой итерации цикла for..of
+//       next() {
+//         // нужно вернуть значение как объект {done:.., value :...}
+//         if (this.current <= this.last) {
+//           return { done: false, value: this.current++ };
+//         } else {
+//           return { done: true };
+//         }
+//       }
+//     };
+//   }
+// };
+// // при переборе объекта range будут выведены числа от range.from до range.to
+// alert([...range]); // 1,2,3,4,5
+
+
+
+// let range2 = {
+//   from: 1,
+//   to: 5,
+//   *[Symbol.iterator]() { // краткая запись для [Symbol.iterator]: function*()
+//     for(let value = this.from; value <= this.to; value++) {
+//       yield value;
+//     }
+//   }
+// };
+// alert( [...range] ); // 1,2,3,4,5
+
+
+
+
+// function* generateSequence(start, end) {
+//   for (let i = start; i <= end; i++) yield i;
+// }
+// function* generatePasswordCodes() {
+//   // 0..9
+//   yield* generateSequence(48, 57);
+//   // A..Z
+//   yield* generateSequence(65, 90);
+//   // a..z
+//   yield* generateSequence(97, 122);
+
+// }
+// let str = '';
+// for(let code of generatePasswordCodes()) {
+//   str += String.fromCharCode(code);
+// }
+// alert(str); // 0..9A..Za..z
+
+
+
+// function* gen() {
+//   // Передаём вопрос во внешний код и ожидаем ответа
+//   let result = yield "2 + 2 = ?"; // (*)
+
+//   alert(result);
+// }
+// let generator = gen();
+// let question = generator.next().value; // <-- yield возвращает значение
+// generator.next(4); // --> передаём результат в генератор
+
+
+
+// // возобновить генератор через некоторое время
+// setTimeout(() => generator.next(4), 1000);
+
+
+
+
+// function* gen() {
+//   let ask1 = yield "2 + 2 = ?";
+//   alert(ask1); // 4
+//   let ask2 = yield "3 * 3 = ?"
+//   alert(ask2); // 9
+// }
+// let generator43 = gen();
+// alert( generator.next().value ); // "2 + 2 = ?"
+// alert( generator.next(4).value ); // "3 * 3 = ?"
+// alert( generator.next(9).done ); // true
+
+
+
+// function* pseudoRandom(seed) {
+//   let value = seed;
+//   while(true) {
+//     value = value * 16807 % 2147483647
+//     yield value;
+//   }
+// };
+// let generator876 = pseudoRandom(1);
+// alert(generator.next().value); // 16807
+// alert(generator.next().value); // 282475249
+// alert(generator.next().value); // 1622650073
+
+
+// https://learn.javascript.ru/modules-intro
+// modules-intro
+
+
+// 📁 sayHi.js
+export function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+
+// 📁 main.js
+import {sayHi} from './sayHi.js';
+alert(sayHi); // function...
+sayHi('John'); // Hello, John!
+
+
+
+
+// 📁 admin.js
+export let admin = {
+  name: "John"
 };
-// при переборе объекта range будут выведены числа от range.from до range.to
-alert([...range]); // 1,2,3,4,5
+
+// 📁 1.js
+import {admin} from './admin.js';
+admin.name = "Pete";
+
+// 📁 2.js
+import {admin} from './admin.js';
+alert(admin.name); // Pete
+// Оба файла, 1.js и 2.js, импортируют один и тот же объект
+// Изменения, сделанные в 1.js, будут видны в 2.js
 
 
 
-let range2 = {
-  from: 1,
-  to: 5,
-  *[Symbol.iterator]() { // краткая запись для [Symbol.iterator]: function*()
-    for(let value = this.from; value <= this.to; value++) {
-      yield value;
-    }
+// 📁 admin.js
+export let admin = { };
+export function sayHi() {
+  alert(`Ready to serve, ${admin.name}!`);
+}
+// В init.js, первом скрипте нашего приложения, мы установим admin.name. Тогда все это увидят, включая вызовы, сделанные из самого admin.js:
+
+// 📁 init.js
+import {admin} from './admin.js';
+admin.name = "Pete";
+// Другой модуль тоже увидит admin.name:
+
+// 📁 other.js
+import {admin, sayHi} from './admin.js';
+alert(admin.name); // Pete
+sayHi(); // Ready to serve, Pete!
+
+
+
+
+// экспорт массива
+export let months = ['Jan', 'Feb', 'Mar', 'Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// экспорт константы
+export const MODULES_BECAME_STANDARD_YEAR = 2015;
+// экспорт класса
+export class User {
+  constructor(name) {
+    this.name = name;
   }
-};
-alert( [...range] ); // 1,2,3,4,5
-
-
-
-
-function* generateSequence(start, end) {
-  for (let i = start; i <= end; i++) yield i;
 }
-function* generatePasswordCodes() {
-  // 0..9
-  yield* generateSequence(48, 57);
-  // A..Z
-  yield* generateSequence(65, 90);
-  // a..z
-  yield* generateSequence(97, 122);
 
+
+
+// 📁 say.js
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
 }
-let str = '';
-for(let code of generatePasswordCodes()) {
-  str += String.fromCharCode(code);
+function sayBye(user) {
+  alert(`Bye, ${user}!`);
 }
-alert(str); // 0..9A..Za..z
+export {sayHi, sayBye}; // список экспортируемых переменных
+
+
+// 📁 main.js
+import {sayHi, sayBye} from './say.js';
+sayHi('John'); // Hello, John!
+sayBye('John'); // Bye, John!
 
 
 
-function* gen() {
-  // Передаём вопрос во внешний код и ожидаем ответа
-  let result = yield "2 + 2 = ?"; // (*)
 
-  alert(result);
+// 📁 main.js
+import {sayHi as hi, sayBye as bye} from './say.js';
+hi('John'); // Hello, John!
+bye('John'); // Bye, John!
+
+
+
+
+
+// 📁 say.js
+export {sayHi as hi, sayBye as bye};
+// Теперь hi и bye – официальные имена для внешнего кода, их нужно использовать при импорте:
+// 📁 main.js
+import * as say from './say.js';
+say.hi('John'); // Hello, John!
+say.bye('John'); // Bye, John!
+
+
+
+
+// Именованный экспорт	                 Экспорт по умолчанию
+// export class User {...}	           export default class User {...}
+// import {User} from ...	                 import User from ...
+
+
+
+
+function sayHi(user) {
+  alert(`Hello, ${user}!`);
 }
-let generator = gen();
-let question = generator.next().value; // <-- yield возвращает значение
-generator.next(4); // --> передаём результат в генератор
+// то же самое, как если бы мы добавили "export default" перед функцией
+export {sayHi as default};
 
 
 
-// возобновить генератор через некоторое время
-setTimeout(() => generator.next(4), 1000);
-
-
-
-
-function* gen() {
-  let ask1 = yield "2 + 2 = ?";
-  alert(ask1); // 4
-  let ask2 = yield "3 * 3 = ?"
-  alert(ask2); // 9
-}
-let generator43 = gen();
-alert( generator.next().value ); // "2 + 2 = ?"
-alert( generator.next(4).value ); // "3 * 3 = ?"
-alert( generator.next(9).done ); // true
-
-
-
-function* pseudoRandom(seed) {
-  let value = seed;
-  while(true) {
-    value = value * 16807 % 2147483647
-    yield value;
+// 📁 user.js
+export default class User {
+  constructor(name) {
+    this.name = name;
   }
-};
-let generator876 = pseudoRandom(1);
-alert(generator.next().value); // 16807
-alert(generator.next().value); // 282475249
-alert(generator.next().value); // 1622650073
+}
+export function sayHi(user) {
+  alert(`Hello, ${user}!`);
+}
+
+
+
+// 📁 main.js
+import {default as User, sayHi} from './user.js';
+new User('John');
+
+
+
+
+
+let modulePath = prompt("Какой модуль загружать?");
+
+import(modulePath)
+  // .then(obj => <объект модуля>)
+  {/* .catch(err => <ошибка загрузки, например если нет такого модуля>)? */}
+
+
+  // 📁 say.js
+export function hi() {
+  alert(`Привет`);
+}
+
+export function bye() {
+  alert(`Пока`);
+}
