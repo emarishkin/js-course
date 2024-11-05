@@ -5852,58 +5852,91 @@
 // }
 
 
-// https://learn.javascript.ru/currying-partials
-// currying-partials
+// // https://learn.javascript.ru/currying-partials
+// // currying-partials
 
 
-function curry(f) { // curry(f) выполняет каррирование
-  return function(a) {
-    return function(b) {
-      return f(a, b);
-    };
-  };
+// function curry(f) { // curry(f) выполняет каррирование
+//   return function(a) {
+//     return function(b) {
+//       return f(a, b);
+//     };
+//   };
+// }
+// // использование
+// function sum(a, b) {
+//   return a + b;
+// }
+// let curriedSum = curry(sum);
+// alert( curriedSum(1)(2) ); // 3
+
+
+
+
+// function sum(a, b) {
+//   return a + b;
+// }
+// let curriedSum4 = _.curry(sum); // используем _.curry из lodash
+// alert( curriedSum(1, 2) ); // 3, можно вызывать как обычно
+// alert( curriedSum(1)(2) ); // 3, а можно частично
+
+
+// function curry(func) {
+
+//   return function curried(...args) {
+//     if (args.length >= func.length) {
+//       return func.apply(this, args);
+//     } else {
+//       return function(...args2) {
+//         return curried.apply(this, args.concat(args2));
+//       }
+//     }
+//   };
+
+// }
+
+// function sum(a, b, c) {
+//   return a + b + c;
+// }
+
+// let curriedSum3 = curry(sum);
+
+// alert( curriedSum(1, 2, 3) ); // 6, всё ещё можно вызывать нормально
+// alert( curriedSum(1)(2,3) ); // 6, каррирование первого аргумента
+// alert( curriedSum(1)(2)(3) ); // 6, каррирование всех аргументов
+
+
+
+// https://learn.javascript.ru/bitwise-operators
+// bitwise-operators
+
+let user = {
+  name: "John",
+  go: function() { alert(this.name) }
 }
-// использование
-function sum(a, b) {
-  return a + b;
-}
-let curriedSum = curry(sum);
-alert( curriedSum(1)(2) ); // 3
+(user.go)() // ошибка!
+// ;
 
 
+// Почему побитовые операции в примерах ниже не меняют число? Что они делают внутри?
+alert( 123 ^ 0 ); // 123
+alert( 0 ^ 123 ); // 123
+alert( ~~123 ); // 123
+// Операция a^b ставит бит результата в 1, если на соответствующей битовой позиции в a или b (но не одновременно) стоит 1.
+// Так как в 0 везде стоят нули, то биты берутся в точности как во втором аргументе.
+// Первое побитовое НЕ ~ превращает 0 в 1, а 1 в 0. А второе НЕ превращает ещё раз, в итоге получается как было.
 
 
-function sum(a, b) {
-  return a + b;
-}
-let curriedSum4 = _.curry(sum); // используем _.curry из lodash
-alert( curriedSum(1, 2) ); // 3, можно вызывать как обычно
-alert( curriedSum(1)(2) ); // 3, а можно частично
+// в двоичном виде 1000000000000000000000000000000 (31 цифры)
+alert( Math.pow(2, 30) ); // 1073741824
+alert( Math.pow(2, 30) ^ 0 ); // 1073741824, всё ок, длины хватает
 
+// в двоичном виде 100000000000000000000000000000000 (33 цифры)
+alert( Math.pow(2, 32) ); // 4294967296
+alert( Math.pow(2, 32) ^ 0 ); // 0, отброшены старшие цифры, остались нули
 
-function curry(func) {
-
-  return function curried(...args) {
-    if (args.length >= func.length) {
-      return func.apply(this, args);
-    } else {
-      return function(...args2) {
-        return curried.apply(this, args.concat(args2));
-      }
-    }
-  };
-
-}
-
-function sum(a, b, c) {
-  return a + b + c;
-}
-
-let curriedSum3 = curry(sum);
-
-alert( curriedSum(1, 2, 3) ); // 6, всё ещё можно вызывать нормально
-alert( curriedSum(1)(2,3) ); // 6, каррирование первого аргумента
-alert( curriedSum(1)(2)(3) ); // 6, каррирование всех аргументов
-
-
-
+// пограничный случай
+// в двоичном виде 10000000000000000000000000000000 (32 цифры)
+alert( Math.pow(2, 31) ); // 2147483648
+alert( Math.pow(2, 31) ^ 0 ); // -2147483648, ничего не отброшено,
+// но первый бит 1 теперь стоит в начале числа и является знаковым
