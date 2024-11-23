@@ -6055,58 +6055,97 @@
 
 // задачи,
 
-let user={
-  name:'john',
-  surname:'smith'
-}
-user.name='pete'
-console.log(user.name)
-delete user.name
-console.log(user)
+// let user={
+//   name:'john',
+//   surname:'smith'
+// }
+// user.name='pete'
+// console.log(user.name)
+// delete user.name
+// console.log(user)
 
 
-function isEmpty(obj){
-  for(let key in obj){
-    return false
+// function isEmpty(obj){
+//   for(let key in obj){
+//     return false
+//   }
+//   return true
+// }
+
+// let salaries = {
+//   John: 0,
+//   Ann: 0,
+//   Pete: 2
+// }
+
+// function calc(salaries){
+//   let sum = salaries.John+salaries.Pete+salaries.Ann
+//   return sum
+// }
+// alert(calc(salaries))
+
+// let plus = salaries.John+salaries.Pete+salaries.Ann
+// console.log(plus)
+
+// let sum = 0
+// for(let key in salaries){
+//   sum+=salaries[key]
+// }
+// alert(sum)
+
+
+// let menu = {
+//   width: 700,
+//   height: 300,
+//   title: "My menu"
+// };
+
+// function multiplyNumeric(obj){
+  
+//   for(let key in obj){
+//     if(typeof obj[key]==='number'){
+//    obj[key]*=2
+//     }
+//   }
+//   return obj
+// }
+// console.log(multiplyNumeric(menu))
+
+
+let calculator = {
+  read(){
+    this.a=+prompt('a?')
+    this.b=+prompt('b?')
+  },
+  sum(){
+    return this.a+this.b
+  },
+  mul(){
+    return this.a*this.b
   }
-  return true
-}
-
-let salaries = {
-  John: 0,
-  Ann: 0,
-  Pete: 2
-}
-
-function calc(salaries){
-  let sum = salaries.John+salaries.Pete+salaries.Ann
-  return sum
-}
-alert(calc(salaries))
-
-let plus = salaries.John+salaries.Pete+salaries.Ann
-console.log(plus)
-
-let sum = 0
-for(let key in salaries){
-  sum+=salaries[key]
-}
-alert(sum)
-
-
-let menu = {
-  width: 700,
-  height: 300,
-  title: "My menu"
 };
 
-function multiplyNumeric(obj){
-  
-  for(let key in obj){
-    if(typeof obj[key]==='number'){
-   obj[key]*=2
-    }
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+
+
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    return this;
+  },
+  down() {
+    this.step--;
+    return this;
+  },
+  showStep() {
+    alert( this.step );
+    return this;
   }
-  return obj
-}
-console.log(multiplyNumeric(menu))
+};
+
+alert(ladder.up().up().down().showStep().down().showStep()); // показывает 1 затем 0
